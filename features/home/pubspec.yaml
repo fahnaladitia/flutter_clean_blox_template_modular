@@ -1,0 +1,14 @@
+name: feature_home
+publish_to: none
+environment:
+  sdk: ^3.8.0
+  flutter: 3.32.0
+
+dependencies:
+  flutter:
+    sdk: flutter
+  
+  core:
+    path: ../../core
+  shared:
+    path: ../../shared

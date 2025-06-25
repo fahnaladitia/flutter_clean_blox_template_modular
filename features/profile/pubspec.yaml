@@ -1,0 +1,15 @@
+name: feature_profile
+publish_to: none
+environment:
+  sdk: ^3.8.0
+  flutter: 3.32.0
+
+dependencies:
+  flutter:
+    sdk: flutter
+  
+  core:
+    path: ../../core
+  shared:
+    path: ../../shared
+  get_it: ^8.0.3
