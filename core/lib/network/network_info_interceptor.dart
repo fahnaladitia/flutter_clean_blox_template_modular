@@ -1,4 +1,4 @@
-import 'package:core/utils/exceptions/network_exception.dart';
+import 'package:core/utils/exceptions/exceptions.dart';
 import 'package:dio/dio.dart';
 import 'network_info.dart';
 

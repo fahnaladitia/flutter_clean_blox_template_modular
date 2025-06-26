@@ -90,14 +90,14 @@
     "description": "Description for the home page",
     "type": "text"
   },
-  "profile": "Profile",
-  "@profile": {
-    "description": "Title for the profile page",
+  "account": "Account",
+  "@account": {
+    "description": "Title for the account page",
     "type": "text"
   },
-  "profileDescription": "View and edit your profile information",
-  "@profileDescription": {
-    "description": "Description for the profile page",
+  "accountDescription": "View and edit your account information",
+  "@accountDescription": {
+    "description": "Description for the account page",
     "type": "text"
   },
   "signOut": "Sign Out",

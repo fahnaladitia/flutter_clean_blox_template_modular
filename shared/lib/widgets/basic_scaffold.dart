@@ -1,5 +1,4 @@
-import 'package:flutter/material.dart';
-import 'basic_pull_refresh.dart';
+part of 'widgets.dart';
 
 /// =========================================================
 /// Created by Pahnal Aditia

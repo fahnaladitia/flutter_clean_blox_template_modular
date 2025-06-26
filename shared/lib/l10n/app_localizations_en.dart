@@ -63,10 +63,10 @@ class AppLocalizationsEn extends AppLocalizations {
   String get homeDescription => 'Welcome to the home page';
 
   @override
-  String get profile => 'Profile';
+  String get account => 'Account';
 
   @override
-  String get profileDescription => 'View and edit your profile information';
+  String get accountDescription => 'View and edit your account information';
 
   @override
   String get signOut => 'Sign Out';

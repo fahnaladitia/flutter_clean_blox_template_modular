@@ -1,5 +1,4 @@
-// ignore_for_file: dangling_library_doc_comments
-import 'package:equatable/equatable.dart';
+part of 'exceptions.dart';
 
 /// =========================================================
 /// Created by Pahnal Aditia

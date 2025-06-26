@@ -1,7 +1,7 @@
 import 'dart:io';
 
 import 'package:core/constants/error_constants.dart';
-import 'package:core/utils/exceptions/network_exception.dart';
+import 'package:core/utils/exceptions/exceptions.dart';
 import 'package:dio/dio.dart';
 
 /// =========================================================
@@ -36,7 +36,12 @@ class ErrorInterceptor extends InterceptorsWrapper {
     if (err.response?.data != null) {
       final exception = _getErrorException(err);
       return handler.reject(
-        DioException(requestOptions: err.requestOptions, response: err.response, error: exception, type: err.type),
+        DioException(
+          requestOptions: err.requestOptions,
+          response: err.response,
+          error: exception,
+          type: err.type,
+        ),
       );
     }
     super.onError(err, handler);
@@ -60,7 +65,10 @@ class ErrorInterceptor extends InterceptorsWrapper {
           message: ErrorMessageConstants.sendTimeoutMessage,
         );
       case DioExceptionType.cancel:
-        return NetworkException(code: ErrorCodeConstants.cancelCode, message: ErrorMessageConstants.cancelMessage);
+        return NetworkException(
+          code: ErrorCodeConstants.cancelCode,
+          message: ErrorMessageConstants.cancelMessage,
+        );
       case DioExceptionType.connectionError:
         return NetworkException(
           code: ErrorCodeConstants.noInternetConnectionCode,
@@ -78,7 +86,10 @@ class ErrorInterceptor extends InterceptorsWrapper {
             message: ErrorMessageConstants.noInternetConnectionMessage,
           );
         }
-        return NetworkException(code: ErrorCodeConstants.unknownCode, message: err.response!.toString());
+        return NetworkException(
+          code: ErrorCodeConstants.unknownCode,
+          message: err.response!.toString(),
+        );
       case DioExceptionType.badResponse:
         if (err.response == null) {
           return NetworkException(
@@ -93,15 +104,22 @@ class ErrorInterceptor extends InterceptorsWrapper {
           );
         }
 
-        if ((err.response!.statusCode ?? 0) >= 401 && (err.response!.statusCode ?? 0) < 500) {
+        if ((err.response!.statusCode ?? 0) >= 401 &&
+            (err.response!.statusCode ?? 0) < 500) {
           // TODO: Handle from 401 to 499
           return NetworkException.fromMap(err.response!.data);
         }
         if (err.response!.statusCode == 500) {
-          return NetworkException(code: ErrorCodeConstants.unknownCode, message: 'Internal Server Error');
+          return NetworkException(
+            code: ErrorCodeConstants.unknownCode,
+            message: 'Internal Server Error',
+          );
         }
 
-        return NetworkException(code: ErrorCodeConstants.unknownCode, message: err.response!.toString());
+        return NetworkException(
+          code: ErrorCodeConstants.unknownCode,
+          message: err.response!.toString(),
+        );
     }
   }
 }

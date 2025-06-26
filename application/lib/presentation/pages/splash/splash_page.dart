@@ -1,4 +1,7 @@
-import 'package:shared/log/app_logger.dart';
+import 'package:core/utils/log/app_logger.dart';
+import 'package:feature_auth/presentation/blocs/auth/auth_bloc.dart';
+import 'package:shared/extensions/extensions.dart';
+
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
@@ -7,8 +10,6 @@ import 'package:application/router/route.dart';
 import 'package:application/di/injection.dart';
 
 import 'package:go_router/go_router.dart';
-import 'package:shared/blocs/auth/auth_bloc.dart';
-import 'package:shared/utils/context_ext.dart';
 
 /// =========================================================
 /// Created by Pahnal Aditia

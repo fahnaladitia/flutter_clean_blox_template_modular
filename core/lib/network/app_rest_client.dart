@@ -1,7 +1,10 @@
 import 'package:chucker_flutter/chucker_flutter.dart';
 import 'package:core/config/app_config.dart';
 import 'package:core/config/app_flavor.dart';
+import 'package:core/local/auth_database.dart';
 import 'package:core/network/error_interceptor.dart';
+import 'package:core/network/network_info_interceptor.dart';
+import 'package:core/network/token_interceptor.dart';
 import 'package:cote_network_logger/interceptor.dart';
 import 'package:dio/dio.dart';
 import 'package:flutter/foundation.dart';
@@ -54,26 +57,34 @@ abstract class AppRestClient {
 class AppRestClientImpl implements AppRestClient {
   final Dio dio;
   final NetworkInfo networkInfo;
+  final AuthDatabase authDatabase;
 
-  AppRestClientImpl._({required this.dio, required this.networkInfo});
+  AppRestClientImpl._({
+    required this.dio,
+    required this.networkInfo,
+    required this.authDatabase,
+  });
 
   factory AppRestClientImpl.create({
     required String baseURL,
     required String apiKey,
     required NetworkInfo networkInfo,
+    required AuthDatabase authDatabase,
   }) {
     final dio = Dio();
 
     _configureDio(dio, baseURL: baseURL, apiKey: apiKey);
 
     dio.interceptors.add(ErrorInterceptor());
+    dio.interceptors.add(TokenInterceptor(authDatabase: authDatabase));
+    dio.interceptors.add(NetworkInfoInterceptor(networkInfo: networkInfo));
 
     final isStaging = AppConfig.flavor == AppFlavor.staging;
 
-    if (isStaging || kDebugMode) {
-      dio.interceptors.add(CoteNetworkLogger());
-      dio.interceptors.add(ChuckerDioInterceptor());
+    dio.interceptors.add(CoteNetworkLogger());
+    dio.interceptors.add(ChuckerDioInterceptor());
 
+    if (isStaging || kDebugMode) {
       dio.interceptors.add(
         PrettyDioLogger(
           requestHeader: true,
@@ -87,12 +98,11 @@ class AppRestClientImpl implements AppRestClient {
       );
     }
 
-    return AppRestClientImpl._(dio: dio, networkInfo: networkInfo);
-  }
-
-  void addInterceptors(List<Interceptor> interceptors) {
-    // Add custom interceptors to the Dio instance
-    dio.interceptors.addAll(interceptors);
+    return AppRestClientImpl._(
+      dio: dio,
+      networkInfo: networkInfo,
+      authDatabase: authDatabase,
+    );
   }
 
   static void _configureDio(

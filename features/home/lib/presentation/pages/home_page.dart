@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
-import 'package:shared/utils/context_ext.dart';
-import 'package:shared/widgets/basic_scaffold.dart';
+import 'package:shared/extensions/extensions.dart';
+
+import 'package:shared/widgets/widgets.dart';
 
 /// =========================================================
 /// Created by Pahnal Aditia

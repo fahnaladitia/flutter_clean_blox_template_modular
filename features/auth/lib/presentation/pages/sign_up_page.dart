@@ -1,16 +1,11 @@
+import 'package:feature_auth/presentation/blocs/sign_up/sign_up_bloc.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:get_it/get_it.dart';
-import 'package:shared/utils/context_ext.dart';
-import 'package:shared/utils/edge_insets_ext.dart';
-import 'package:shared/utils/spacer_ext.dart';
-import 'package:shared/widgets/basic_button.dart';
-import 'package:shared/widgets/basic_scaffold.dart';
-import 'package:shared/widgets/basic_text_input.dart';
-
-import '../blocs/sign_up/sign_up_bloc.dart';
+import 'package:shared/extensions/extensions.dart';
 
 import 'package:go_router/go_router.dart';
+import 'package:shared/widgets/widgets.dart';
 
 class SignUpPage extends StatefulWidget {
   const SignUpPage({super.key});

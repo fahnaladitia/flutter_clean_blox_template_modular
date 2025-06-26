@@ -1,5 +1,4 @@
-import 'package:flutter/material.dart';
-import '../utils/app_text_style.dart';
+part of 'widgets.dart';
 
 /// =========================================================
 /// Created by Pahnal Aditia

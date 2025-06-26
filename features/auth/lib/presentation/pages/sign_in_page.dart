@@ -3,12 +3,8 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:go_router/go_router.dart';
 import 'package:get_it/get_it.dart';
-import 'package:shared/utils/context_ext.dart';
-import 'package:shared/utils/edge_insets_ext.dart';
-import 'package:shared/utils/spacer_ext.dart';
-import 'package:shared/widgets/basic_button.dart';
-import 'package:shared/widgets/basic_scaffold.dart';
-import 'package:shared/widgets/basic_text_input.dart';
+import 'package:shared/extensions/extensions.dart';
+import 'package:shared/widgets/widgets.dart';
 
 class SignInPage extends StatefulWidget {
   const SignInPage({super.key});

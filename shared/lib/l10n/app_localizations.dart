@@ -206,17 +206,17 @@ abstract class AppLocalizations {
   /// **'Welcome to the home page'**
   String get homeDescription;
 
-  /// Title for the profile page
+  /// Title for the account page
   ///
   /// In en, this message translates to:
-  /// **'Profile'**
-  String get profile;
+  /// **'Account'**
+  String get account;
 
-  /// Description for the profile page
+  /// Description for the account page
   ///
   /// In en, this message translates to:
-  /// **'View and edit your profile information'**
-  String get profileDescription;
+  /// **'View and edit your account information'**
+  String get accountDescription;
 
   /// Text for the sign-out button
   ///

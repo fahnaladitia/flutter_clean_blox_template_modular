@@ -1,11 +1,12 @@
 import 'dart:async';
 
+import 'package:feature_auth/domain/usecases/sign_in_usecase/sign_in_usecase.dart';
+import 'package:feature_auth/domain/usecases/sign_in_usecase/sign_in_usecase_param.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:equatable/equatable.dart';
-import 'package:shared/features/auth/domain/usecases/sign_in_usecase/sign_in_usecase.dart';
-import 'package:shared/features/auth/domain/usecases/sign_in_usecase/sign_in_usecase_param.dart';
-import 'package:shared/utils/bloc_utils.dart';
-import 'package:shared/utils/ui_error.dart';
+import 'package:shared/errors/errors.dart';
+
+import 'package:shared/utils/utils.dart';
 
 part 'sign_in_event.dart';
 part 'sign_in_state.dart';
@@ -26,7 +27,7 @@ class SignInBloc extends Bloc<SignInEvent, SignInState> {
     SignInRequestedEvent event,
     Emitter<SignInState> emit,
   ) async {
-    await runBlocExecutor(
+    await BlocUtils.runBlocExecutor(
       onInitialBuilder: () => emit(SignInLoading()),
       onLogicBuilder: () async {
         final param = SignInUsecaseParam(

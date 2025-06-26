@@ -1,12 +1,11 @@
-import 'package:chucker_flutter/chucker_flutter.dart';
 import 'package:core/config/app_config.dart';
 import 'package:core/config/app_flavor.dart';
-import 'package:cote_network_logger/cote_network_logger.dart';
-import 'package:flutter/foundation.dart';
+import 'package:core/utils/debug/chucker_flutter_utils.dart';
+import 'package:core/utils/debug/cote_network_server_utils.dart';
+
 import 'package:flutter/material.dart';
-import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:application/di/injection.dart';
-import 'package:shared/utils/simple_observer.dart';
+import 'package:shared/utils/utils.dart';
 
 import 'my_app.dart';
 
@@ -19,20 +18,19 @@ import 'my_app.dart';
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
 
-  // Running Cote Network Logger
-  await startNetworkLogServer();
-
-  // Chucker Flutter
-  ChuckerFlutter.showOnRelease =
-      kDebugMode; // Show Chucker only in debug mode, if you want to see it in release mode, set to true
-
   // Initialize AppConfig with the staging configuration
   AppConfig.load(AppFlavor.production);
+
+  // Running Cote Network Logger
+  await CoteNetworkServerUtils.startServer();
+
+  // Chucker Flutter
+  ChuckerFlutterUtils.init();
 
   // Initialize dependency injection
   await Injection.init();
 
-  Bloc.observer = SimpleBlocObserver(); // Set up a simple Bloc observer
+  BlocUtils.runSimpleBlocObserver();
 
   // Sentry initialization can be added here if needed
   // await SentryService.init(app: () => runApp(const MyApp()));

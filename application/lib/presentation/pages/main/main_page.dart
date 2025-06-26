@@ -1,5 +1,6 @@
+import 'package:feature_auth/presentation/blocs/auth/auth_bloc.dart';
+import 'package:feature_auth/presentation/pages/account_page.dart';
 import 'package:feature_home/presentation/pages/home_page.dart';
-import 'package:feature_profile/presentation/pages/profile_page.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:application/router/route.dart';
@@ -7,8 +8,7 @@ import 'package:application/di/injection.dart';
 
 import 'package:flutter_native_splash/flutter_native_splash.dart';
 import 'package:go_router/go_router.dart';
-import 'package:shared/blocs/auth/auth_bloc.dart';
-import 'package:shared/utils/context_ext.dart';
+import 'package:shared/extensions/extensions.dart';
 
 /// =========================================================
 /// Created by Pahnal Aditia
@@ -36,7 +36,7 @@ class _MainPageState extends State<MainPage> {
 
   @override
   Widget build(BuildContext context) {
-    final pages = [HomePage(), ProfilePage()];
+    final pages = [HomePage(), AccountPage()];
     return BlocConsumer<AuthBloc, AuthState>(
       bloc: _authBloc,
       listener: (context, state) {
@@ -72,7 +72,7 @@ class _MainPageState extends State<MainPage> {
               ),
               BottomNavigationBarItem(
                 icon: Icon(Icons.person),
-                label: context.l10n.profile,
+                label: context.l10n.account,
               ),
             ],
           ),

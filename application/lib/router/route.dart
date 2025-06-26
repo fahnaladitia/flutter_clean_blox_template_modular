@@ -1,6 +1,7 @@
 import 'dart:io';
 
-import 'package:chucker_flutter/chucker_flutter.dart';
+import 'package:core/utils/debug/chucker_flutter_utils.dart';
+import 'package:core/utils/log/sentry_service.dart';
 import 'package:feature_auth/presentation/pages/sign_in_page.dart';
 import 'package:feature_auth/presentation/pages/sign_up_page.dart';
 
@@ -8,8 +9,6 @@ import 'package:go_router/go_router.dart';
 
 import 'package:application/presentation/pages/main/main_page.dart';
 import 'package:application/presentation/pages/splash/splash_page.dart';
-
-import 'package:sentry_flutter/sentry_flutter.dart';
 
 /// =========================================================
 /// Created by Pahnal Aditia
@@ -36,9 +35,8 @@ class AppRoute {
   static final GoRouter router = GoRouter(
     initialLocation: Platform.isAndroid ? splashPath : mainPath,
     observers: [
-      SentryNavigatorObserver(),
-      ChuckerFlutter.navigatorObserver,
-      // Add any other observers if needed
+      SentryService.navigatorObserver,
+      ChuckerFlutterUtils.navigatorObserver,
     ],
     routes: [
       GoRoute(

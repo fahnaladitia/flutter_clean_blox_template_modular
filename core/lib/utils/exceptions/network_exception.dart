@@ -1,4 +1,4 @@
-import 'base_exception.dart';
+part of 'exceptions.dart';
 
 class NetworkException extends BaseException {
   const NetworkException({required super.message, required super.code});

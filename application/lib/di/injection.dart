@@ -1,9 +1,8 @@
-import 'package:core/di/core_module.dart';
-import 'package:shared/log/app_logger.dart';
+import 'package:application/di/app_module.dart';
+import 'package:core/utils/log/app_logger.dart';
 import 'package:feature_auth/di/auth_module.dart';
 
 import 'package:get_it/get_it.dart';
-import 'package:shared/di/shared_module.dart';
 
 /// =========================================================
 /// Created by Pahnal Aditia
@@ -17,9 +16,11 @@ class Injection {
   Injection._();
 
   static Future<void> init() async {
-    initRootLogger();
-    await CoreModule.init();
-    await SharedModule.init();
+    await AppLogger.init();
+    AppLogger.info('Initializing Dependency Injection...');
+    await AppModule.init();
+    AppLogger.info('AppModule initialized successfully.');
     await AuthModule.init();
+    AppLogger.info('AuthModule initialized successfully.');
   }
 }
