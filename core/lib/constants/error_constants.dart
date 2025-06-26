@@ -15,6 +15,12 @@ class ErrorCodeConstants {
   static const String badCertificateCode = 'BAD_CERTIFICATE_CODE';
   static const String noInternetConnectionCode = 'NO_INTERNET_CONNECTION_CODE';
   static const String unknownCode = 'UNKNOWN_CODE';
+  // Authentication error codes
+  static const String unauthorizedCode = 'UNAUTHORIZED_CODE';
+  static const String forbiddenCode = 'FORBIDDEN_CODE';
+  static const String notFoundCode = 'NOT_FOUND_CODE';
+  static const String conflictCode = 'CONFLICT_CODE';
+  static const String internalServerErrorCode = 'INTERNAL_SERVER_ERROR_CODE';
 
   // Database error codes
 }
@@ -31,4 +37,11 @@ class ErrorMessageConstants {
   static const String badCertificateMessage = 'Invalid SSL certificate';
   static const String noInternetConnectionMessage = 'No internet connection';
   static const String unknownMessage = 'Unknown error';
+  static const String unauthorizedMessage = 'Unauthorized access';
+  static const String forbiddenMessage = 'Access to the resource is forbidden';
+  static const String notFoundMessage = 'Resource not found';
+  static const String conflictMessage =
+      'Conflict occurred while processing the request';
+  static const String internalServerErrorMessage =
+      'Internal server error occurred';
 }

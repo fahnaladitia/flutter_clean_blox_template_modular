@@ -7,23 +7,42 @@ packages:
   - features/*
 
 scripts:
-  bootstrap: melos bootstrap
-  clean: melos clean
-  graph: melos graph
+  # Run all tests in the monorepo
+  test: |
   # FLAVOR: staging
-  run:staging:debug: cd application && flutter run --flavor staging -t lib/main_staging.dart --debug
-  run:staging:release: cd application && flutter run --flavor staging -t lib/main_staging.dart --release
+  run:debug:staging: cd application && flutter run --flavor staging -t lib/main_staging.dart --debug
+  run:release:staging: cd application && flutter run --flavor staging -t lib/main_staging.dart --release
 
   # FLAVOR: production
-  run:production:debug: cd application && flutter run --flavor production -t lib/main_production.dart --debug
-  run:production:release: cd application && flutter run --flavor production -t lib/main_production.dart --release
+  run:debug:production: cd application && flutter run --flavor production -t lib/main_production.dart --debug
+  run:release:production: cd application && flutter run --flavor production -t lib/main_production.dart --release
+# Build staging / production APK release
+  build:staging:apk:
+    run: cd application && flutter build apk --flavor staging -t lib/main_staging.dart --release --obfuscate --split-debug-info=out/staging
+    description: Build staging APK (release)
 
+  build:production:apk:
+    run: cd application && flutter build apk --flavor production -t lib/main_production.dart --release --obfuscate --split-debug-info=out/production
+    description: Build production APK (release)
 
-# command:
-#   version:
-#     # Melos versioning (optional)
-#     branch: main
-#     message: "chore(release): publish packages"
+  # Optional: Build iOS
+  build:staging:ios:
+    run: cd application && flutter build ios --flavor staging -t lib/main_staging.dart
+    description: Build iOS staging
+  
+  # Optional: Build iOS staging
+  build:staging:ipa:
+    run: cd application && flutter build ipa --flavor staging -t lib/main_staging.dart --obfuscate --split-debug-info=out/staging
+    description: Build iOS staging
 
-ide:
-  intellij: true
+  # Optional: Build iOS  production
+  build:production:ios:
+    run: cd application && flutter build ios --flavor production -t lib/main_production.dart
+    description: Build iOS production
+  
+  # Optional: Build iOS production
+  build:production:ipa:
+    run: cd application && flutter build ipa --flavor production -t lib/main_production.dart --obfuscate --split-debug-info=out/production
+    description: Build iOS production
+  
+  

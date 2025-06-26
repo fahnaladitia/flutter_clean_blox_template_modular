@@ -1,6 +1,5 @@
 import 'package:chucker_flutter/chucker_flutter.dart';
 import 'package:core/config/app_config.dart';
-import 'package:core/config/app_flavor.dart';
 import 'package:core/local/auth_database.dart';
 import 'package:core/network/error_interceptor.dart';
 import 'package:core/network/network_info_interceptor.dart';

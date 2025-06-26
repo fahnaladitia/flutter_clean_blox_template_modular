@@ -1,3 +1,5 @@
+part of 'app_config.dart';
+
 class EnvConfig {
   final String baseURL;
   final String apiKey;

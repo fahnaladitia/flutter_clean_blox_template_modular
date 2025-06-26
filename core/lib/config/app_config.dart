@@ -1,5 +1,5 @@
-import 'app_flavor.dart';
-import 'env_config.dart';
+part 'app_flavor.dart';
+part 'env_config.dart';
 
 class AppConfig {
   static EnvConfig? _config;
@@ -50,16 +50,16 @@ class AppConfig {
     switch (selectedFlavor) {
       case AppFlavor.staging:
         _config = EnvConfig(
-          baseURL: 'https://staging.example.com',
-          apiKey: 'staging-api',
+          baseURL: 'https://staging.example.com/api',
+          apiKey: 'staging-api-key',
           sentryDSN: 'https://staging.sentry.io/123456',
         );
         break;
       case AppFlavor.production:
         _config = EnvConfig(
           baseURL: 'https://api.example.com',
-          apiKey: 'production-api',
-          sentryDSN: 'https://sentry.io/123456',
+          apiKey: 'production-api-key',
+          sentryDSN: 'https://sentry.example.com/123456',
         );
         break;
     }

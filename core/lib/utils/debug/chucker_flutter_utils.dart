@@ -1,6 +1,5 @@
 import 'package:chucker_flutter/chucker_flutter.dart';
 import 'package:core/config/app_config.dart';
-import 'package:core/config/app_flavor.dart';
 import 'package:flutter/material.dart';
 
 final class ChuckerFlutterUtils {

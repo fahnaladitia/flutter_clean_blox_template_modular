@@ -11,25 +11,6 @@ import 'package:dio/dio.dart';
 /// =========================================================
 
 class ErrorInterceptor extends InterceptorsWrapper {
-  /// Interceptor untuk menangani error dari Dio
-  /// Jika ada error, interceptor ini akan mengubahnya menjadi custom exception
-  /// yang lebih mudah dipahami oleh aplikasi.
-  /// Ini juga akan membantu dalam menangani error secara konsisten di seluruh aplikasi.
-  /// Contoh Catch:
-  /// ```dart
-  /// try {
-  ///   final response = await dio.get('/endpoint');
-  /// } on DioException catch (e) {
-  ///   if (e.error is NetworkException) {
-  ///     final exception = e.error as NetworkException;
-  ///     // Tangani exception sesuai kebutuhan
-  ///     print('Error: ${exception.message}');
-  ///   } else {
-  ///     // Tangani error lain yang mungkin terjadi
-  ///     print('Error: ${e.message}');
-  ///   }
-  /// }
-  /// ```
   @override
   void onError(DioException err, ErrorInterceptorHandler handler) {
     // Ubah error jadi custom exception jika ada response
@@ -93,26 +74,33 @@ class ErrorInterceptor extends InterceptorsWrapper {
       case DioExceptionType.badResponse:
         if (err.response == null) {
           return NetworkException(
-            code: ErrorCodeConstants.noInternetConnectionCode,
-            message: ErrorMessageConstants.noInternetConnectionMessage,
-          );
-        }
-        if (err.response!.statusCode == 400) {
-          return NetworkException(
-            code: err.response!.data['code'] ?? ErrorCodeConstants.unknownCode,
-            message: err.response!.data.toString(),
+            code: ErrorCodeConstants.unknownCode,
+            message: 'Unknown error occurred',
           );
         }
 
-        if ((err.response!.statusCode ?? 0) >= 401 &&
-            (err.response!.statusCode ?? 0) < 500) {
-          // TODO: Handle from 401 to 499
+        if (err.response!.statusCode == HttpStatus.badRequest) {
+          // TODO: Handle bad request error
           return NetworkException.fromMap(err.response!.data);
-        }
-        if (err.response!.statusCode == 500) {
+        } else if (err.response!.statusCode == HttpStatus.unauthorized) {
           return NetworkException(
-            code: ErrorCodeConstants.unknownCode,
-            message: 'Internal Server Error',
+            code: ErrorCodeConstants.unauthorizedCode,
+            message: ErrorMessageConstants.unauthorizedMessage,
+          );
+        } else if (err.response!.statusCode == HttpStatus.forbidden) {
+          return NetworkException(
+            code: ErrorCodeConstants.forbiddenCode,
+            message: ErrorMessageConstants.forbiddenMessage,
+          );
+        } else if (err.response!.statusCode == HttpStatus.notFound) {
+          return NetworkException(
+            code: ErrorCodeConstants.notFoundCode,
+            message: ErrorMessageConstants.notFoundMessage,
+          );
+        } else if (err.response!.statusCode == HttpStatus.internalServerError) {
+          return NetworkException(
+            code: ErrorCodeConstants.internalServerErrorCode,
+            message: ErrorMessageConstants.internalServerErrorMessage,
           );
         }
 

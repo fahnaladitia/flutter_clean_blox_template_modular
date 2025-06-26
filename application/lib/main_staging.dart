@@ -1,5 +1,4 @@
 import 'package:core/config/app_config.dart';
-import 'package:core/config/app_flavor.dart';
 import 'package:core/utils/debug/chucker_flutter_utils.dart';
 import 'package:core/utils/debug/cote_network_server_utils.dart';
 import 'package:flutter/material.dart';

@@ -5,12 +5,7 @@ import 'network_info.dart';
 class NetworkInfoInterceptor extends InterceptorsWrapper {
   final NetworkInfo networkInfo;
 
-  NetworkInfoInterceptor({
-    super.onRequest,
-    super.onResponse,
-    super.onError,
-    required this.networkInfo,
-  });
+  NetworkInfoInterceptor({required this.networkInfo});
 
   @override
   void onRequest(

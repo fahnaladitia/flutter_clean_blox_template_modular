@@ -1,3 +1,5 @@
+part of 'app_config.dart';
+
 enum AppFlavor { staging, production }
 
 extension AppFlavorExtension on AppFlavor {
