@@ -1,5 +1,5 @@
 import 'package:core/di/core_module.dart';
-import 'package:core/utils/log/app_logger.dart';
+import 'package:shared/log/app_logger.dart';
 import 'package:feature_auth/di/auth_module.dart';
 
 import 'package:get_it/get_it.dart';

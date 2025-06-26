@@ -6,8 +6,8 @@ import 'package:feature_auth/presentation/pages/sign_up_page.dart';
 
 import 'package:go_router/go_router.dart';
 
-import 'package:flutter_clean_blox_template/app/presentation/pages/main/main_page.dart';
-import 'package:flutter_clean_blox_template/app/presentation/pages/splash/splash_page.dart';
+import 'package:application/presentation/pages/main/main_page.dart';
+import 'package:application/presentation/pages/splash/splash_page.dart';
 
 import 'package:sentry_flutter/sentry_flutter.dart';
 

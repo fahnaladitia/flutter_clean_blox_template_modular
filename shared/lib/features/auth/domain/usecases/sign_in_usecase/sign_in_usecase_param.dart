@@ -1,5 +1,5 @@
 import 'package:core/utils/exceptions/validator_exception.dart';
-import 'package:core/utils/validators/validators.dart';
+import 'package:shared/validators/validators.dart';
 
 final class SignInUsecaseParam {
   final String email;
@@ -16,16 +16,10 @@ final class SignInUsecaseParam {
 
   void validate() {
     if (email.isEmpty) {
-      throw ValidatorException(
-        fieldName: 'email',
-        errMessage: 'Email cannot be empty',
-      );
+      throw ValidatorException(fieldName: 'email', errMessage: 'Email cannot be empty');
     }
     if (password.isEmpty) {
-      throw ValidatorException(
-        fieldName: 'password',
-        errMessage: 'Password cannot be empty',
-      );
+      throw ValidatorException(fieldName: 'password', errMessage: 'Password cannot be empty');
     }
 
     final emailValidation = Validators.validateEmail(email);
@@ -35,10 +29,7 @@ final class SignInUsecaseParam {
 
     final passwordValidation = Validators.validatePassword(password);
     if (passwordValidation != null) {
-      throw ValidatorException(
-        fieldName: 'password',
-        errMessage: passwordValidation,
-      );
+      throw ValidatorException(fieldName: 'password', errMessage: passwordValidation);
     }
   }
 }

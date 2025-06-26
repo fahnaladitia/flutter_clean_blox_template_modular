@@ -1,5 +1,5 @@
 import 'package:core/utils/exceptions/cache_exception.dart';
-import 'package:core/utils/log/app_logger.dart';
+import 'package:shared/log/app_logger.dart';
 
 import '../entities/auth_entity.dart';
 
@@ -26,11 +26,7 @@ class AuthDatabaseImpl implements AuthDatabase {
   AuthDatabaseImpl([FlutterSecureStorage? storage])
     : _storage =
           storage ??
-          FlutterSecureStorage(
-            aOptions: AndroidOptions.defaultOptions.copyWith(
-              encryptedSharedPreferences: true,
-            ),
-          );
+          FlutterSecureStorage(aOptions: AndroidOptions.defaultOptions.copyWith(encryptedSharedPreferences: true));
 
   static const String _userIdKey = 'user_id';
   static const String _accessToken = 'access_token';

@@ -6,7 +6,6 @@
       "request": "launch",
       "type": "dart",
       "flutterMode": "debug",
-      "cwd": "application",
       "program": "lib/main_staging.dart",
       "args": [
         "--flavor", "staging",
@@ -18,7 +17,6 @@
       "request": "launch",
       "type": "dart",
       "flutterMode": "release",
-      "cwd": "application",
       "program": "lib/main_staging.dart",
       "args": [
         "--flavor", "staging",
@@ -30,7 +28,6 @@
       "request": "launch",
       "type": "dart",
       "flutterMode": "debug",
-      "cwd": "application",
       "program": "lib/main_production.dart",
       "args": [
         "--flavor", "production",
@@ -42,7 +39,6 @@
       "request": "launch",
       "type": "dart",
       "flutterMode": "release",
-      "cwd": "application",
       "program": "lib/main_production.dart",
       "args": [
         "--flavor", "production",

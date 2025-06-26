@@ -2,8 +2,8 @@ import 'package:feature_home/presentation/pages/home_page.dart';
 import 'package:feature_profile/presentation/pages/profile_page.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:flutter_clean_blox_template/app/router/route.dart';
-import 'package:flutter_clean_blox_template/app/di/injection.dart';
+import 'package:application/router/route.dart';
+import 'package:application/di/injection.dart';
 
 import 'package:flutter_native_splash/flutter_native_splash.dart';
 import 'package:go_router/go_router.dart';

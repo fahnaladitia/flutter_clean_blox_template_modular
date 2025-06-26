@@ -1,10 +1,10 @@
-import 'package:core/utils/log/app_logger.dart';
+import 'package:shared/log/app_logger.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:flutter_clean_blox_template/app/router/route.dart';
+import 'package:application/router/route.dart';
 
-import 'package:flutter_clean_blox_template/app/di/injection.dart';
+import 'package:application/di/injection.dart';
 
 import 'package:go_router/go_router.dart';
 import 'package:shared/blocs/auth/auth_bloc.dart';

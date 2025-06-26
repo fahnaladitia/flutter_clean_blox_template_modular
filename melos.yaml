@@ -1,0 +1,29 @@
+name: my_flutter_monorepo
+
+packages:
+  - application
+  - core
+  - shared
+  - features/*
+
+scripts:
+  bootstrap: melos bootstrap
+  clean: melos clean
+  graph: melos graph
+  # FLAVOR: staging
+  run:staging:debug: cd application && flutter run --flavor staging -t lib/main_staging.dart --debug
+  run:staging:release: cd application && flutter run --flavor staging -t lib/main_staging.dart --release
+
+  # FLAVOR: production
+  run:production:debug: cd application && flutter run --flavor production -t lib/main_production.dart --debug
+  run:production:release: cd application && flutter run --flavor production -t lib/main_production.dart --release
+
+
+# command:
+#   version:
+#     # Melos versioning (optional)
+#     branch: main
+#     message: "chore(release): publish packages"
+
+ide:
+  intellij: true

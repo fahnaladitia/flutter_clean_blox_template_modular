@@ -5,10 +5,10 @@ import 'package:cote_network_logger/cote_network_logger.dart';
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:flutter_clean_blox_template/app/di/injection.dart';
+import 'package:application/di/injection.dart';
 import 'package:shared/utils/simple_observer.dart';
 
-import 'app/my_app.dart';
+import 'my_app.dart';
 
 /// =========================================================
 /// Created by Pahnal Aditia
@@ -27,7 +27,7 @@ void main() async {
       kDebugMode; // Show Chucker only in debug mode, if you want to see it in release mode, set to true
 
   // Initialize AppConfig with the staging configuration
-  AppConfig.load(AppFlavor.production);
+  AppConfig.load(AppFlavor.staging);
 
   // Initialize dependency injection
   await Injection.init();

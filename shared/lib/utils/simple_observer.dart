@@ -1,4 +1,4 @@
-import 'package:core/utils/log/app_logger.dart';
+import 'package:shared/log/app_logger.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
 /// =========================================================
@@ -11,17 +11,13 @@ class SimpleBlocObserver extends BlocObserver {
   @override
   void onTransition(Bloc bloc, Transition transition) {
     super.onTransition(bloc, transition);
-    AppLogger.info(
-      'Transition: ${transition.currentState} -> ${transition.nextState} | Event: ${transition.event}',
-    );
+    AppLogger.info('Transition: ${transition.currentState} -> ${transition.nextState} | Event: ${transition.event}');
   }
 
   @override
   void onChange(BlocBase bloc, Change change) {
     super.onChange(bloc, change);
-    AppLogger.info(
-      'Change: ${change.currentState} -> ${change.nextState} | Bloc: ${bloc.runtimeType}',
-    );
+    AppLogger.info('Change: ${change.currentState} -> ${change.nextState} | Bloc: ${bloc.runtimeType}');
   }
 
   @override
@@ -32,9 +28,7 @@ class SimpleBlocObserver extends BlocObserver {
 
   @override
   void onError(BlocBase bloc, Object error, StackTrace stackTrace) {
-    AppLogger.error(
-      'Error: $error | Bloc: ${bloc.runtimeType} | StackTrace: $stackTrace',
-    );
+    AppLogger.error('Error: $error | Bloc: ${bloc.runtimeType} | StackTrace: $stackTrace');
     super.onError(bloc, error, stackTrace);
   }
 }
