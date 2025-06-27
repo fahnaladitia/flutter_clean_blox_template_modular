@@ -1,4 +1,4 @@
-part of 'app_config.dart';
+part of 'config.dart';
 
 class EnvConfig {
   final String baseURL;

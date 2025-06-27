@@ -4,9 +4,7 @@ import 'package:feature_auth/domain/usecases/get_access_token_usecase/get_access
 import 'package:feature_auth/domain/usecases/sign_out_usecase/sign_out_usecase.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:equatable/equatable.dart';
-import 'package:shared/errors/errors.dart';
-
-import 'package:shared/utils/utils.dart';
+import 'package:shared/shared.dart';
 
 part 'auth_event.dart';
 part 'auth_state.dart';

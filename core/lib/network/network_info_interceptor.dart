@@ -1,6 +1,4 @@
-import 'package:core/utils/exceptions/exceptions.dart';
-import 'package:dio/dio.dart';
-import 'network_info.dart';
+part of 'network.dart';
 
 class NetworkInfoInterceptor extends InterceptorsWrapper {
   final NetworkInfo networkInfo;

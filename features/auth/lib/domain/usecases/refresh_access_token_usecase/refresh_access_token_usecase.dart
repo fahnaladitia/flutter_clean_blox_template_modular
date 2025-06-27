@@ -1,6 +1,5 @@
-import 'package:core/utils/exceptions/exceptions.dart';
-import 'package:core/utils/usecases/usecases.dart';
-import '../../repositories/auth_repository.dart';
+import 'package:core/core.dart';
+import 'package:feature_auth/domain/repositories/auth_repository.dart';
 
 final class RefreshAccessTokenUsecase implements Usecase<void> {
   final AuthRepository repository;

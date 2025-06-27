@@ -1,5 +1,5 @@
-import 'package:core/utils/exceptions/exceptions.dart';
-import 'package:shared/utils/utils.dart';
+import 'package:core/core.dart';
+import 'package:shared/shared.dart';
 
 final class SignInUsecaseParam {
   final String email;

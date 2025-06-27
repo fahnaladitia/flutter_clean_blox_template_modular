@@ -1,3 +1,4 @@
+import 'package:core/core.dart';
 import 'package:feature_auth/data/repositories/auth_repository.dart';
 import 'package:feature_auth/data/sources/local/auth_local_data_source.dart';
 import 'package:feature_auth/data/sources/remote/auth_remote_data_source.dart';
@@ -12,48 +13,40 @@ import 'package:feature_auth/presentation/blocs/auth/auth_bloc.dart';
 import 'package:feature_auth/presentation/blocs/sign_in/sign_in_bloc.dart';
 import 'package:feature_auth/presentation/blocs/sign_up/sign_up_bloc.dart';
 
-import 'package:get_it/get_it.dart';
-
 final class AuthModule {
   AuthModule._();
-  static final GetIt _getIt = GetIt.instance;
 
   static Future<void> init() async {
     // Register local data sources for authentication
-    _getIt.registerLazySingleton<AuthLocalDataSource>(
-      () => AuthLocalDataSourceImpl(authDatabase: _getIt()),
+    sl.registerLazySingleton<AuthLocalDataSource>(
+      () => AuthLocalDataSourceImpl(authDatabase: sl()),
     );
 
     // If you have remote data sources, register them here
-    _getIt.registerLazySingleton<AuthRemoteDataSource>(
-      () => AuthRemoteDataSourceImpl(client: _getIt()),
+    sl.registerLazySingleton<AuthRemoteDataSource>(
+      () => AuthRemoteDataSourceImpl(client: sl()),
     );
 
     // Register repositories for authentication
-    _getIt.registerLazySingleton<AuthRepository>(
-      () => AuthRepositoryImpl(
-        localDataSource: _getIt(),
-        remoteDataSource: _getIt(),
-      ),
+    sl.registerLazySingleton<AuthRepository>(
+      () => AuthRepositoryImpl(localDataSource: sl(), remoteDataSource: sl()),
     );
 
     // Register use cases for authentication
-    _getIt.registerLazySingleton(
-      () => GetAccessTokenUsecase(repository: _getIt()),
-    );
-    _getIt.registerLazySingleton(() => GetUserIdUsecase(repository: _getIt()));
-    _getIt.registerLazySingleton(
-      () => RefreshAccessTokenUsecase(repository: _getIt()),
-    );
-    _getIt.registerLazySingleton(() => SignInUsecase(repository: _getIt()));
-    _getIt.registerLazySingleton(() => SignOutUsecase(repository: _getIt()));
-    _getIt.registerLazySingleton(() => SignUpUsecase(repository: _getIt()));
+    sl.registerLazySingleton(() => GetAccessTokenUsecase(repository: sl()));
+    sl.registerLazySingleton(() => GetUserIdUsecase(repository: sl()));
+    sl.registerLazySingleton(() => RefreshAccessTokenUsecase(repository: sl()));
+    sl.registerLazySingleton(() => SignInUsecase(repository: sl()));
+    sl.registerLazySingleton(() => SignOutUsecase(repository: sl()));
+    sl.registerLazySingleton(() => SignUpUsecase(repository: sl()));
 
     // Register your authentication blocs here
-    _getIt.registerLazySingleton(
-      () => AuthBloc(getAccessTokenUsecase: _getIt(), signOutUsecase: _getIt()),
+    sl.registerLazySingleton(
+      () => AuthBloc(getAccessTokenUsecase: sl(), signOutUsecase: sl()),
     );
-    _getIt.registerFactory(() => SignInBloc(signInUsecase: _getIt()));
-    _getIt.registerFactory(() => SignUpBloc(signUpUsecase: _getIt()));
+    sl.registerFactory(() => SignInBloc(signInUsecase: sl()));
+    sl.registerFactory(() => SignUpBloc(signUpUsecase: sl()));
+
+    AppLogger.info('AuthModule initialized successfully.');
   }
 }

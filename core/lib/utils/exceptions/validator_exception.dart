@@ -1,4 +1,4 @@
-part of 'exceptions.dart';
+part of '../utils.dart';
 
 class ValidatorException extends BaseException {
   final String fieldName;

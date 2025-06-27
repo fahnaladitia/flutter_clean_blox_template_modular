@@ -1,9 +1,7 @@
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:application/router/route.dart';
-import 'package:shared/l10n/app_localizations.dart';
-import 'package:shared/l10n/l10n.dart';
-import 'package:shared/theme/theme.dart';
+import 'package:shared/shared.dart';
 
 /// =========================================================
 /// Created by Pahnal Aditia

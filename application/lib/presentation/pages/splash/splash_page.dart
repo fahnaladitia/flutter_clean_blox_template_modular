@@ -1,15 +1,11 @@
-import 'package:core/utils/log/app_logger.dart';
+import 'package:core/core.dart';
 import 'package:feature_auth/presentation/blocs/auth/auth_bloc.dart';
-import 'package:shared/extensions/extensions.dart';
+import 'package:shared/shared.dart';
 
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:application/router/route.dart';
-
-import 'package:application/di/injection.dart';
-
-import 'package:go_router/go_router.dart';
 
 /// =========================================================
 /// Created by Pahnal Aditia
@@ -32,7 +28,7 @@ class _SplashPageState extends State<SplashPage> {
       SystemUiMode.manual,
       overlays: [SystemUiOverlay.top],
     );
-    getIt.get<AuthBloc>().add(AuthCheckRequestedEvent());
+    sl.get<AuthBloc>().add(AuthCheckRequestedEvent());
   }
 
   @override
@@ -47,7 +43,7 @@ class _SplashPageState extends State<SplashPage> {
   @override
   Widget build(BuildContext context) {
     return BlocListener<AuthBloc, AuthState>(
-      bloc: getIt.get<AuthBloc>(),
+      bloc: sl.get<AuthBloc>(),
       listener: (context, state) async {
         AppLogger.info('SplashPage: AuthState: $state');
 
@@ -55,13 +51,13 @@ class _SplashPageState extends State<SplashPage> {
           await Future.delayed(const Duration(milliseconds: 1500));
           if (!context.mounted) return;
           AppLogger.info('Navigating to SignInPage');
-          context.goNamed(AppRoute.signIn);
+          context.goTo(AppRoute.signIn);
         }
 
         if (state is AuthAuthenticatedState) {
           await Future.delayed(const Duration(milliseconds: 1500));
           if (!context.mounted) return;
-          context.goNamed(AppRoute.main);
+          context.goTo(AppRoute.main);
         }
 
         if (state is AuthErrorState) {

@@ -1,5 +1,4 @@
-import 'package:core/local/auth_database.dart';
-import 'package:dio/dio.dart';
+part of 'network.dart';
 
 /// =========================================================
 /// Created by Pahnal Aditia

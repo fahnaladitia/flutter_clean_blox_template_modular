@@ -1,5 +1,4 @@
-import 'package:core/network/app_rest_client.dart';
-import 'package:core/utils/exceptions/exceptions.dart';
+import 'package:core/core.dart';
 import 'package:feature_auth/data/sources/local/entities/auth_entity.dart';
 import 'package:feature_auth/data/sources/remote/dtos/res/sign_in_response.dart';
 

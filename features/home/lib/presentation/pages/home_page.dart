@@ -1,7 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:shared/extensions/extensions.dart';
-
-import 'package:shared/widgets/widgets.dart';
+import 'package:shared/shared.dart';
 
 /// =========================================================
 /// Created by Pahnal Aditia

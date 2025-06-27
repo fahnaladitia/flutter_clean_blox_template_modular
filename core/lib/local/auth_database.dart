@@ -1,6 +1,4 @@
-import 'package:core/utils/exceptions/exceptions.dart';
-import 'package:core/utils/log/app_logger.dart';
-import 'package:flutter_secure_storage/flutter_secure_storage.dart';
+part of 'local.dart';
 
 abstract class AuthDatabase {
   Future<void> saveAuth({

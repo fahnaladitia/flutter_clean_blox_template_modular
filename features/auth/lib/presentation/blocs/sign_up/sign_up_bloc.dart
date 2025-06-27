@@ -4,8 +4,7 @@ import 'package:feature_auth/domain/usecases/sign_up_usecase/sign_up_usecase.dar
 import 'package:feature_auth/domain/usecases/sign_up_usecase/sign_up_usecase_param.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:equatable/equatable.dart';
-import 'package:shared/errors/errors.dart';
-import 'package:shared/utils/utils.dart';
+import 'package:shared/shared.dart';
 
 part 'sign_up_event.dart';
 part 'sign_up_state.dart';

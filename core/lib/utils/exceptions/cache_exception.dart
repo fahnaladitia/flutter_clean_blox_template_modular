@@ -1,4 +1,4 @@
-part of 'exceptions.dart';
+part of '../utils.dart';
 
 class CacheException extends BaseException {
   final String cause;

@@ -1,14 +1,14 @@
+import 'package:core/core.dart';
 import 'package:feature_auth/presentation/blocs/auth/auth_bloc.dart';
 import 'package:feature_auth/presentation/pages/account_page.dart';
 import 'package:feature_home/presentation/pages/home_page.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:application/router/route.dart';
-import 'package:application/di/injection.dart';
 
 import 'package:flutter_native_splash/flutter_native_splash.dart';
-import 'package:go_router/go_router.dart';
-import 'package:shared/extensions/extensions.dart';
+
+import 'package:shared/shared.dart';
 
 /// =========================================================
 /// Created by Pahnal Aditia
@@ -30,7 +30,7 @@ class _MainPageState extends State<MainPage> {
   @override
   void initState() {
     super.initState();
-    _authBloc = getIt.get();
+    _authBloc = sl.get();
     _authBloc.add(AuthCheckRequestedEvent());
   }
 
@@ -47,7 +47,7 @@ class _MainPageState extends State<MainPage> {
         }
 
         if (state is AuthUnauthenticatedState) {
-          context.goNamed(AppRoute.signIn);
+          context.goTo(AppRoute.signIn);
         }
 
         if (state is AuthErrorState) {

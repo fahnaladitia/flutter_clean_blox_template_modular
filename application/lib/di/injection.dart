@@ -1,8 +1,7 @@
 import 'package:application/di/app_module.dart';
-import 'package:core/utils/log/app_logger.dart';
-import 'package:feature_auth/di/auth_module.dart';
+import 'package:core/core.dart';
 
-import 'package:get_it/get_it.dart';
+import 'package:feature_auth/di/auth_module.dart';
 
 /// =========================================================
 /// Created by Pahnal Aditia
@@ -10,17 +9,12 @@ import 'package:get_it/get_it.dart';
 /// LinkedIn: https://www.linkedin.com/in/pahnaladitia
 /// =========================================================
 
-final getIt = GetIt.instance;
-
 class Injection {
   Injection._();
 
   static Future<void> init() async {
-    await AppLogger.init();
-    AppLogger.info('Initializing Dependency Injection...');
+    await CoreModule.init();
     await AppModule.init();
-    AppLogger.info('AppModule initialized successfully.');
     await AuthModule.init();
-    AppLogger.info('AuthModule initialized successfully.');
   }
 }

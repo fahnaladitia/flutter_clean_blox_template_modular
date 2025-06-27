@@ -1,4 +1,4 @@
-import 'package:core/local/auth_database.dart';
+import 'package:core/core.dart';
 
 import 'entities/auth_entity.dart';
 

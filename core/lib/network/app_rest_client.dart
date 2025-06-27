@@ -1,15 +1,4 @@
-import 'package:chucker_flutter/chucker_flutter.dart';
-import 'package:core/config/app_config.dart';
-import 'package:core/local/auth_database.dart';
-import 'package:core/network/error_interceptor.dart';
-import 'package:core/network/network_info_interceptor.dart';
-import 'package:core/network/token_interceptor.dart';
-import 'package:cote_network_logger/interceptor.dart';
-import 'package:dio/dio.dart';
-import 'package:flutter/foundation.dart';
-import 'package:pretty_dio_logger/pretty_dio_logger.dart';
-
-import 'network_info.dart';
+part of 'network.dart';
 
 /// =========================================================
 /// Created by Pahnal Aditia

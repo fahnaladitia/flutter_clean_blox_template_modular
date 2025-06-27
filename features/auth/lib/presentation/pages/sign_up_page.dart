@@ -1,11 +1,9 @@
+import 'package:core/core.dart';
 import 'package:feature_auth/presentation/blocs/sign_up/sign_up_bloc.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:get_it/get_it.dart';
-import 'package:shared/extensions/extensions.dart';
 
-import 'package:go_router/go_router.dart';
-import 'package:shared/widgets/widgets.dart';
+import 'package:shared/shared.dart';
 
 class SignUpPage extends StatefulWidget {
   const SignUpPage({super.key});
@@ -20,8 +18,6 @@ class _SignUpPageState extends State<SignUpPage> {
   late final TextEditingController _passwordController;
   late final TextEditingController _confirmPasswordController;
 
-  GetIt getIt = GetIt.instance;
-
   bool isValid = false;
 
   late final SignUpBloc _signUpBloc;
@@ -31,7 +27,7 @@ class _SignUpPageState extends State<SignUpPage> {
   @override
   void initState() {
     super.initState();
-    _signUpBloc = getIt.get();
+    _signUpBloc = sl.get();
     _nameController = TextEditingController();
     _emailController = TextEditingController();
     _passwordController = TextEditingController();
@@ -54,7 +50,7 @@ class _SignUpPageState extends State<SignUpPage> {
       child: BlocListener<SignUpBloc, SignUpState>(
         listener: (context, state) {
           if (state is SignUpSuccess) {
-            context.goNamed('main');
+            context.goTo('main');
           } else if (state is SignUpFailure) {
             context.showError(state.error);
           }

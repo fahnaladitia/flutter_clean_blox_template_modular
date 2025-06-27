@@ -1,8 +1,4 @@
-import 'dart:developer' as developer;
-
-import 'package:flutter/foundation.dart';
-// import 'package:logger/logger.dart';
-import 'package:logging/logging.dart';
+part of '../utils.dart';
 
 class AppLogger {
   AppLogger._();
@@ -48,6 +44,8 @@ class AppLogger {
         level: record.level.value,
       );
     });
+
+    AppLogger.info('AppLogger initialized successfully.');
   }
 
   // static void info(String msg) => logger.i(msg);

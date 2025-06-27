@@ -63,10 +63,10 @@ class AppLocalizationsId extends AppLocalizations {
   String get homeDescription => 'Selamat datang di halaman beranda';
 
   @override
-  String get account => 'Account';
+  String get account => 'Akun';
 
   @override
-  String get accountDescription => 'View and edit your account information';
+  String get accountDescription => 'Kelola informasi akun Anda';
 
   @override
   String get signOut => 'Keluar';

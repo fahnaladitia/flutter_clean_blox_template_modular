@@ -1,4 +1,5 @@
-// ignore: dangling_library_doc_comments
+part of 'constants.dart';
+
 /// =========================================================
 /// Created by Pahnal Aditia
 /// GitHub  : https://github.com/fahnaladitia

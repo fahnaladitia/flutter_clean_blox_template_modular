@@ -1,8 +1,4 @@
-import 'dart:io';
-
-import 'package:core/constants/error_constants.dart';
-import 'package:core/utils/exceptions/exceptions.dart';
-import 'package:dio/dio.dart';
+part of 'network.dart';
 
 /// =========================================================
 /// Created by Pahnal Aditia

@@ -1,5 +1,4 @@
-part 'app_flavor.dart';
-part 'env_config.dart';
+part of 'config.dart';
 
 class AppConfig {
   static EnvConfig? _config;

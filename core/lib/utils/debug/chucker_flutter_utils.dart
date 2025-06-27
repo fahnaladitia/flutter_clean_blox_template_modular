@@ -1,6 +1,4 @@
-import 'package:chucker_flutter/chucker_flutter.dart';
-import 'package:core/config/app_config.dart';
-import 'package:flutter/material.dart';
+part of '../utils.dart';
 
 final class ChuckerFlutterUtils {
   ChuckerFlutterUtils._();

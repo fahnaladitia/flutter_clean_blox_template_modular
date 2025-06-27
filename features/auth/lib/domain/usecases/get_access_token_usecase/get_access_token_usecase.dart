@@ -1,6 +1,5 @@
-import 'package:core/utils/usecases/usecases.dart';
-
-import '../../repositories/auth_repository.dart';
+import 'package:core/core.dart';
+import 'package:feature_auth/domain/repositories/auth_repository.dart';
 
 final class GetAccessTokenUsecase implements Usecase<String?> {
   final AuthRepository repository;

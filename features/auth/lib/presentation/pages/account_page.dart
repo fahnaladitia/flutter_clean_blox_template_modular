@@ -1,10 +1,8 @@
+import 'package:core/core.dart';
 import 'package:feature_auth/presentation/blocs/auth/auth_bloc.dart';
 import 'package:flutter/material.dart';
-import 'package:get_it/get_it.dart';
 
-import 'package:shared/extensions/extensions.dart';
-
-import 'package:shared/widgets/widgets.dart';
+import 'package:shared/shared.dart';
 
 /// =========================================================
 /// Created by Pahnal Aditia
@@ -35,7 +33,7 @@ class AccountPage extends StatelessWidget {
               icon: const Icon(Icons.logout),
 
               onPressed: () {
-                final authBloc = GetIt.instance.get<AuthBloc>();
+                final authBloc = sl.get<AuthBloc>();
                 authBloc.add(AuthSignOutRequestedEvent());
               },
             ),

@@ -1,10 +1,8 @@
+import 'package:core/core.dart';
 import 'package:feature_auth/presentation/blocs/sign_in/sign_in_bloc.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:go_router/go_router.dart';
-import 'package:get_it/get_it.dart';
-import 'package:shared/extensions/extensions.dart';
-import 'package:shared/widgets/widgets.dart';
+import 'package:shared/shared.dart';
 
 class SignInPage extends StatefulWidget {
   const SignInPage({super.key});
@@ -17,8 +15,6 @@ class _SignInPageState extends State<SignInPage> {
   late final TextEditingController _emailController;
   late final TextEditingController _passwordController;
 
-  GetIt getIt = GetIt.instance;
-
   bool isValid = false;
 
   late final SignInBloc _signInBloc;
@@ -28,7 +24,7 @@ class _SignInPageState extends State<SignInPage> {
   @override
   void initState() {
     super.initState();
-    _signInBloc = getIt.get();
+    _signInBloc = sl.get();
     _emailController = TextEditingController();
     _passwordController = TextEditingController();
   }
@@ -47,7 +43,7 @@ class _SignInPageState extends State<SignInPage> {
       child: BlocListener<SignInBloc, SignInState>(
         listener: (context, state) {
           if (state is SignInSuccess) {
-            context.goNamed('main');
+            context.goTo('main');
           } else if (state is SignInFailure) {
             context.showError(state.error);
           }
@@ -133,7 +129,7 @@ class _SignInPageState extends State<SignInPage> {
                   16.paddingY,
                   BasicButton.secondary(
                     text: context.l10n.signUpButton,
-                    onPressed: () => context.pushNamed('sign-up'),
+                    onPressed: () => context.pushTo('sign-up'),
                   ),
                 ],
               ),

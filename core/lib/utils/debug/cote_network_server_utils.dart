@@ -1,5 +1,4 @@
-import 'package:core/utils/log/app_logger.dart';
-import 'package:cote_network_logger/cote_network_logger.dart';
+part of '../utils.dart';
 
 class CoteNetworkServerUtils {
   /// Starts the Cote Network Logger server.

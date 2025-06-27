@@ -1,7 +1,4 @@
-import 'dart:async';
-
-import 'package:core/config/app_config.dart';
-import 'package:sentry_flutter/sentry_flutter.dart';
+part of '../utils.dart';
 
 class SentryService {
   SentryService._();
