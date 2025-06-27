@@ -70,14 +70,14 @@
     "description": "Deskripsi untuk halaman beranda",
     "type": "text"
   },
-  "profile": "Profil",
-  "@profile": {
-    "description": "Teks untuk halaman profil",
+  "account": "Akun",
+  "@account": {
+    "description": "Teks untuk halaman akun",
     "type": "text"
   },
-  "profileDescription": "Kelola informasi profil Anda",
-  "@profileDescription": {
-    "description": "Deskripsi untuk halaman profil",
+  "accountDescription": "Kelola informasi akun Anda",
+  "@accountDescription": {
+    "description": "Deskripsi untuk halaman akun",
     "type": "text"
   },
   "signOut": "Keluar",

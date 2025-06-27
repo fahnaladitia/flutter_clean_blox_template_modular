@@ -1,4 +1,7 @@
-import "package:flutter/material.dart";
+import 'package:flutter/material.dart';
+import 'package:google_fonts/google_fonts.dart';
+
+part 'util.dart';
 
 class MaterialTheme {
   final TextTheme textTheme;
