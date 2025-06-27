@@ -49,8 +49,11 @@ jobs:
       - name: 🔍 Flutter version
         run: flutter --version
 
+      - name: 🔧 Configure Flutter
+        run: melos analyze
+
       - name: ✅ Run tests
-        run: melos run test
+        run: melos test
 
       - name: 🗝️ Decode keystore.jks from secret
         run: |
