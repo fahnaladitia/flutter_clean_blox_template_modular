@@ -64,7 +64,9 @@ class _SplashPageState extends State<SplashPage> {
           context.showError(state.error);
         }
       },
-      child: Scaffold(
+      child: BasicScaffold(
+        isSingleChildScrollView: false,
+        key: const Key('SplashScaffold'),
         body: Image.asset(
           'assets/splash/splash_screen.png',
           fit: BoxFit.cover,

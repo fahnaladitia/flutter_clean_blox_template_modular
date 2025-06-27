@@ -41,8 +41,6 @@ class BasicScaffold extends StatelessWidget {
             FocusManager.instance.primaryFocus?.unfocus();
           },
       child: Scaffold(
-        key: key,
-
         resizeToAvoidBottomInset: resizeToAvoidBottomInset,
         appBar: appBar,
         body: SafeArea(
