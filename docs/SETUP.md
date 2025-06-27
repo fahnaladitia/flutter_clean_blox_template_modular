@@ -16,6 +16,7 @@
   - [🔗 4. API Client Configuration](#-4-api-client-configuration)
   - [🔧 5. Error Handling](#-5-error-handling)
   - [🔏 6. Your Keystore.jks \& key.properties](#-6-your-keystorejks--keyproperties)
+  - [🔏 7. Github actions secrets](#-7-github-actions-secrets)
 
 ## 🔧 1. Change Package Name (Manual Flavor Setup) in application
 
@@ -194,3 +195,14 @@ keyPassword=your_key_password
 keyAlias=your_key_alias
 storeFile=keystore.jks
 ```
+
+
+## 🔏 7. Github actions secrets
+
+Add the following secrets to your GitHub repository:
+
+- `ANDROID_ALIAS`: Your key alias.
+- `ANDROID_ALIAS_PASSWORD`: Your key password.
+- `ANDROID_KEYSTORE`: Base64 encoded content of your `keystore.jks` file.
+- `KEYSTORE_PASSWORD`: Your keystore password.
+
