@@ -54,11 +54,7 @@ repo/
 
 ```bash
 # 1. Clone the repository
-git clone https://github.com/fahnaladitia/flutter_clean_blox_template.git
-
-# 3. Change branch to `modular/dev`
-cd flutter_clean_blox_template
-git checkout modular/dev
+git clone https://github.com/fahnaladitia/flutter_clean_blox_template_modular.git
 
 # 2.  Install dependencies
 melos bootstrap
