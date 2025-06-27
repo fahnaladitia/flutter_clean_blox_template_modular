@@ -64,7 +64,7 @@ melos bootstrap
 
 #### 1. Project & Package Name
 
-See [SETUP.md](SETUP.md) for how to manually configure your project’s package name and build flavors.
+See [SETUP.md](docs/SETUP.md) for how to manually configure your project’s package name and build flavors.
 
 #### 2. App Links & Universal Links
 
