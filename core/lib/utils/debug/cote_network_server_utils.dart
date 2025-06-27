@@ -12,4 +12,9 @@ class CoteNetworkServerUtils {
       AppLogger.error('Failed to start Cote Network Logger server.');
     }
   }
+
+  // Interceptor for Cote Network Logger
+  static Interceptor get interceptor {
+    return CoteNetworkLogger();
+  }
 }

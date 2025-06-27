@@ -1,13 +1,12 @@
 import 'package:core/core.dart';
+import 'package:equatable/equatable.dart';
 import 'package:shared/shared.dart';
 
-final class SignInUsecaseParam {
+final class SignInUsecaseParam extends Equatable {
   final String email;
   final String password;
 
-  SignInUsecaseParam({required this.email, required this.password}) {
-    validate();
-  }
+  const SignInUsecaseParam({required this.email, required this.password});
 
   @override
   String toString() {
@@ -41,4 +40,7 @@ final class SignInUsecaseParam {
       );
     }
   }
+
+  @override
+  List<Object> get props => [email, password];
 }

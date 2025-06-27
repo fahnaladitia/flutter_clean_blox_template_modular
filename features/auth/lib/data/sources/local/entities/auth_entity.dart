@@ -1,6 +1,6 @@
-import '../../remote/dtos/res/sign_in_response.dart';
-import '../../remote/dtos/res/sign_up_response.dart';
-import '../../../../domain/models/auth.dart';
+import 'package:feature_auth/data/sources/remote/dtos/res/sign_in_response.dart';
+import 'package:feature_auth/data/sources/remote/dtos/res/sign_up_response.dart';
+import 'package:feature_auth/domain/models/auth.dart';
 
 class AuthEntity {
   final String userId;

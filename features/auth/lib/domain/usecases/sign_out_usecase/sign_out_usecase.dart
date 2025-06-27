@@ -1,7 +1,7 @@
 import 'package:core/core.dart';
 import 'package:feature_auth/domain/repositories/auth_repository.dart';
 
-final class SignOutUsecase implements Usecase<void> {
+class SignOutUsecase implements Usecase<void> {
   final AuthRepository repository;
 
   SignOutUsecase({required this.repository});

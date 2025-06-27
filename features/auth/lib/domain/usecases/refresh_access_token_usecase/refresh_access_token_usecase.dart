@@ -1,7 +1,7 @@
 import 'package:core/core.dart';
 import 'package:feature_auth/domain/repositories/auth_repository.dart';
 
-final class RefreshAccessTokenUsecase implements Usecase<void> {
+class RefreshAccessTokenUsecase implements Usecase<void> {
   final AuthRepository repository;
 
   RefreshAccessTokenUsecase({required this.repository});
@@ -10,7 +10,7 @@ final class RefreshAccessTokenUsecase implements Usecase<void> {
     // Checking if the user is authenticated
     // If the user is authenticated, we retrieve the access token
     final isAuthenticated = await repository.isAuthenticated();
-    if (!isAuthenticated) {
+    if (isAuthenticated == false) {
       // If the user is not authenticated, we throw an exception
       throw BaseException(
         code: 'NOT_AUTHENTICATED',
@@ -26,6 +26,7 @@ final class RefreshAccessTokenUsecase implements Usecase<void> {
         message: 'No refresh token found. Please sign in again.',
       );
     }
+
     // Refreshing the access token using the refresh token
     final newAccessToken = await repository.createNewAccessToken(refreshToken);
 

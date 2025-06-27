@@ -12,6 +12,6 @@ class ValidatorException extends BaseException {
 
   @override
   String toString() {
-    return 'ValidatorException: [$fieldName], Error: $errMessage)';
+    return 'ValidatorException: [$fieldName], Error: $errMessage, Code: $code';
   }
 }

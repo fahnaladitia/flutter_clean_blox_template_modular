@@ -8,55 +8,55 @@ part of 'constants.dart';
 
 class AppTextStyle {
   AppTextStyle._();
-  static TextStyle? get labelInputText => GoogleFonts.roboto(
+  static TextStyle get labelInputText => GoogleFonts.roboto(
     fontSize: 13,
     fontWeight: FontWeight.w400,
     color: const Color(0xFFB9B9B9),
   );
 
-  static TextStyle? get hintInputText => GoogleFonts.roboto(
+  static TextStyle get hintInputText => GoogleFonts.roboto(
     fontSize: 15,
     fontWeight: FontWeight.w400,
     color: const Color(0xFFB9B9B9),
   );
 
-  static TextStyle? get text => GoogleFonts.roboto(
+  static TextStyle get text => GoogleFonts.roboto(
     fontSize: 15,
     fontWeight: FontWeight.w400,
     color: const Color(0xFF757575),
   );
 
-  static TextStyle? get textBold => GoogleFonts.roboto(
+  static TextStyle get textBold => GoogleFonts.roboto(
     fontSize: 16,
     fontWeight: FontWeight.w700,
     color: const Color(0xFF757575),
   );
 
-  static TextStyle? get displayBold => GoogleFonts.roboto(
+  static TextStyle get displayBold => GoogleFonts.roboto(
     fontSize: 21,
     fontWeight: FontWeight.w600,
     color: const Color(0xFF121212),
   );
 
-  static TextStyle? get display => GoogleFonts.roboto(
+  static TextStyle get display => GoogleFonts.roboto(
     fontSize: 21,
     fontWeight: FontWeight.w400,
     color: const Color(0xFF121212),
   );
 
-  static TextStyle? get buttonTextBold => GoogleFonts.roboto(
+  static TextStyle get buttonTextBold => GoogleFonts.roboto(
     fontSize: 15,
     fontWeight: FontWeight.w600,
     color: Colors.white,
   );
 
-  static TextStyle? get buttonText => GoogleFonts.roboto(
+  static TextStyle get buttonText => GoogleFonts.roboto(
     fontSize: 15,
     fontWeight: FontWeight.w600,
     color: Colors.white,
   );
 
-  static TextStyle? get appBarTitle => GoogleFonts.roboto(
+  static TextStyle get appBarTitle => GoogleFonts.roboto(
     fontSize: 17,
     fontWeight: FontWeight.w500,
     color: const Color(0xFF121212),

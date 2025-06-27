@@ -3,13 +3,13 @@ import 'package:feature_auth/domain/repositories/auth_repository.dart';
 
 import 'sign_up_usecase_param.dart';
 
-final class SignUpUsecase
-    implements UsecaseWithParam<void, SignUpUsecaseParam> {
+class SignUpUsecase implements UsecaseWithParam<void, SignUpUsecaseParam> {
   final AuthRepository repository;
 
   SignUpUsecase({required this.repository});
   @override
   Future<void> call(SignUpUsecaseParam param) async {
+    param.validate();
     // Checking if the user is authenticated
     // If the user is authenticated, we retrieve the access token
     final isAuthenticated = await repository.isAuthenticated();

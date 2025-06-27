@@ -5,6 +5,7 @@ import 'package:chucker_flutter/chucker_flutter.dart';
 import 'package:core/core.dart';
 
 import 'package:cote_network_logger/cote_network_logger.dart';
+import 'package:dio/dio.dart';
 import 'package:equatable/equatable.dart';
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';

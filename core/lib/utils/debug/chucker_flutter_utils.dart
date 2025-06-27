@@ -22,4 +22,8 @@ final class ChuckerFlutterUtils {
   static NavigatorObserver get navigatorObserver {
     return ChuckerFlutter.navigatorObserver;
   }
+
+  static Interceptor get interceptor {
+    return ChuckerDioInterceptor();
+  }
 }

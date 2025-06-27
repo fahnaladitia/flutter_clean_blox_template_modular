@@ -1,7 +1,7 @@
 import 'package:core/core.dart';
 import 'package:feature_auth/domain/repositories/auth_repository.dart';
 
-final class GetUserIdUsecase implements Usecase<String?> {
+class GetUserIdUsecase implements Usecase<String?> {
   final AuthRepository repository;
 
   GetUserIdUsecase({required this.repository});

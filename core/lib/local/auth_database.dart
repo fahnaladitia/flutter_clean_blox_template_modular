@@ -25,9 +25,9 @@ class AuthDatabaseImpl implements AuthDatabase {
             ),
           );
 
-  static const String _userIdKey = 'user_id';
-  static const String _accessToken = 'access_token';
-  static const String _refreshToken = 'refresh_token';
+  static const String userIdKey = 'user_id';
+  static const String accessTokenKey = 'access_token';
+  static const String refreshTokenKey = 'refresh_token';
 
   @override
   Future<void> clear() async {
@@ -43,7 +43,7 @@ class AuthDatabaseImpl implements AuthDatabase {
   @override
   Future<String?> getAccessToken() async {
     try {
-      return await _storage.read(key: _accessToken);
+      return await _storage.read(key: accessTokenKey);
     } catch (e, s) {
       // Log the error
       AppLogger.error('Failed to get access token', e, s);
@@ -54,7 +54,7 @@ class AuthDatabaseImpl implements AuthDatabase {
   @override
   Future<String?> getRefreshToken() async {
     try {
-      return await _storage.read(key: _refreshToken);
+      return await _storage.read(key: refreshTokenKey);
     } catch (e, s) {
       // Log the error
       AppLogger.error('Failed to get refresh token', e, s);
@@ -65,7 +65,7 @@ class AuthDatabaseImpl implements AuthDatabase {
   @override
   Future<String?> getUserId() async {
     try {
-      return await _storage.read(key: _userIdKey);
+      return await _storage.read(key: userIdKey);
     } catch (e, s) {
       // Log the error
       AppLogger.error('Failed to get user ID', e, s);
@@ -76,7 +76,7 @@ class AuthDatabaseImpl implements AuthDatabase {
   @override
   Future<bool> isAuthenticated() async {
     try {
-      return await _storage.read(key: _accessToken) != null;
+      return await _storage.read(key: accessTokenKey) != null;
     } catch (e, s) {
       // Log the error
       AppLogger.error('Failed to check authentication', e, s);
@@ -91,9 +91,9 @@ class AuthDatabaseImpl implements AuthDatabase {
     required String refreshToken,
   }) async {
     try {
-      await _storage.write(key: _userIdKey, value: userId);
-      await _storage.write(key: _accessToken, value: accessToken);
-      await _storage.write(key: _refreshToken, value: refreshToken);
+      await _storage.write(key: userIdKey, value: userId);
+      await _storage.write(key: accessTokenKey, value: accessToken);
+      await _storage.write(key: refreshTokenKey, value: refreshToken);
     } catch (e, s) {
       // Log the error
       AppLogger.error('Failed to save auth data', e, s);
@@ -104,7 +104,7 @@ class AuthDatabaseImpl implements AuthDatabase {
   @override
   Future<void> updateAccessToken(String accessToken) async {
     try {
-      await _storage.write(key: _accessToken, value: accessToken);
+      await _storage.write(key: accessTokenKey, value: accessToken);
     } catch (e, s) {
       // Log the error
       AppLogger.error('Failed to update access token', e, s);

@@ -63,4 +63,10 @@ class AppConfig {
         break;
     }
   }
+
+  @visibleForTesting
+  static void resetForTest() {
+    _config = null;
+    _flavor = null;
+  }
 }

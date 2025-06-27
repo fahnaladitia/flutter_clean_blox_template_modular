@@ -17,9 +17,13 @@ class BasicScaffold extends StatelessWidget {
   final Widget? floatingActionButton;
   final ScrollController? scrollController;
   final ScrollViewKeyboardDismissBehavior keyboardDismissBehavior;
+  final Key? scrollViewKey;
+  final bool? shrinkWrapCustomScrollView;
 
   const BasicScaffold({
     super.key,
+    this.scrollViewKey,
+    this.shrinkWrapCustomScrollView,
     this.appBar,
     required this.body,
     this.bottomNavigationBar,
@@ -50,6 +54,8 @@ class BasicScaffold extends StatelessWidget {
                     ? BasicPullRefresh(
                         onRefresh: onRefresh!,
                         child: CustomScrollView(
+                          key: scrollViewKey,
+                          shrinkWrap: shrinkWrapCustomScrollView ?? false,
                           controller: scrollController,
                           physics: const AlwaysScrollableScrollPhysics(
                             parent: BouncingScrollPhysics(),
@@ -58,6 +64,7 @@ class BasicScaffold extends StatelessWidget {
                         ),
                       )
                     : SingleChildScrollView(
+                        key: scrollViewKey,
                         controller: scrollController,
                         physics: const BouncingScrollPhysics(),
                         keyboardDismissBehavior: keyboardDismissBehavior,
