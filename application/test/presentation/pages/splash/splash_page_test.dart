@@ -36,7 +36,7 @@ void main() {
 
   group('MainPage', () {
     testWidgets('SplashPage shows splash image', (tester) async {
-      final testRouter = AppRoute.router(isAndroid: true);
+      final testRouter = AppRoute.router;
 
       await tester.pumpWidget(
         MaterialApp.router(
