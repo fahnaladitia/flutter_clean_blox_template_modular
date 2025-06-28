@@ -43,9 +43,9 @@ class BlocUtils {
               onErrorBuilder,
             );
             return;
-          case const (ValidatorException):
-            _handleValidatorException(
-              baseException as ValidatorException,
+          case const (ValidationException):
+            _handleValidationException(
+              baseException as ValidationException,
               onErrorBuilder,
             );
             return;
@@ -64,8 +64,8 @@ class BlocUtils {
         _handleCacheException(e, onErrorBuilder);
         return;
       }
-      if (e is ValidatorException) {
-        _handleValidatorException(e, onErrorBuilder);
+      if (e is ValidationException) {
+        _handleValidationException(e, onErrorBuilder);
         return;
       }
 
@@ -110,14 +110,16 @@ class BlocUtils {
     onErrorStateBuilder(MessageUIError(message: message, code: code));
   }
 
-  static void _handleValidatorException(
-    ValidatorException e,
+  static void _handleValidationException(
+    ValidationException e,
     void Function(UIError error) onErrorStateBuilder,
   ) {
-    final fieldName = e.fieldName;
-    final code = e.code;
     onErrorStateBuilder(
-      ValidatorUIError(message: e.message, fieldName: fieldName, code: code),
+      ValidationUIError(
+        message: e.message,
+        code: e.code,
+        errors: e.validatorFields,
+      ),
     );
   }
 }

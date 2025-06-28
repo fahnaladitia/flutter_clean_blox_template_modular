@@ -79,37 +79,5 @@ void main() {
       // ASSERT
       expect(find.text(testErrorMessage), findsOneWidget);
     });
-
-    testWidgets(
-      'showError displays ValidatorUIError via showToasterErrorValidator',
-      (tester) async {
-        const field = 'email';
-        const message = 'Email tidak valid';
-
-        await tester.pumpWidget(
-          MaterialApp(
-            localizationsDelegates: AppLocalizations.localizationsDelegates,
-            supportedLocales: AppLocalizations.supportedLocales,
-            home: Scaffold(
-              body: Builder(
-                builder: (context) {
-                  // ACT
-                  Future.microtask(() {
-                    context.showError(
-                      ValidatorUIError(
-                        fieldName: field,
-                        message: message,
-                        code: 'validator_error',
-                      ),
-                    );
-                  });
-                  return const SizedBox();
-                },
-              ),
-            ),
-          ),
-        );
-      },
-    );
   });
 }

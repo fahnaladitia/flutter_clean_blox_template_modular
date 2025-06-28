@@ -1,12 +1,15 @@
-import 'package:application/router/route.dart';
+import 'package:application/presentation/pages/main/main_page.dart';
+import 'package:application/presentation/pages/splash/splash_page.dart';
 import 'package:bloc_test/bloc_test.dart';
 import 'package:core/core.dart';
 import 'package:feature_auth/di/auth_module.dart';
 import 'package:feature_auth/presentation/blocs/auth/auth_bloc.dart';
+import 'package:feature_auth/presentation/pages/sign_in_page.dart';
+import 'package:feature_auth/presentation/pages/sign_up_page.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_test/flutter_test.dart';
 import 'package:mocktail/mocktail.dart';
-import 'package:shared/l10n/app_localizations.dart';
+import 'package:shared/shared.dart';
 
 class MockAuthBloc extends Mock implements AuthBloc {}
 
@@ -14,6 +17,8 @@ void main() {
   late MockAuthBloc mockAuthBloc;
 
   setUpAll(() async {
+    TestWidgetsFlutterBinding.ensureInitialized();
+
     await AuthModule.init();
     mockAuthBloc = MockAuthBloc();
     await sl.unregister<AuthBloc>();
@@ -36,7 +41,36 @@ void main() {
 
   group('MainPage', () {
     testWidgets('SplashPage shows splash image', (tester) async {
-      final testRouter = AppRoute.router(isAndroid: true);
+      final testRouter = AppNavigation.router(
+        initialLocation: '/splash',
+        observers: [
+          SentryService.navigatorObserver,
+          ChuckerFlutterUtils.navigatorObserver,
+        ],
+        pages: [
+          AppPage(
+            path: '/',
+            name: 'main',
+            builder: (context, state) => const MainPage(),
+          ),
+          AppPage(
+            path: '/sign-in',
+            name: 'signIn',
+            builder: (context, state) => const SignInPage(),
+          ),
+          AppPage(
+            path: '/splash',
+            name: 'splash',
+            builder: (context, state) => const SplashPage(),
+          ),
+          AppPage(
+            path: '/sign-up',
+            name: 'signUp',
+            builder: (context, state) => const SignUpPage(),
+          ),
+        ],
+        errorBuilder: (context, state) => const MainPage(),
+      );
 
       await tester.pumpWidget(
         MaterialApp.router(
@@ -51,8 +85,7 @@ void main() {
 
       await tester.pump(); // Render widget
 
-      expect(find.byType(Image), findsOneWidget);
-      expect(find.byKey(const Key('SplashScaffold')), findsOneWidget);
+      expect(find.byKey(const Key('SplashImage')), findsOneWidget);
     });
   });
 }

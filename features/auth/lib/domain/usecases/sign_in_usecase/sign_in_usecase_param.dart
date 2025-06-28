@@ -14,30 +14,43 @@ final class SignInUsecaseParam extends Equatable {
   }
 
   void validate() {
+    List<ValidatorFieldException> errors = [];
     if (email.isEmpty) {
-      throw ValidatorException(
-        fieldName: 'email',
-        errMessage: 'Email cannot be empty',
+      errors.add(
+        ValidatorFieldException(
+          fieldName: 'email',
+          message: 'Email cannot be empty',
+        ),
       );
     }
     if (password.isEmpty) {
-      throw ValidatorException(
-        fieldName: 'password',
-        errMessage: 'Password cannot be empty',
+      errors.add(
+        ValidatorFieldException(
+          fieldName: 'password',
+          message: 'Password cannot be empty',
+        ),
       );
     }
 
     final emailValidation = ValidatorUtils.validateEmail(email);
     if (emailValidation != null) {
-      throw ValidatorException(fieldName: 'email', errMessage: emailValidation);
+      errors.add(
+        ValidatorFieldException(fieldName: 'email', message: emailValidation),
+      );
     }
 
     final passwordValidation = ValidatorUtils.validatePassword(password);
     if (passwordValidation != null) {
-      throw ValidatorException(
-        fieldName: 'password',
-        errMessage: passwordValidation,
+      errors.add(
+        ValidatorFieldException(
+          fieldName: 'password',
+          message: passwordValidation,
+        ),
       );
+    }
+
+    if (errors.isNotEmpty) {
+      throw ValidationException(errors: errors);
     }
   }
 

@@ -33,11 +33,11 @@ class _SplashPageState extends State<SplashPage> {
 
   @override
   void dispose() {
-    super.dispose();
     SystemChrome.setEnabledSystemUIMode(
       SystemUiMode.manual,
       overlays: SystemUiOverlay.values,
     );
+    super.dispose();
   }
 
   @override
@@ -69,6 +69,7 @@ class _SplashPageState extends State<SplashPage> {
         key: const Key('SplashScaffold'),
         body: Image.asset(
           'assets/splash/splash_screen.png',
+          key: const Key('SplashImage'),
           fit: BoxFit.cover,
           height: double.infinity,
           width: double.infinity,

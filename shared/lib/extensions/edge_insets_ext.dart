@@ -20,10 +20,10 @@ extension EdgeInsetsExtension on num {
   EdgeInsets get edgeAll => EdgeInsets.all(toDouble());
 
   /// Creates `EdgeInsets.symmetric(vertical: value)`
-  EdgeInsets get edgeY => EdgeInsets.symmetric(vertical: toDouble());
+  EdgeInsets get edgeVertical => EdgeInsets.symmetric(vertical: toDouble());
 
   /// Creates `EdgeInsets.symmetric(horizontal: value)`
-  EdgeInsets get edgeX => EdgeInsets.symmetric(horizontal: toDouble());
+  EdgeInsets get edgeHorizontal => EdgeInsets.symmetric(horizontal: toDouble());
 
   /// Creates `EdgeInsets.only(left: value)`
   EdgeInsets get edgeLeft => EdgeInsets.only(left: toDouble());

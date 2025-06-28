@@ -6,7 +6,7 @@ part of 'errors.dart';
 /// LinkedIn: https://www.linkedin.com/in/pahnaladitia
 /// =========================================================
 
-abstract class UIError extends Equatable {
+sealed class UIError extends Equatable {
   final String message;
   final String code;
 
@@ -17,24 +17,10 @@ abstract class UIError extends Equatable {
 
   @override
   bool get stringify => true;
-}
 
-class ValidatorUIError extends UIError {
-  final String fieldName;
+  ValidationUIError? get validationUIError =>
+      this is ValidationUIError ? this as ValidationUIError : null;
 
-  const ValidatorUIError({
-    required this.fieldName,
-    required super.message,
-    required super.code,
-  });
-
-  @override
-  List<Object> get props => [fieldName, message, code];
-}
-
-class MessageUIError extends UIError {
-  const MessageUIError({required super.message, required super.code});
-
-  @override
-  List<Object> get props => [message, code];
+  MessageUIError? get messageUIError =>
+      this is MessageUIError ? this as MessageUIError : null;
 }

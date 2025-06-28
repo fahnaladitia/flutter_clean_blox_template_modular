@@ -1,3 +1,5 @@
+import 'dart:io';
+
 import 'package:core/core.dart';
 import 'package:feature_auth/presentation/pages/sign_in_page.dart';
 import 'package:feature_auth/presentation/pages/sign_up_page.dart';
@@ -27,8 +29,8 @@ class AppRoute {
   static const String splash = 'splash';
 
   /// Create and expose your router instance
-  static router({bool isAndroid = false}) => AppNavigation.router(
-    initialLocation: isAndroid ? splashPath : mainPath,
+  static final router = AppNavigation.router(
+    initialLocation: Platform.isAndroid ? splashPath : mainPath,
     observers: [
       SentryService.navigatorObserver,
       ChuckerFlutterUtils.navigatorObserver,

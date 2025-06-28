@@ -16,7 +16,7 @@ extension ToasterExt on BuildContext {
         content: Row(
           children: [
             const Icon(Icons.check_circle, color: Colors.white),
-            8.paddingX,
+            8.paddingHorizontal,
             Expanded(
               child: Text(message, style: const TextStyle(color: Colors.white)),
             ),
@@ -36,7 +36,7 @@ extension ToasterExt on BuildContext {
         content: Row(
           children: [
             const Icon(Icons.error, color: Colors.white),
-            8.paddingX,
+            8.paddingHorizontal,
             Expanded(
               child: Text(message, style: const TextStyle(color: Colors.white)),
             ),
@@ -56,7 +56,7 @@ extension ToasterExt on BuildContext {
         content: Row(
           children: [
             const Icon(Icons.info, color: Colors.white),
-            8.paddingX,
+            8.paddingHorizontal,
             Expanded(
               child: Text(message, style: const TextStyle(color: Colors.white)),
             ),
@@ -76,7 +76,7 @@ extension ToasterExt on BuildContext {
         content: Row(
           children: [
             const Icon(Icons.warning, color: Colors.white),
-            8.paddingX,
+            8.paddingHorizontal,
             Expanded(
               child: Text(message, style: const TextStyle(color: Colors.white)),
             ),
@@ -99,7 +99,7 @@ extension ToasterExt on BuildContext {
         content: Row(
           children: [
             const Icon(Icons.error, color: Colors.white),
-            8.paddingX,
+            8.paddingHorizontal,
             Expanded(
               child: Text(
                 '$field: $message',

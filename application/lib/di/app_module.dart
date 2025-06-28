@@ -1,4 +1,6 @@
 import 'package:core/core.dart';
+import 'package:flutter/material.dart';
+import 'package:shared/themes/themes.dart';
 
 class AppModule {
   AppModule._();
@@ -22,6 +24,20 @@ class AppModule {
 
       return client;
     });
+
+    final themeDark = await MaterialTheme.loadDarkTheme();
+    final themeLight = await MaterialTheme.loadLightTheme();
+
+    // Color scheme and themes
+    sl.registerLazySingleton<ThemeData>(
+      () => themeLight ?? ThemeData.light(),
+      instanceName: MaterialTheme.lightThemeInstance,
+    );
+
+    sl.registerLazySingleton<ThemeData>(
+      () => themeDark ?? ThemeData.dark(),
+      instanceName: MaterialTheme.darkThemeInstance,
+    );
 
     AppLogger.info('AppModule initialized successfully.');
   }

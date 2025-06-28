@@ -1,5 +1,3 @@
-import 'dart:io';
-
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:application/router/route.dart';
@@ -16,17 +14,17 @@ class MyApp extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final TextTheme textTheme = createTextTheme(context, "Roboto", "Roboto");
-    final MaterialTheme theme = MaterialTheme(textTheme);
+    final themeLight = MaterialTheme.light();
+    final themeDark = MaterialTheme.dark();
     return MaterialApp.router(
       debugShowCheckedModeBanner: kDebugMode,
-      routerConfig: AppRoute.router(isAndroid: Platform.isAndroid),
+      routerConfig: AppRoute.router,
       supportedLocales: L10n.all,
       localizationsDelegates: AppLocalizations.localizationsDelegates,
       // Set the default locale, you can change it based on user preference
       locale: const Locale('en'),
-      darkTheme: theme.dark(),
-      theme: theme.light(),
+      theme: themeLight,
+      darkTheme: themeDark,
     );
   }
 }

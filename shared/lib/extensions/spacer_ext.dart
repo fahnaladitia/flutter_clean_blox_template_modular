@@ -13,7 +13,7 @@ part of 'extensions.dart';
 /// Column(
 ///   children: [
 ///     Text('Hello'),
-///     16.paddingY,
+///     16.paddingVertical,
 ///     Text('World'),
 ///   ],
 /// );
@@ -21,31 +21,31 @@ part of 'extensions.dart';
 extension SpacerExtension on num {
   /// Creates a vertical spacer with the given height.
   /// This is useful for adding space between widgets in a column.
-  /// Example usage: `10.paddingY` will create a vertical spacer of 10 pixels.
+  /// Example usage: `10.paddingVertical` will create a vertical spacer of 10 pixels.
   /// Returns a [SizedBox] with the specified height.
   /// ```dart
-  /// SizedBox height = 10.paddingY;
+  /// SizedBox height = 10.paddingVertical;
   /// ```
   ///
-  SizedBox get paddingY => SizedBox(height: toDouble());
+  SizedBox get paddingVertical => SizedBox(height: toDouble());
 
   /// Creates a horizontal spacer with the given width.
   /// This is useful for adding space between widgets in a row.
-  /// Example usage: `10.paddingX` will create a horizontal spacer of 10 pixels.
+  /// Example usage: `10.paddingHorizontal` will create a horizontal spacer of 10 pixels.
   /// Returns a [SizedBox] with the specified width.
   /// ```dart
-  /// SizedBox width = 10.paddingX;
+  /// SizedBox width = 10.paddingHorizontal;
   /// ```
   ///
-  SizedBox get paddingX => SizedBox(width: toDouble());
+  SizedBox get paddingHorizontal => SizedBox(width: toDouble());
 
   /// Creates a square spacer with the given size for both height and width.
   /// This is useful for creating equal spacing in both dimensions.
-  /// Example usage: `10.paddingXY` will create a square spacer of 10 pixels.
+  /// Example usage: `10.paddingAll` will create a square spacer of 10 pixels.
   /// Returns a [SizedBox] with both height and width set to the specified size.
   /// ```dart
-  /// SizedBox square = 1.paddingXY;
+  /// SizedBox square = 1.paddingAll;
   /// ```
   ///
-  SizedBox get paddingXY => SizedBox(height: toDouble(), width: toDouble());
+  SizedBox get paddingAll => SizedBox(height: toDouble(), width: toDouble());
 }

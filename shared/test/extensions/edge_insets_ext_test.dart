@@ -11,11 +11,14 @@ void main() {
     });
 
     test('edgeY returns EdgeInsets.symmetric(vertical)', () {
-      expect(testValue.edgeY, EdgeInsets.symmetric(vertical: testValue));
+      expect(testValue.edgeVertical, EdgeInsets.symmetric(vertical: testValue));
     });
 
     test('edgeX returns EdgeInsets.symmetric(horizontal)', () {
-      expect(testValue.edgeX, EdgeInsets.symmetric(horizontal: testValue));
+      expect(
+        testValue.edgeHorizontal,
+        EdgeInsets.symmetric(horizontal: testValue),
+      );
     });
 
     test('edgeLeft returns EdgeInsets.only(left)', () {

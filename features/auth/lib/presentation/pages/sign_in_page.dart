@@ -62,56 +62,66 @@ class _SignInPageState extends State<SignInPage> {
             },
             autovalidateMode: AutovalidateMode.onUserInteraction,
             child: Padding(
-              padding: 24.edgeX,
+              padding: 24.edgeHorizontal,
               child: Column(
                 children: [
-                  100.paddingY,
+                  100.paddingVertical,
                   Text(
                     context.l10n.signIn,
                     style: context.textTheme.headlineMedium,
                   ),
-                  16.paddingY,
+                  16.paddingVertical,
                   Text(
                     context.l10n.signInDescription,
                     style: context.textTheme.bodyMedium,
                     textAlign: TextAlign.center,
                   ),
-                  16.paddingY,
+                  16.paddingVertical,
                   BlocBuilder<SignInBloc, SignInState>(
                     builder: (context, state) {
                       final isLoading = state is SignInLoading;
-                      return BasicTextInput(
+                      return BasicTextField.outlined(
+                        field: 'email',
                         controller: _emailController,
                         labelText: context.l10n.email,
+                        textInputAction: TextInputAction.next,
+                        textCapitalization: TextCapitalization.none,
+                        prefixIcon: const Icon(Icons.email),
+                        validationUIError: state.validationUIError,
                         hintText: context.l10n.emailHint,
                         keyboardType: TextInputType.emailAddress,
                         readOnly: isLoading,
                       );
                     },
                   ),
-                  16.paddingY,
+                  16.paddingVertical,
                   BlocBuilder<SignInBloc, SignInState>(
                     builder: (context, state) {
-                      return BasicTextInput(
+                      return BasicTextField.underline(
+                        field: 'password',
+                        prefixIcon: const Icon(Icons.lock),
                         controller: _passwordController,
                         labelText: context.l10n.password,
                         hintText: context.l10n.passwordHint,
+                        validationUIError: state.validationUIError,
                         obscureText: true,
                         readOnly: state is SignInLoading,
                       );
                     },
                   ),
-                  16.paddingY,
+                  32.paddingVertical,
                   BlocBuilder<SignInBloc, SignInState>(
                     builder: (context, state) {
                       final isLoading = state is SignInLoading;
-                      return BasicButton.primary(
+                      return BasicButton.filled(
+                        isFullWidth: true,
                         text: context.l10n.signInButton,
+                        icon: Icon(Icons.login),
                         state: isLoading
-                            ? BasicButtonState.loading
+                            ? BasicButtonEventState.loading
                             : isValid
-                            ? BasicButtonState.active
-                            : BasicButtonState.disabled,
+                            ? BasicButtonEventState.active
+                            : BasicButtonEventState.disabled,
                         onPressed: () {
                           // Handle sign-in logic here
                           if (!isValid || isLoading) return;
@@ -126,8 +136,10 @@ class _SignInPageState extends State<SignInPage> {
                       );
                     },
                   ),
-                  16.paddingY,
-                  BasicButton.secondary(
+                  24.paddingVertical,
+                  BasicButton.outlined(
+                    isFullWidth: true,
+                    icon: const Icon(Icons.app_registration),
                     text: context.l10n.signUpButton,
                     onPressed: () => context.pushTo('sign-up'),
                   ),

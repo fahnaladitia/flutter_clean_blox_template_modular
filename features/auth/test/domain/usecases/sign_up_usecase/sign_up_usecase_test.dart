@@ -150,19 +150,31 @@ void main() {
 
   group('SignUpUsecaseParam Validation', () {
     test(
-      'should throw BaseException with code INVALID_PARAMS if passwords do not match [ERROR]',
+      'should throw ValidationException if parameters are invalid [ERROR]',
       () async {
         // ACT & ASSERT
         expect(
           () => usecase(testParamInvalid),
           throwsA(
-            isA<ValidatorException>()
+            isA<ValidationException>()
                 .having((e) => e.code, 'code', 'VALIDATION_ERROR')
-                .having((e) => e.fieldName, 'fieldName', 'confirm_password')
+                .having((e) => e.message, 'message', 'Validation failed')
                 .having(
-                  (e) => e.errMessage,
-                  'errMessage',
-                  'Passwords do not match',
+                  (e) => e.errors,
+                  'errors',
+                  contains(
+                    isA<ValidatorFieldException>()
+                        .having(
+                          (e) => e.fieldName,
+                          'fieldName',
+                          'confirm_password',
+                        )
+                        .having(
+                          (e) => e.message,
+                          'message',
+                          'Passwords do not match',
+                        ),
+                  ),
                 ),
           ),
         );
