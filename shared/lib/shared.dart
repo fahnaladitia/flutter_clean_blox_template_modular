@@ -4,6 +4,6 @@ export 'extensions/extensions.dart';
 export 'l10n/l10n.dart';
 export 'l10n/app_localizations.dart';
 export 'observers/observers.dart';
-export 'theme/theme.dart';
+export 'themes/themes.dart';
 export 'utils/utils.dart';
 export 'widgets/widgets.dart';

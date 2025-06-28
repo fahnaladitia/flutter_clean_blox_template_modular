@@ -18,7 +18,7 @@ part 'debug/cote_network_server_utils.dart';
 part 'exceptions/base_exception.dart';
 part 'exceptions/network_exception.dart';
 part 'exceptions/cache_exception.dart';
-part 'exceptions/validator_exception.dart';
+part 'exceptions/validation_exception.dart';
 
 part 'log/app_logger.dart';
 part 'log/sentry_service.dart';

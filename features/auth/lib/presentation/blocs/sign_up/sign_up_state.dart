@@ -5,6 +5,10 @@ sealed class SignUpState extends Equatable {
 
   @override
   List<Object> get props => [];
+
+  ValidationUIError? get validationUIError => this is SignUpFailure
+      ? (this as SignUpFailure).error.validationUIError
+      : null;
 }
 
 final class SignUpInitial extends SignUpState {}

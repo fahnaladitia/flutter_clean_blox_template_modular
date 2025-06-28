@@ -27,8 +27,8 @@ class AccountPage extends StatelessWidget {
               style: context.textTheme.headlineMedium,
               textAlign: TextAlign.center,
             ),
-            16.paddingY,
-            BasicButton.secondary(
+            16.paddingVertical,
+            BasicButton.elevated(
               text: context.l10n.signOut,
               icon: const Icon(Icons.logout),
 

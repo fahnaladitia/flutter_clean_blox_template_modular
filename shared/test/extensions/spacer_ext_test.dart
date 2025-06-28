@@ -8,7 +8,7 @@ void main() {
       tester,
     ) async {
       const height = 10.0;
-      final widget = height.paddingY;
+      final widget = height.paddingVertical;
 
       await tester.pumpWidget(MaterialApp(home: Scaffold(body: widget)));
 
@@ -19,7 +19,7 @@ void main() {
 
     testWidgets('paddingX returns SizedBox with correct width', (tester) async {
       const width = 20.0;
-      final widget = width.paddingX;
+      final widget = width.paddingHorizontal;
 
       await tester.pumpWidget(MaterialApp(home: Scaffold(body: widget)));
 
@@ -32,7 +32,7 @@ void main() {
       tester,
     ) async {
       const size = 12.0;
-      final widget = size.paddingXY;
+      final widget = size.paddingAll;
 
       await tester.pumpWidget(MaterialApp(home: Scaffold(body: widget)));
 

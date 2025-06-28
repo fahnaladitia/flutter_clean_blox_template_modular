@@ -24,42 +24,53 @@ final class SignUpUsecaseParam extends Equatable {
   }
 
   void validate() {
+    List<ValidatorFieldException> errors = [];
     // Check if name is not empty
     if (name.isEmpty) {
-      throw ValidatorException(
-        fieldName: 'name',
-        errMessage: 'Name cannot be empty',
+      errors.add(
+        ValidatorFieldException(
+          fieldName: 'name',
+          message: 'Name cannot be empty',
+        ),
       );
     }
 
     // Check if email, password, and confirmPassword are not empty
     if (email.isEmpty) {
-      throw ValidatorException(
-        fieldName: 'email',
-        errMessage: 'Email cannot be empty',
+      errors.add(
+        ValidatorFieldException(
+          fieldName: 'email',
+          message: 'Email cannot be empty',
+        ),
       );
     }
 
     // Check if password and confirmPassword are not empty
     if (password.isEmpty) {
-      throw ValidatorException(
-        fieldName: 'password',
-        errMessage: 'Password cannot be empty',
+      errors.add(
+        ValidatorFieldException(
+          fieldName: 'password',
+          message: 'Password cannot be empty',
+        ),
       );
     }
 
     // Validate email
     final emailValidation = ValidatorUtils.validateEmail(email);
     if (emailValidation != null) {
-      throw ValidatorException(fieldName: 'email', errMessage: emailValidation);
+      errors.add(
+        ValidatorFieldException(fieldName: 'email', message: emailValidation),
+      );
     }
 
     // Validate password
     final passwordValidation = ValidatorUtils.validatePassword(password);
     if (passwordValidation != null) {
-      throw ValidatorException(
-        fieldName: 'password',
-        errMessage: passwordValidation,
+      errors.add(
+        ValidatorFieldException(
+          fieldName: 'password',
+          message: passwordValidation,
+        ),
       );
     }
 
@@ -67,10 +78,16 @@ final class SignUpUsecaseParam extends Equatable {
     final confirmPasswordValidation =
         ValidatorUtils.validatePasswordConfirmation(password, confirmPassword);
     if (confirmPasswordValidation != null) {
-      throw ValidatorException(
-        fieldName: 'confirm_password',
-        errMessage: confirmPasswordValidation,
+      errors.add(
+        ValidatorFieldException(
+          fieldName: 'confirm_password',
+          message: confirmPasswordValidation,
+        ),
       );
+    }
+
+    if (errors.isNotEmpty) {
+      throw ValidationException(errors: errors);
     }
   }
 }

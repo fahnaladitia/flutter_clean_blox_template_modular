@@ -32,5 +32,5 @@ void main() async {
   // Sentry initialization can be added here if needed
   // await SentryService.init(app: () => runApp(const MyApp()));
 
-  runApp(const MyApp());
+  runApp(MyApp());
 }

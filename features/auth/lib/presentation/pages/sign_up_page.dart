@@ -69,79 +69,99 @@ class _SignUpPageState extends State<SignUpPage> {
             },
             autovalidateMode: AutovalidateMode.onUserInteraction,
             child: Padding(
-              padding: 24.edgeX,
+              padding: 24.edgeHorizontal,
               child: Column(
                 children: [
-                  100.paddingY,
+                  100.paddingVertical,
                   Text(
                     context.l10n.signUp,
                     style: context.textTheme.headlineMedium,
                   ),
-                  16.paddingY,
+                  16.paddingVertical,
                   Text(
                     context.l10n.signUpDescription,
                     style: context.textTheme.bodyMedium,
                     textAlign: TextAlign.center,
                   ),
-                  16.paddingY,
+                  16.paddingVertical,
                   BlocBuilder<SignUpBloc, SignUpState>(
                     builder: (context, state) {
-                      final isLoading = state is SignUpLoading;
-                      return BasicTextInput(
+                      return BasicTextField.outlined(
+                        field: 'name',
                         controller: _nameController,
                         labelText: context.l10n.name,
-                        readOnly: isLoading,
+                        hintText: context.l10n.nameHint,
+                        textInputAction: TextInputAction.next,
+                        textCapitalization: TextCapitalization.words,
+                        prefixIcon: const Icon(Icons.person),
+                        validationUIError: state.validationUIError,
+                        readOnly: state is SignUpLoading,
                       );
                     },
                   ),
-                  16.paddingY,
+                  16.paddingVertical,
                   BlocBuilder<SignUpBloc, SignUpState>(
                     builder: (context, state) {
-                      final isLoading = state is SignUpLoading;
-                      return BasicTextInput(
+                      return BasicTextField.outlined(
+                        field: 'email',
                         controller: _emailController,
                         labelText: context.l10n.email,
                         hintText: context.l10n.emailHint,
                         keyboardType: TextInputType.emailAddress,
-                        readOnly: isLoading,
+                        textInputAction: TextInputAction.next,
+                        textCapitalization: TextCapitalization.none,
+                        prefixIcon: const Icon(Icons.email),
+                        readOnly: state is SignUpLoading,
                       );
                     },
                   ),
-                  16.paddingY,
+                  16.paddingVertical,
                   BlocBuilder<SignUpBloc, SignUpState>(
                     builder: (context, state) {
-                      return BasicTextInput(
+                      return BasicTextField.outlined(
+                        field: 'password',
                         controller: _passwordController,
                         labelText: context.l10n.password,
                         hintText: context.l10n.passwordHint,
+                        validationUIError: state.validationUIError,
+                        textInputAction: TextInputAction.next,
+                        textCapitalization: TextCapitalization.none,
+                        prefixIcon: const Icon(Icons.lock),
                         obscureText: true,
                         readOnly: state is SignUpLoading,
                       );
                     },
                   ),
-                  16.paddingY,
+                  16.paddingVertical,
                   BlocBuilder<SignUpBloc, SignUpState>(
                     builder: (context, state) {
-                      return BasicTextInput(
+                      return BasicTextField.underline(
+                        field: 'confirm_password',
                         controller: _confirmPasswordController,
                         labelText: context.l10n.confirmPassword,
                         hintText: context.l10n.confirmPasswordHint,
+                        validationUIError: state.validationUIError,
+                        textInputAction: TextInputAction.done,
+                        textCapitalization: TextCapitalization.none,
+                        prefixIcon: const Icon(Icons.lock),
                         obscureText: true,
                         readOnly: state is SignUpLoading,
                       );
                     },
                   ),
-                  16.paddingY,
+                  32.paddingVertical,
                   BlocBuilder<SignUpBloc, SignUpState>(
                     builder: (context, state) {
                       final isLoading = state is SignUpLoading;
-                      return BasicButton.primary(
+                      return BasicButton.filled(
                         text: context.l10n.signUpButton,
+                        icon: const Icon(Icons.app_registration),
+                        isFullWidth: true,
                         state: isLoading
-                            ? BasicButtonState.loading
+                            ? BasicButtonEventState.loading
                             : isValid
-                            ? BasicButtonState.active
-                            : BasicButtonState.disabled,
+                            ? BasicButtonEventState.active
+                            : BasicButtonEventState.disabled,
                         onPressed: () {
                           // Handle sign-in logic here
                           if (!isValid || isLoading) return;

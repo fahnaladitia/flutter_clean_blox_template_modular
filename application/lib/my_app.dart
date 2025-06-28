@@ -14,8 +14,8 @@ class MyApp extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final TextTheme textTheme = createTextTheme(context, "Roboto", "Roboto");
-    final MaterialTheme theme = MaterialTheme(textTheme);
+    final themeLight = MaterialTheme.light();
+    final themeDark = MaterialTheme.dark();
     return MaterialApp.router(
       debugShowCheckedModeBanner: kDebugMode,
       routerConfig: AppRoute.router,
@@ -23,8 +23,8 @@ class MyApp extends StatelessWidget {
       localizationsDelegates: AppLocalizations.localizationsDelegates,
       // Set the default locale, you can change it based on user preference
       locale: const Locale('en'),
-      darkTheme: theme.dark(),
-      theme: theme.light(),
+      theme: themeLight,
+      darkTheme: themeDark,
     );
   }
 }
