@@ -1,141 +1,137 @@
 # 🚀 Flutter CleanBLoX Template (Modular)
 
-A production-ready Flutter template featuring **BLoC**, **Clean Architecture**,  and **Modular** design patterns. This template is designed to help you kickstart your Flutter projects with a solid foundation, ensuring maintainability and scalability.
+A **production-ready Flutter starter kit** built with **Clean Architecture**, **BLoC Pattern**, and **Modular Monorepo Structure** — built for scalability, maintainability, and rapid development.
 
 Created with ❤️ by [**Pahnal Aditia**](https://www.linkedin.com/in/pahnaladitia)
 
 ---
 
-## 📖 Table of Contents
+## 📚 Table of Contents
 
 - [🚀 Flutter CleanBLoX Template (Modular)](#-flutter-cleanblox-template-modular)
-  - [📖 Table of Contents](#-table-of-contents)
+  - [📚 Table of Contents](#-table-of-contents)
   - [✨ Features](#-features)
-  - [🗂 Project Structure](#-project-structure)
-  - [🚀 Getting Started](#-getting-started)
-    - [🔧 Setup Instructions](#-setup-instructions)
-      - [1. Project \& Package Name](#1-project--package-name)
-      - [2. App Links \& Universal Links](#2-app-links--universal-links)
-    - [▶️ Run the App](#️-run-the-app)
-    - [For Android APK build](#for-android-apk-build)
-    - [For iOS build (Note: requires macOS)](#for-ios-build-note-requires-macos)
-  - [📝 Notes](#-notes)
+  - [📁 Project Structure](#-project-structure)
+  - [⚙️ Getting Started](#️-getting-started)
+    - [🛠 Initial Setup](#-initial-setup)
+      - [Project Setup Details](#project-setup-details)
+    - [▶️ Running the App](#️-running-the-app)
+    - [📦 Building APK \& IPA](#-building-apk--ipa)
+      - [📱 Android APK](#-android-apk)
+      - [🍏 iOS IPA](#-ios-ipa)
+  - [📝 Developer Notes](#-developer-notes)
+  - [🚀 Ready to Launch?](#-ready-to-launch)
 
 ---
+
 ## ✨ Features
 
-✅ **Modular architecture** — Setiap feature sebagai package: *isolated*, *scalable*, *maintainable*  
-✅ **Clean Architecture principles** — Struktur `domain`, `data`, `presentation` di setiap fitur  
-✅ **BLoC Pattern** — Powered by [flutter_bloc](https://pub.dev/packages/flutter_bloc)  
-✅ **Melos support** — Monorepo management dengan [melos](https://pub.dev/packages/melos)  
-✅ **Flavoring** — Staging & production ready  
-✅ **CI/CD** — GitHub Actions untuk build APK signed otomatis  
-✅ **Shared resources** — `shared/` untuk widgets, theme, utils yang dipakai global  
-✅ **Core domain** — `core/` untuk pure logic, interfaces, base classes  
+✅ **Modular Architecture** — Each feature lives in its own independent package  
+✅ **Clean Architecture** — Clear separation of `data`, `domain`, and `presentation` layers  
+✅ **BLoC State Management** — Built using [flutter_bloc](https://pub.dev/packages/flutter_bloc)  
+✅ **Monorepo Ready** — Powered by [melos](https://pub.dev/packages/melos) for managing multi-packages  
+✅ **Flavor Support** — Easily switch between `staging` and `production` builds  
+✅ **CI/CD Integrated** — GitHub Actions ready for automated signed builds  
+✅ **Shared Modules** — Centralized widgets, themes, and utilities in `shared/`  
+✅ **Core Domain** — `core/` module for reusable interfaces, logic, and services
 
 ---
-## 🗂 Project Structure
+
+## 📁 Project Structure
 
 ```bash
 repo/
-├── application/           # Main app runner
-├── core/                  # Base logic, interfaces, core services
-├── shared/                # Global widgets, themes, utils
+├── application/           # App entry point and router
+├── core/                  # Core logic & contracts (e.g., services, interfaces)
+├── shared/                # Global widgets, styles, extensions, utilities
 ├── features/
-│   ├── auth/              # Auth feature module
+│   ├── auth/              # Authentication feature module
 │   └── home/              # Home feature module
-├── .melos.yaml            # Melos config for monorepo
 ├── pubspec.yaml           # Root pubspec
-└── melos.yaml             # Melos scripts & workspace
+├── melos.yaml             # Melos scripts & workspace
+└── .melos.yaml            # Melos config
 ```
+
 ---
 
-## 🚀 Getting Started
+## ⚙️ Getting Started
+
+### 🛠 Initial Setup
 
 ```bash
-# 1. Clone the repository
+# Clone the repo
 git clone https://github.com/fahnaladitia/flutter_clean_blox_template_modular.git
 
-# 2.  Install dependencies
+# Install dependencies for all packages
 melos bootstrap
 ```
 
-### 🔧 Setup Instructions
+#### Project Setup Details
 
-#### 1. Project & Package Name
+- Package Name & Flavor Setup:
+See [SETUP.md](docs/SETUP.md) for customizing your app’s name and flavors.
 
-See [SETUP.md](docs/SETUP.md) for how to manually configure your project’s package name and build flavors.
+- App Links & Deep Linking:
+See [APPLINKS.md](docs/APPLINKS.md) for universal link configuration for Android & iOS.
 
-#### 2. App Links & Universal Links
+- CI/CD Configuration and Automated Builds:
+See [ANDROID_CI.md](docs/ANDROID_CI.md) for setting up GitHub Actions for automated builds.
 
-To enable Android and iOS deep linking, follow [APPLINKS.md](APPLINKS.md).
-
----
-
-### ▶️ Run the App
+### ▶️ Running the App
 
 ```bash
-# For staging
+# Staging environment
 melos run:debug:staging
 melos run:release:staging
 
-# For production
+# Production environment
 melos run:debug:production
 melos run:release:production
 ```
 
-### For Android APK build
+### 📦 Building APK & IPA
+
+#### 📱 Android APK
 
 ```bash
-# For staging
+# Build staging APK
 melos run build:staging:apk
-# For production
+
+# Build production APK
 melos run build:production:apk
 ```
 
+#### 🍏 iOS IPA
 
-### For iOS build (Note: requires macOS)
-Not Tested, but you can use the following commands to build for iOS:
 ```bash
-# For staging
+# Staging build
 melos run build:staging:ios
-
 flutter build ipa --obfuscate --split-debug-info=out/android --flavor staging -t lib/main_staging.dart
-# For production
-flutter build ios --flavor production -t lib/main_production.dart
 
+# Production build
+flutter build ios --flavor production -t lib/main_production.dart
 flutter build ipa --obfuscate --split-debug-info=out/android --flavor production -t lib/main_production.dart
 ```
 
 ---
 
-## 📝 Notes
+---
 
-* This template uses **GetIt** for dependency injection, **Dio** for networking, and **Sentry** for error tracking.
-* The app is structured using **BLoC** for state management, following the **Clean Architecture** principles.
-* **Melos** is used for monorepo management, allowing you to easily manage multiple packages and features.
-* The template includes **flavoring** for staging and production builds, making it easy to switch between environments.
-* **Flutter Launcher Icons** and **Flutter Native Splash** are configured for custom app icons and splash screens.
-* **Chucker Flutter** and **Cote Network Logger** are included for debugging network requests.
-* **Intl** package is used for internationalization, allowing you to easily add multiple languages.
-* The app uses **go_router** for navigation, providing a simple and powerful routing solution.
-* The project is set up with **GitHub Actions** for CI/CD, automating the build and deployment process.
-* Customize error handling in `error_interceptor.dart`.
-* Follow official docs for more detailed configuration:
+## 📝 Developer Notes
 
-  * [Sentry Flutter](https://docs.sentry.io/platforms/flutter/)
-  * [Dio](https://pub.dev/packages/dio#interceptors)
-  * [GetIt](https://pub.dev/packages/get_it)
-  * [BLoC](https://pub.dev/packages/flutter_bloc)
-  * [Intl](https://pub.dev/packages/intl)
-  * [go\_router](https://pub.dev/packages/go_router)
-  * [Chucker Flutter](https://pub.dev/packages/chucker_flutter)
-  * [Cote Network Logger](https://pub.dev/packages/cote_network_logger)
-  * [Flutter Launcher Icons](https://pub.dev/packages/flutter_launcher_icons)
-  * [Flutter Native Splash](https://pub.dev/packages/flutter_native_splash)
-  * [Flutter Flavoring](https://docs.flutter.dev/deployment/flavors)
-  * [Flutter App & Universal Links](https://docs.flutter.dev/cookbook/navigation/set-up-app-links)
-  *  [Melos](https://melos.invertase.dev/)
+- **Dependency Injection**: [GetIt](https://pub.dev/packages/get_it)  
+- **Networking**: [Dio](https://pub.dev/packages/dio)  
+- **Error Logging**: [Sentry](https://docs.sentry.io/platforms/flutter/)  
+- **Localization**: [intl](https://pub.dev/packages/intl)  
+- **Routing**: [go_router](https://pub.dev/packages/go_router)  
+- **Testing & Logging**: [Chucker Flutter](https://pub.dev/packages/chucker_flutter), [Cote Network Logger](https://pub.dev/packages/cote_network_logger)  
+- **UI Tooling**: [Flutter Launcher Icons](https://pub.dev/packages/flutter_launcher_icons), [Flutter Native Splash](https://pub.dev/packages/flutter_native_splash)  
+- **Flavor Management**: [Flutter Flavors](https://docs.flutter.dev/deployment/flavors)  
+- **CI/CD**: GitHub Actions integrated  
+- **App Link Setup**: [App & Universal Links](https://docs.flutter.dev/cookbook/navigation/set-up-app-links)
 
 ---
 
+## 🚀 Ready to Launch?
+
+Fork this template, plug in your logic, and ship your next big thing! 🎯
