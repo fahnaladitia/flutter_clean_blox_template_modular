@@ -104,5 +104,25 @@
   "@nameHint": {
     "description": "Teks petunjuk untuk kolom input nama",
     "type": "text"
+  },
+  "buttons": "Tombol",
+  "@buttons": {
+    "description": "Teks untuk halaman tombol",
+    "type": "text"
+  },
+  "inputs": "Input",
+  "@inputs": {
+    "description": "Teks untuk halaman input",
+    "type": "text"
+  },
+  "inputsPreviewDescription": "Ini adalah halaman pratinjau untuk input. Anda dapat melihat bagaimana input terlihat dan statusnya.",
+  "@inputsPreviewDescription": {
+    "description": "Deskripsi untuk halaman pratinjau input",
+    "type": "text"
+  },
+  "buttonsPreviewDescription": "Ini adalah halaman pratinjau untuk tombol. Anda dapat melihat bagaimana tombol terlihat dan statusnya.",
+  "@buttonsPreviewDescription": {
+    "description": "Deskripsi untuk halaman pratinjau tombol",
+    "type": "text"
   }
 }

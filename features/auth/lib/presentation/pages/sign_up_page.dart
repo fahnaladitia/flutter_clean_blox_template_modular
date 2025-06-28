@@ -1,4 +1,5 @@
 import 'package:core/core.dart';
+import 'package:feature_auth/presentation/blocs/auth/auth_bloc.dart';
 import 'package:feature_auth/presentation/blocs/sign_up/sign_up_bloc.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
@@ -50,7 +51,7 @@ class _SignUpPageState extends State<SignUpPage> {
       child: BlocListener<SignUpBloc, SignUpState>(
         listener: (context, state) {
           if (state is SignUpSuccess) {
-            context.goTo('main');
+            sl<AuthBloc>().add(AuthCheckRequestedEvent());
           } else if (state is SignUpFailure) {
             context.showError(state.error);
           }

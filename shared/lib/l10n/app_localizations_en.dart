@@ -70,4 +70,18 @@ class AppLocalizationsEn extends AppLocalizations {
 
   @override
   String get signOut => 'Sign Out';
+
+  @override
+  String get buttons => 'Buttons';
+
+  @override
+  String get inputs => 'Inputs';
+
+  @override
+  String get inputsPreviewDescription =>
+      'This is a preview page for inputs. You can see how the inputs look like and their states.';
+
+  @override
+  String get buttonsPreviewDescription =>
+      'This is a preview page for buttons. You can see how the buttons look like and their states.';
 }

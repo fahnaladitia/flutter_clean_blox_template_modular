@@ -1,3 +1,6 @@
+import 'package:core/core.dart';
+import 'package:feature_auth/presentation/blocs/auth/auth_bloc.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:shared/shared.dart';
 
 import 'package:flutter/material.dart';
@@ -9,14 +12,14 @@ import 'package:flutter/services.dart';
 /// LinkedIn: https://www.linkedin.com/in/pahnaladitia
 /// =========================================================
 
-class SplashPage extends StatefulWidget {
-  const SplashPage({super.key});
+class SplashAuthPage extends StatefulWidget {
+  const SplashAuthPage({super.key});
 
   @override
-  State<SplashPage> createState() => _SplashPageState();
+  State<SplashAuthPage> createState() => _SplashAuthPageState();
 }
 
-class _SplashPageState extends State<SplashPage> {
+class _SplashAuthPageState extends State<SplashAuthPage> {
   @override
   void initState() {
     super.initState();
@@ -24,8 +27,6 @@ class _SplashPageState extends State<SplashPage> {
       SystemUiMode.manual,
       overlays: [SystemUiOverlay.top],
     );
-
-    _initialize(context);
   }
 
   @override
@@ -39,14 +40,22 @@ class _SplashPageState extends State<SplashPage> {
 
   @override
   Widget build(BuildContext context) {
-    return const _BuildBody();
-  }
-
-  void _initialize(BuildContext context) async {
-    Future.delayed(const Duration(milliseconds: 1500), () {
-      if (!context.mounted) return;
-      context.go(to: '/');
-    });
+    return BlocListener<AuthBloc, AuthState>(
+      bloc: sl<AuthBloc>(),
+      listener: (context, state) async {
+        if (state is AuthAuthenticatedState) {
+          await Future.delayed(const Duration(milliseconds: 1500));
+          if (!context.mounted) return;
+          context.go(to: '/');
+        }
+        if (state is AuthUnauthenticatedState) {
+          await Future.delayed(const Duration(milliseconds: 1500));
+          if (!context.mounted) return;
+          context.go(to: '/sign-in');
+        }
+      },
+      child: const _BuildBody(),
+    );
   }
 }
 

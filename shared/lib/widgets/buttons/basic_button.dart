@@ -128,10 +128,26 @@ class BasicButton extends StatelessWidget {
           minimumSize: isFullWidth
               ? Size(double.infinity, size.height)
               : Size(size.width, size.height),
+          maximumSize: isFullWidth
+              ? Size(double.infinity, size.height)
+              : Size(double.infinity, size.height),
         ),
         onPressed: state.isActive ? onPressed : null,
         icon: icon!,
-        label: state.isLoading ? const CircularProgressIndicator() : Text(text),
+        label: state.isLoading
+            ? LayoutBuilder(
+                builder: (context, constraints) {
+                  // Use LayoutBuilder to get the constraints and create a CircularProgressIndicator
+                  final double diameter =
+                      constraints.maxHeight * 0.4; // Adjust size as needed
+                  return SizedBox(
+                    width: diameter,
+                    height: diameter,
+                    child: const CircularProgressIndicator(strokeWidth: 2),
+                  );
+                },
+              )
+            : Text(text),
       );
     }
 
@@ -140,9 +156,25 @@ class BasicButton extends StatelessWidget {
         minimumSize: isFullWidth
             ? Size(double.infinity, size.height)
             : Size(size.width, size.height),
+        maximumSize: isFullWidth
+            ? Size(double.infinity, size.height)
+            : Size(double.infinity, size.height),
       ),
       onPressed: state.isActive ? onPressed : null,
-      child: state.isLoading ? const CircularProgressIndicator() : Text(text),
+      child: state.isLoading
+          ? LayoutBuilder(
+              builder: (context, constraints) {
+                // Use LayoutBuilder to get the constraints and create a CircularProgressIndicator
+                final double diameter =
+                    constraints.maxHeight * 0.4; // Adjust size as needed
+                return SizedBox(
+                  width: diameter,
+                  height: diameter,
+                  child: const CircularProgressIndicator(strokeWidth: 2),
+                );
+              },
+            )
+          : Text(text),
     );
   }
 
@@ -155,10 +187,26 @@ class BasicButton extends StatelessWidget {
           minimumSize: isFullWidth
               ? Size(double.infinity, size.height)
               : Size(size.width, size.height),
+          maximumSize: isFullWidth
+              ? Size(double.infinity, size.height)
+              : Size(double.infinity, size.height),
         ),
         onPressed: state.isActive ? onPressed : null,
         icon: icon!,
-        label: state.isLoading ? const CircularProgressIndicator() : Text(text),
+        label: state.isLoading
+            ? LayoutBuilder(
+                builder: (context, constraints) {
+                  // Use LayoutBuilder to get the constraints and create a CircularProgressIndicator
+                  final double diameter =
+                      constraints.maxHeight * 0.4; // Adjust size as needed
+                  return SizedBox(
+                    width: diameter,
+                    height: diameter,
+                    child: const CircularProgressIndicator(strokeWidth: 2),
+                  );
+                },
+              )
+            : Text(text),
       );
     }
 
@@ -167,9 +215,25 @@ class BasicButton extends StatelessWidget {
         minimumSize: isFullWidth
             ? Size(double.infinity, size.height)
             : Size(size.width, size.height),
+        maximumSize: isFullWidth
+            ? Size(double.infinity, size.height)
+            : Size(double.infinity, size.height),
       ),
       onPressed: state.isActive ? onPressed : null,
-      child: state.isLoading ? const CircularProgressIndicator() : Text(text),
+      child: state.isLoading
+          ? LayoutBuilder(
+              builder: (context, constraints) {
+                // Use LayoutBuilder to get the constraints and create a CircularProgressIndicator
+                final double diameter =
+                    constraints.maxHeight * 0.4; // Adjust size as needed
+                return SizedBox(
+                  width: diameter,
+                  height: diameter,
+                  child: const CircularProgressIndicator(strokeWidth: 2),
+                );
+              },
+            )
+          : Text(text),
     );
   }
 
@@ -181,10 +245,26 @@ class BasicButton extends StatelessWidget {
           minimumSize: isFullWidth
               ? Size(double.infinity, size.height)
               : Size(size.width, size.height),
+          maximumSize: isFullWidth
+              ? Size(double.infinity, size.height)
+              : Size(double.infinity, size.height),
         ),
         onPressed: state.isActive ? onPressed : null,
         icon: icon!,
-        label: state.isLoading ? const CircularProgressIndicator() : Text(text),
+        label: state.isLoading
+            ? LayoutBuilder(
+                builder: (context, constraints) {
+                  // Use LayoutBuilder to get the constraints and create a CircularProgressIndicator
+                  final double diameter =
+                      constraints.maxHeight * 0.4; // Adjust size as needed
+                  return SizedBox(
+                    width: diameter,
+                    height: diameter,
+                    child: const CircularProgressIndicator(strokeWidth: 2),
+                  );
+                },
+              )
+            : Text(text),
       );
     }
 
@@ -193,9 +273,25 @@ class BasicButton extends StatelessWidget {
         minimumSize: isFullWidth
             ? Size(double.infinity, size.height)
             : Size(size.width, size.height),
+        maximumSize: isFullWidth
+            ? Size(double.infinity, size.height)
+            : Size(double.infinity, size.height),
       ),
       onPressed: state.isActive ? onPressed : null,
-      child: state.isLoading ? const CircularProgressIndicator() : Text(text),
+      child: state.isLoading
+          ? LayoutBuilder(
+              builder: (context, constraints) {
+                // Use LayoutBuilder to get the constraints and create a CircularProgressIndicator
+                final double diameter =
+                    constraints.maxHeight * 0.4; // Adjust size as needed
+                return SizedBox(
+                  width: diameter,
+                  height: diameter,
+                  child: const CircularProgressIndicator(strokeWidth: 2),
+                );
+              },
+            )
+          : Text(text),
     );
   }
 
@@ -207,10 +303,26 @@ class BasicButton extends StatelessWidget {
           minimumSize: isFullWidth
               ? Size(double.infinity, size.height)
               : Size(size.width, size.height),
+          maximumSize: isFullWidth
+              ? Size(double.infinity, size.height)
+              : Size(double.infinity, size.height),
         ),
         onPressed: state.isActive ? onPressed : null,
         icon: icon!,
-        label: state.isLoading ? const CircularProgressIndicator() : Text(text),
+        label: state.isLoading
+            ? LayoutBuilder(
+                builder: (context, constraints) {
+                  // Use LayoutBuilder to get the constraints and create a CircularProgressIndicator
+                  final double diameter =
+                      constraints.maxHeight * 0.4; // Adjust size as needed
+                  return SizedBox(
+                    width: diameter,
+                    height: diameter,
+                    child: const CircularProgressIndicator(strokeWidth: 2),
+                  );
+                },
+              )
+            : Text(text),
       );
     }
 
@@ -219,9 +331,25 @@ class BasicButton extends StatelessWidget {
         minimumSize: isFullWidth
             ? Size(double.infinity, size.height)
             : Size(size.width, size.height),
+        maximumSize: isFullWidth
+            ? Size(double.infinity, size.height)
+            : Size(double.infinity, size.height),
       ),
       onPressed: state.isActive ? onPressed : null,
-      child: state.isLoading ? const CircularProgressIndicator() : Text(text),
+      child: state.isLoading
+          ? LayoutBuilder(
+              builder: (context, constraints) {
+                // Use LayoutBuilder to get the constraints and create a CircularProgressIndicator
+                final double diameter =
+                    constraints.maxHeight * 0.4; // Adjust size as needed
+                return SizedBox(
+                  width: diameter,
+                  height: diameter,
+                  child: const CircularProgressIndicator(strokeWidth: 2),
+                );
+              },
+            )
+          : Text(text),
     );
   }
 }

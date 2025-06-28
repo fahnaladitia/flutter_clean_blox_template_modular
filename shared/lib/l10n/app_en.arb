@@ -104,5 +104,25 @@
   "@signOut": {
     "description": "Text for the sign-out button",
     "type": "text"
+  },
+  "buttons": "Buttons",
+  "@buttons": {
+    "description": "Title for the buttons preview page",
+    "type": "text"
+  },
+  "inputs": "Inputs",
+  "@inputs": {
+    "description": "Title for the inputs preview page",
+    "type": "text"
+  },
+  "inputsPreviewDescription": "This is a preview page for inputs. You can see how the inputs look like and their states.",
+  "@inputsPreviewDescription": {
+    "description": "Description for the inputs preview page",
+    "type": "text"
+  },
+  "buttonsPreviewDescription": "This is a preview page for buttons. You can see how the buttons look like and their states.",
+  "@buttonsPreviewDescription": {
+    "description": "Description for the buttons preview page",
+    "type": "text"
   }
 }

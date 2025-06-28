@@ -34,7 +34,10 @@ class AppConfig {
 
   AppConfig._();
 
-  static void load(AppFlavor selectedFlavor) {
+  static bool _withAuth = true;
+  static bool get withAuth => _withAuth;
+
+  static void load(AppFlavor selectedFlavor, {bool withAuth = true}) async {
     assert(
       _flavor == null,
       'AppConfig has already been initialized with a flavor. Cannot reinitialize.',
@@ -46,6 +49,7 @@ class AppConfig {
     );
 
     _flavor = selectedFlavor;
+    _withAuth = withAuth;
     switch (selectedFlavor) {
       case AppFlavor.staging:
         _config = EnvConfig(
