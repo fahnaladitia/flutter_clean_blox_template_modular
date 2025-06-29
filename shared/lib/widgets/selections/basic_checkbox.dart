@@ -1,19 +1,17 @@
 part of '../widgets.dart';
 
 class BasicCheckbox extends StatefulWidget {
-  final bool initialValue;
+  final BasicSelectionController? controller;
   final ValueChanged<bool>? onChanged;
   final BasicCheckboxType type;
-  final BasicSelectionState state;
   final String? label;
   final Color? checkColor;
   final Color? backgroundColor;
   const BasicCheckbox._({
     super.key,
-    required this.initialValue,
+    required this.controller,
     this.onChanged,
     required this.type,
-    required this.state,
     this.label,
     this.checkColor,
     this.backgroundColor,
@@ -21,7 +19,7 @@ class BasicCheckbox extends StatefulWidget {
 
   const BasicCheckbox.android({
     Key? key,
-    required bool initialValue,
+    BasicSelectionController? controller,
     ValueChanged<bool>? onChanged,
     String? label,
     Color? checkColor,
@@ -29,18 +27,17 @@ class BasicCheckbox extends StatefulWidget {
     BasicSelectionState state = BasicSelectionState.active,
   }) : this._(
          key: key,
-         initialValue: initialValue,
+         controller: controller,
          onChanged: onChanged,
          type: BasicCheckboxType.android,
          label: label,
          checkColor: checkColor,
          backgroundColor: backgroundColor,
-         state: state,
        );
 
   const BasicCheckbox.ios({
     Key? key,
-    required bool initialValue,
+    BasicSelectionController? controller,
     ValueChanged<bool>? onChanged,
     String? label,
     Color? checkColor,
@@ -48,18 +45,17 @@ class BasicCheckbox extends StatefulWidget {
     BasicSelectionState state = BasicSelectionState.active,
   }) : this._(
          key: key,
-         initialValue: initialValue,
+         controller: controller,
          onChanged: onChanged,
          type: BasicCheckboxType.ios,
          label: label,
          checkColor: checkColor,
          backgroundColor: backgroundColor,
-         state: state,
        );
 
   const BasicCheckbox.adaptive({
     Key? key,
-    required bool initialValue,
+    BasicSelectionController? controller,
     ValueChanged<bool>? onChanged,
     String? label,
     Color? checkColor,
@@ -67,13 +63,12 @@ class BasicCheckbox extends StatefulWidget {
     BasicSelectionState state = BasicSelectionState.active,
   }) : this._(
          key: key,
-         initialValue: initialValue,
+         controller: controller,
          onChanged: onChanged,
          type: BasicCheckboxType.adaptive,
          label: label,
          checkColor: checkColor,
          backgroundColor: backgroundColor,
-         state: state,
        );
 
   @override
@@ -81,55 +76,75 @@ class BasicCheckbox extends StatefulWidget {
 }
 
 class _BasicCheckboxState extends State<BasicCheckbox> {
-  late bool _value;
+  late BasicSelectionController _controller;
 
   @override
   void initState() {
     super.initState();
-    _value = widget.initialValue;
+    _controller = widget.controller ?? BasicSelectionController();
+  }
+
+  void _toggle() {
+    final state = _controller.state;
+    final isSelected = _controller.isSelected;
+    if (state.isDisabled) return;
+    _controller.toggleSelection();
+    widget.onChanged?.call(isSelected);
   }
 
   @override
   Widget build(BuildContext context) {
-    final checkWidget = _buildCheck(context);
-    final labelText = widget.label;
-
-    return Semantics(
-      label: labelText,
-      checked: _value,
-      enabled: widget.state == BasicSelectionState.active,
-      child: GestureDetector(
-        onTap: _toggle,
-        behavior: HitTestBehavior.opaque,
-        child: Row(
-          mainAxisAlignment: labelText != null
-              ? MainAxisAlignment.spaceBetween
-              : MainAxisAlignment.start,
-          crossAxisAlignment: CrossAxisAlignment.center,
-          mainAxisSize: labelText != null ? MainAxisSize.max : MainAxisSize.min,
-          children: [
-            if (labelText != null)
-              Padding(
-                padding: 16.edgeRight,
-                child: Text(
-                  labelText,
-                  style: Theme.of(context).textTheme.bodyMedium?.copyWith(
-                    color: widget.state == BasicSelectionState.disabled
-                        ? Theme.of(
-                            context,
-                          ).colorScheme.onSurface.withValues(alpha: 0.38)
-                        : null,
-                  ),
-                ),
+    return ChangeNotifierProvider(
+      create: (_) => _controller,
+      child: Consumer<BasicSelectionController>(
+        builder: (context, controller, _) {
+          final state = controller.state;
+          final isSelected = controller.isSelected;
+          final checkWidget = _buildCheck(context);
+          final labelText = widget.label;
+          return Semantics(
+            label: labelText,
+            checked: isSelected,
+            enabled: state.isActive,
+            child: GestureDetector(
+              onTap: _toggle,
+              behavior: HitTestBehavior.opaque,
+              child: Row(
+                mainAxisAlignment: labelText != null
+                    ? MainAxisAlignment.spaceBetween
+                    : MainAxisAlignment.start,
+                crossAxisAlignment: CrossAxisAlignment.center,
+                mainAxisSize: labelText != null
+                    ? MainAxisSize.max
+                    : MainAxisSize.min,
+                children: [
+                  if (labelText != null)
+                    Padding(
+                      padding: 16.edgeRight,
+                      child: Text(
+                        labelText,
+                        style: Theme.of(context).textTheme.bodyMedium?.copyWith(
+                          color: state.isDisabled
+                              ? Theme.of(
+                                  context,
+                                ).colorScheme.onSurface.withValues(alpha: 0.38)
+                              : null,
+                        ),
+                      ),
+                    ),
+                  checkWidget,
+                ],
               ),
-            checkWidget,
-          ],
-        ),
+            ),
+          );
+        },
       ),
     );
   }
 
   Widget _buildCheck(BuildContext context) {
+    final isSelected = _controller.isSelected;
+    final state = _controller.state;
     final isDarkMode = Theme.of(context).brightness == Brightness.dark;
     final checkColor =
         widget.checkColor ??
@@ -147,14 +162,11 @@ class _BasicCheckboxState extends State<BasicCheckbox> {
         return Transform.scale(
           scale: desiredSize / 24.0,
           child: Checkbox(
-            value: _value,
-
+            value: isSelected,
             shape: RoundedRectangleBorder(
               borderRadius: BorderRadius.circular(4),
             ),
-            onChanged: widget.state == BasicSelectionState.disabled
-                ? null
-                : (value) => _toggle(),
+            onChanged: state.isDisabled ? null : (value) => _toggle(),
             checkColor: checkColor,
             activeColor: backgroundColor,
           ),
@@ -163,13 +175,11 @@ class _BasicCheckboxState extends State<BasicCheckbox> {
         return Transform.scale(
           scale: desiredSize / 18.0,
           child: CupertinoCheckbox(
-            value: _value,
+            value: isSelected,
             shape: RoundedRectangleBorder(
               borderRadius: BorderRadius.circular(4),
             ),
-            onChanged: widget.state == BasicSelectionState.disabled
-                ? null
-                : (value) => _toggle(),
+            onChanged: state.isDisabled ? null : (value) => _toggle(),
             checkColor: checkColor,
             activeColor: backgroundColor,
           ),
@@ -178,23 +188,15 @@ class _BasicCheckboxState extends State<BasicCheckbox> {
         return Transform.scale(
           scale: desiredSize / 18.0,
           child: Checkbox.adaptive(
-            value: _value,
+            value: isSelected,
             shape: RoundedRectangleBorder(
               borderRadius: BorderRadius.circular(4),
             ),
-            onChanged: widget.state == BasicSelectionState.disabled
-                ? null
-                : (value) => _toggle(),
+            onChanged: state.isDisabled ? null : (value) => _toggle(),
             checkColor: checkColor,
             activeColor: backgroundColor,
           ),
         );
     }
-  }
-
-  void _toggle() {
-    if (widget.state == BasicSelectionState.disabled) return;
-    setState(() => _value = !_value);
-    widget.onChanged?.call(_value);
   }
 }

@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
 import 'package:shared/shared.dart';
-import 'package:shared/widgets/selections/basic_selection_controller.dart';
 
 class SwitchSelectionTabPage extends StatefulWidget {
   const SwitchSelectionTabPage({super.key});
@@ -67,7 +66,7 @@ class _SwitchSelectionTabPageState extends State<SwitchSelectionTabPage> {
             BasicSwitch.android(
               controller: _basicSwitchAndroidInactiveController,
               onChanged: (value) {},
-              state: BasicSelectionState.disabled,
+
               label: "Basic Switch Android Inactive",
             ),
             16.paddingVertical,
@@ -101,7 +100,7 @@ class _SwitchSelectionTabPageState extends State<SwitchSelectionTabPage> {
             BasicSwitch.ios(
               controller: _basicSwitchIosInactiveController,
               onChanged: (value) {},
-              state: BasicSelectionState.disabled,
+
               label: "Basic Switch iOS Inactive",
             ),
             16.paddingVertical,
@@ -135,7 +134,7 @@ class _SwitchSelectionTabPageState extends State<SwitchSelectionTabPage> {
             BasicSwitch.adaptive(
               controller: _basicSwitchAdaptiveInactiveController,
               onChanged: (value) {},
-              state: BasicSelectionState.disabled,
+
               label: "Basic Switch Adaptive Inactive",
             ),
             16.paddingVertical,
@@ -170,7 +169,7 @@ class _SwitchSelectionTabPageState extends State<SwitchSelectionTabPage> {
             BasicSwitch.icon(
               controller: _basicSwitchIconInactiveController,
               onChanged: (value) {},
-              state: BasicSelectionState.disabled,
+
               activeIcon: const Icon(Icons.favorite),
               label: "Basic Switch Icon Inactive",
             ),

@@ -2,7 +2,6 @@ import 'package:flutter/material.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter_test/flutter_test.dart';
 import 'package:shared/shared.dart';
-import 'package:shared/widgets/selections/basic_selection_controller.dart';
 
 void main() {
   group('BasicSwitch Tests', () {
@@ -12,11 +11,7 @@ void main() {
       await tester.pumpWidget(
         MaterialApp(
           home: Scaffold(
-            body: BasicSwitch.android(
-              controller: controller,
-              state: BasicSelectionState.active,
-              label: 'Android',
-            ),
+            body: BasicSwitch.android(controller: controller, label: 'Android'),
           ),
         ),
       );
@@ -26,13 +21,15 @@ void main() {
     });
 
     testWidgets('Android Disabled', (tester) async {
-      final controller = BasicSelectionController();
+      final controller = BasicSelectionController(
+        state: BasicSelectionState.disabled,
+      );
       await tester.pumpWidget(
         MaterialApp(
           home: Scaffold(
             body: BasicSwitch.android(
               controller: controller,
-              state: BasicSelectionState.disabled,
+
               label: 'Android Disabled',
             ),
           ),
@@ -47,12 +44,7 @@ void main() {
       final controller = BasicSelectionController();
       await tester.pumpWidget(
         MaterialApp(
-          home: Scaffold(
-            body: BasicSwitch.ios(
-              controller: controller,
-              state: BasicSelectionState.active,
-            ),
-          ),
+          home: Scaffold(body: BasicSwitch.ios(controller: controller)),
         ),
       );
       await tester.tap(find.byType(CupertinoSwitch));
@@ -61,15 +53,12 @@ void main() {
     });
 
     testWidgets('iOS Disabled', (tester) async {
-      final controller = BasicSelectionController();
+      final controller = BasicSelectionController(
+        state: BasicSelectionState.disabled,
+      );
       await tester.pumpWidget(
         MaterialApp(
-          home: Scaffold(
-            body: BasicSwitch.ios(
-              controller: controller,
-              state: BasicSelectionState.disabled,
-            ),
-          ),
+          home: Scaffold(body: BasicSwitch.ios(controller: controller)),
         ),
       );
       await tester.tap(find.byType(CupertinoSwitch));
@@ -81,12 +70,7 @@ void main() {
       final controller = BasicSelectionController();
       await tester.pumpWidget(
         MaterialApp(
-          home: Scaffold(
-            body: BasicSwitch.adaptive(
-              controller: controller,
-              state: BasicSelectionState.active,
-            ),
-          ),
+          home: Scaffold(body: BasicSwitch.adaptive(controller: controller)),
         ),
       );
       await tester.tap(find.byType(Switch));
@@ -95,15 +79,12 @@ void main() {
     });
 
     testWidgets('Adaptive Disabled', (tester) async {
-      final controller = BasicSelectionController();
+      final controller = BasicSelectionController(
+        state: BasicSelectionState.disabled,
+      );
       await tester.pumpWidget(
         MaterialApp(
-          home: Scaffold(
-            body: BasicSwitch.adaptive(
-              controller: controller,
-              state: BasicSelectionState.disabled,
-            ),
-          ),
+          home: Scaffold(body: BasicSwitch.adaptive(controller: controller)),
         ),
       );
       await tester.tap(find.byType(Switch));
@@ -167,13 +148,15 @@ void main() {
     });
 
     testWidgets('Icon Type: does not toggle when disabled', (tester) async {
-      final controller = BasicSelectionController();
+      final controller = BasicSelectionController(
+        state: BasicSelectionState.disabled,
+      );
       await tester.pumpWidget(
         MaterialApp(
           home: Scaffold(
             body: BasicSwitch.icon(
               controller: controller,
-              state: BasicSelectionState.disabled,
+
               activeIcon: const Icon(Icons.check),
               inactiveIcon: const Icon(Icons.close),
             ),

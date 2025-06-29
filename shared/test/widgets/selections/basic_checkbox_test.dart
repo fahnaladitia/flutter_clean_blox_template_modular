@@ -6,135 +6,103 @@ import 'package:shared/shared.dart';
 void main() {
   group('BasicCheckbox - Android', () {
     testWidgets('toggles when active', (tester) async {
-      bool toggled = false;
+      final controller = BasicSelectionController();
 
       await tester.pumpWidget(
         MaterialApp(
-          home: Scaffold(
-            body: BasicCheckbox.android(
-              initialValue: false,
-              onChanged: (v) => toggled = v,
-              label: 'Android',
-            ),
-          ),
+          home: Scaffold(body: BasicCheckbox.android(controller: controller)),
         ),
       );
 
       await tester.tap(find.byType(Checkbox));
       await tester.pumpAndSettle();
-      expect(toggled, isTrue);
+      expect(controller.isSelected, isTrue);
     });
 
     testWidgets('does not toggle when disabled', (tester) async {
-      bool called = false;
+      final controller = BasicSelectionController(
+        state: BasicSelectionState.disabled,
+      );
 
       await tester.pumpWidget(
         MaterialApp(
-          home: Scaffold(
-            body: BasicCheckbox.android(
-              initialValue: false,
-              state: BasicSelectionState.disabled,
-              onChanged: (_) => called = true,
-              label: 'Disabled Android',
-            ),
-          ),
+          home: Scaffold(body: BasicCheckbox.android(controller: controller)),
         ),
       );
 
       await tester.tap(find.byType(Checkbox));
       await tester.pump();
-      expect(called, isFalse);
+      expect(controller.isSelected, isFalse);
     });
   });
 
   group('BasicCheckbox - iOS', () {
     testWidgets('toggles when active', (tester) async {
-      bool value = false;
+      final controller = BasicSelectionController();
 
       await tester.pumpWidget(
         MaterialApp(
-          home: Scaffold(
-            body: BasicCheckbox.ios(
-              initialValue: false,
-              onChanged: (v) => value = v,
-              label: 'iOS',
-            ),
-          ),
+          home: Scaffold(body: BasicCheckbox.ios(controller: controller)),
         ),
       );
 
       await tester.tap(find.byType(CupertinoCheckbox));
       await tester.pumpAndSettle();
-      expect(value, isTrue);
+      expect(controller.isSelected, isTrue);
     });
 
     testWidgets('does not toggle when disabled', (tester) async {
-      bool called = false;
+      final controller = BasicSelectionController(
+        state: BasicSelectionState.disabled,
+      );
 
       await tester.pumpWidget(
         MaterialApp(
-          home: Scaffold(
-            body: BasicCheckbox.ios(
-              initialValue: false,
-              state: BasicSelectionState.disabled,
-              onChanged: (_) => called = true,
-              label: 'Disabled iOS',
-            ),
-          ),
+          home: Scaffold(body: BasicCheckbox.ios(controller: controller)),
         ),
       );
 
       await tester.tap(find.byType(CupertinoCheckbox));
       await tester.pump();
-      expect(called, isFalse);
+      expect(controller.isSelected, isFalse);
     });
   });
 
   group('BasicCheckbox - Adaptive', () {
     testWidgets('toggles when active', (tester) async {
-      bool updated = false;
+      final controller = BasicSelectionController();
 
       await tester.pumpWidget(
         MaterialApp(
-          home: Scaffold(
-            body: BasicCheckbox.adaptive(
-              initialValue: false,
-              onChanged: (v) => updated = v,
-              label: 'Adaptive',
-            ),
-          ),
+          home: Scaffold(body: BasicCheckbox.adaptive(controller: controller)),
         ),
       );
 
       await tester.tap(find.byType(Checkbox));
       await tester.pump();
-      expect(updated, isTrue);
+      expect(controller.isSelected, isTrue);
     });
 
     testWidgets('does not toggle when disabled', (tester) async {
-      bool called = false;
+      final controller = BasicSelectionController(
+        state: BasicSelectionState.disabled,
+      );
 
       await tester.pumpWidget(
         MaterialApp(
-          home: Scaffold(
-            body: BasicCheckbox.adaptive(
-              initialValue: false,
-              state: BasicSelectionState.disabled,
-              onChanged: (_) => called = true,
-              label: 'Disabled Adaptive',
-            ),
-          ),
+          home: Scaffold(body: BasicCheckbox.adaptive(controller: controller)),
         ),
       );
 
       await tester.tap(find.byType(Checkbox));
       await tester.pump();
-      expect(called, isFalse);
+      expect(controller.isSelected, isFalse);
     });
   });
 
   group('BasicCheckbox - Customizations', () {
     testWidgets('shows label and applies custom colors', (tester) async {
+      final controller = BasicSelectionController();
       const labelText = 'Custom Checkbox';
       const checkColor = Colors.pink;
       const backgroundColor = Colors.black;
@@ -143,11 +111,10 @@ void main() {
         MaterialApp(
           home: Scaffold(
             body: BasicCheckbox.android(
-              initialValue: true,
+              controller: controller,
               label: labelText,
               checkColor: checkColor,
               backgroundColor: backgroundColor,
-              onChanged: (_) {},
             ),
           ),
         ),
