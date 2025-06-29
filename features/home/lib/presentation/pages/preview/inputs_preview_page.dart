@@ -21,6 +21,14 @@ class InputsPreviewPage extends StatelessWidget {
               textAlign: TextAlign.center,
             ),
             24.paddingVertical,
+            // divider
+            Divider(),
+            24.paddingVertical,
+            Text(
+              "Basic TextField - Outlined",
+              style: Theme.of(context).textTheme.headlineSmall,
+            ),
+            24.paddingVertical,
             // outlined active
             BasicTextField.outlined(
               field: 'outlined_active',
@@ -55,6 +63,15 @@ class InputsPreviewPage extends StatelessWidget {
               ),
             ),
             16.paddingVertical,
+            // divider
+            Divider(),
+            16.paddingVertical,
+            Text(
+              "Basic TextField - Underline",
+              style: Theme.of(context).textTheme.headlineSmall,
+            ),
+            24.paddingVertical,
+
             // underline active
             BasicTextField.underline(
               field: 'underline_active',
@@ -88,6 +105,7 @@ class InputsPreviewPage extends StatelessWidget {
                 ],
               ),
             ),
+            24.paddingVertical,
           ],
         ),
       ),

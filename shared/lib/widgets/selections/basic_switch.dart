@@ -6,8 +6,14 @@ class BasicSwitch extends StatefulWidget {
   final BasicSwitchType type;
   final BasicSwitchState state;
   final String? label;
-  final Widget? activeIcon;
-  final Widget? inactiveIcon;
+  final bool isBackgroundColor;
+  final Icon? activeIcon;
+  final Icon? inactiveIcon;
+  final Color? activeColor;
+  final Color? activeBackgroundColor;
+  final Color? inactiveColor;
+  final Color? inactiveBackgroundColor;
+  final double? elevation;
 
   const BasicSwitch._({
     super.key,
@@ -18,6 +24,12 @@ class BasicSwitch extends StatefulWidget {
     this.label,
     this.activeIcon,
     this.inactiveIcon,
+    this.isBackgroundColor = true,
+    this.activeColor,
+    this.activeBackgroundColor,
+    this.inactiveColor,
+    this.inactiveBackgroundColor,
+    this.elevation,
   });
 
   const BasicSwitch.android({
@@ -26,6 +38,12 @@ class BasicSwitch extends StatefulWidget {
     ValueChanged<bool>? onChanged,
     BasicSwitchState state = BasicSwitchState.active,
     String? label,
+    Icon? activeIcon,
+    Icon? inactiveIcon,
+    Color? activeColor,
+    Color? inactiveColor,
+    Color? activeBackgroundColor,
+    Color? inactiveBackgroundColor,
   }) : this._(
          key: key,
          type: BasicSwitchType.android,
@@ -33,6 +51,12 @@ class BasicSwitch extends StatefulWidget {
          onChanged: onChanged,
          state: state,
          label: label,
+         activeIcon: activeIcon,
+         inactiveIcon: inactiveIcon,
+         activeColor: activeColor,
+         inactiveColor: inactiveColor,
+         activeBackgroundColor: activeBackgroundColor,
+         inactiveBackgroundColor: inactiveBackgroundColor,
        );
 
   const BasicSwitch.ios({
@@ -41,6 +65,12 @@ class BasicSwitch extends StatefulWidget {
     ValueChanged<bool>? onChanged,
     BasicSwitchState state = BasicSwitchState.active,
     String? label,
+    Icon? activeIcon,
+    Icon? inactiveIcon,
+    Color? activeColor,
+    Color? inactiveColor,
+    Color? activeBackgroundColor,
+    Color? inactiveBackgroundColor,
   }) : this._(
          key: key,
          type: BasicSwitchType.ios,
@@ -48,21 +78,39 @@ class BasicSwitch extends StatefulWidget {
          onChanged: onChanged,
          state: state,
          label: label,
+         activeIcon: activeIcon,
+         inactiveIcon: inactiveIcon,
+         activeColor: activeColor,
+         inactiveColor: inactiveColor,
+         activeBackgroundColor: activeBackgroundColor,
+         inactiveBackgroundColor: inactiveBackgroundColor,
        );
 
-  const BasicSwitch.native({
+  const BasicSwitch.adaptive({
     Key? key,
     bool initialValue = false,
     ValueChanged<bool>? onChanged,
     BasicSwitchState state = BasicSwitchState.active,
     String? label,
+    Icon? activeIcon,
+    Icon? inactiveIcon,
+    Color? activeColor,
+    Color? inactiveColor,
+    Color? activeBackgroundColor,
+    Color? inactiveBackgroundColor,
   }) : this._(
          key: key,
-         type: BasicSwitchType.native,
+         type: BasicSwitchType.adaptive,
          initialValue: initialValue,
          onChanged: onChanged,
          state: state,
          label: label,
+         activeIcon: activeIcon,
+         inactiveIcon: inactiveIcon,
+         activeColor: activeColor,
+         inactiveColor: inactiveColor,
+         activeBackgroundColor: activeBackgroundColor,
+         inactiveBackgroundColor: inactiveBackgroundColor,
        );
 
   const BasicSwitch.icon({
@@ -71,8 +119,14 @@ class BasicSwitch extends StatefulWidget {
     ValueChanged<bool>? onChanged,
     BasicSwitchState state = BasicSwitchState.active,
     String? label,
-    Widget? activeIcon,
-    Widget? inactiveIcon,
+    Icon? activeIcon,
+    Icon? inactiveIcon,
+    Color? activeColor,
+    Color? inactiveColor,
+    Color? activeBackgroundColor,
+    Color? inactiveBackgroundColor,
+    double? elevation,
+    bool isBackgroundColor = true,
   }) : this._(
          key: key,
          type: BasicSwitchType.icon,
@@ -82,6 +136,12 @@ class BasicSwitch extends StatefulWidget {
          label: label,
          activeIcon: activeIcon,
          inactiveIcon: inactiveIcon,
+         activeColor: activeColor,
+         inactiveColor: inactiveColor,
+         activeBackgroundColor: activeBackgroundColor,
+         inactiveBackgroundColor: inactiveBackgroundColor,
+         elevation: elevation,
+         isBackgroundColor: isBackgroundColor,
        );
 
   @override
@@ -144,10 +204,14 @@ class _BasicSwitchState extends State<BasicSwitch> {
   }
 
   Widget _buildSwitch(BuildContext context) {
+    final isDarkMode = Theme.of(context).brightness == Brightness.dark;
     switch (widget.type) {
       case BasicSwitchType.android:
         return Switch(
           value: _value,
+          activeTrackColor: widget.activeBackgroundColor,
+          inactiveTrackColor: widget.inactiveBackgroundColor,
+          thumbIcon: _getIcon(context, isDarkMode, _value, widget.state),
           onChanged: widget.state == BasicSwitchState.active
               ? _onChanged
               : null,
@@ -156,13 +220,19 @@ class _BasicSwitchState extends State<BasicSwitch> {
         return CupertinoSwitch(
           applyTheme: true,
           value: _value,
+          activeTrackColor: widget.activeBackgroundColor,
+          inactiveTrackColor: widget.inactiveBackgroundColor,
+          thumbIcon: _getIcon(context, isDarkMode, _value, widget.state),
           onChanged: widget.state == BasicSwitchState.active
               ? _onChanged
               : null,
         );
-      case BasicSwitchType.native:
+      case BasicSwitchType.adaptive:
         return Switch.adaptive(
           value: _value,
+          activeTrackColor: widget.activeBackgroundColor,
+          inactiveTrackColor: widget.inactiveBackgroundColor,
+          thumbIcon: _getIcon(context, isDarkMode, _value, widget.state),
           applyCupertinoTheme: true,
           onChanged: widget.state == BasicSwitchState.active
               ? _onChanged
@@ -173,12 +243,22 @@ class _BasicSwitchState extends State<BasicSwitch> {
           width: 38,
           height: 38,
           decoration: BoxDecoration(
+            boxShadow: widget.elevation != null
+                ? [
+                    BoxShadow(
+                      color: Colors.black.withValues(alpha: 0.12),
+                      blurRadius: widget.elevation!,
+                      offset: const Offset(0, 2),
+                    ),
+                  ]
+                : null,
             shape: BoxShape.circle,
-            color: _value
-                ? Theme.of(context).colorScheme.primary.withValues(
-                    alpha: widget.state == BasicSwitchState.disabled ? 0.38 : 1,
-                  )
-                : Colors.white.withValues(alpha: 0.48),
+            color: _getColorBackgroundIcon(
+              context,
+              isDarkMode,
+              _value,
+              widget.state,
+            ),
           ),
           child: IconButton(
             padding: EdgeInsets.zero,
@@ -187,6 +267,8 @@ class _BasicSwitchState extends State<BasicSwitch> {
             tooltip: widget.label,
             alignment: Alignment.center,
             iconSize: 28,
+            isSelected: _value,
+            color: _getColorIcon(context, isDarkMode, _value, widget.state),
             icon: _value
                 ? widget.activeIcon ??
                       const Icon(Icons.radio_button_checked_rounded)
@@ -204,5 +286,103 @@ class _BasicSwitchState extends State<BasicSwitch> {
   void _onChanged(bool value) {
     setState(() => _value = value);
     widget.onChanged?.call(value);
+  }
+
+  Color _getColorBackgroundIcon(
+    BuildContext context,
+    bool isDarkMode,
+    bool value,
+    BasicSwitchState state,
+  ) {
+    if (!widget.isBackgroundColor) {
+      return Colors.transparent;
+    }
+    if (widget.activeBackgroundColor != null && value) {
+      return widget.activeBackgroundColor!;
+    }
+
+    if (widget.inactiveBackgroundColor != null && !value) {
+      return widget.inactiveBackgroundColor!;
+    }
+
+    if (state == BasicSwitchState.disabled) {
+      if (isDarkMode) {
+        return Color(0xFF232429); // Disabled color
+      }
+      return Color(0xFFeeeff4); // Disabled color for light mode
+    }
+
+    if (isDarkMode) {
+      return value
+          ? Theme.of(context).colorScheme.primary
+          : Color(0xFF333439); // Inactive color
+    }
+    return value
+        ? Theme.of(context).colorScheme.primary
+        : Theme.of(
+            context,
+          ).colorScheme.onSurface.withValues(alpha: 0.12); // Inactive color
+  }
+
+  Color _getColorIcon(
+    BuildContext context,
+    bool isDarkMode,
+    bool value,
+    BasicSwitchState state,
+  ) {
+    if (widget.activeColor != null && value) {
+      return widget.activeColor!;
+    }
+    if (widget.inactiveColor != null && !value) {
+      return widget.inactiveColor!;
+    }
+
+    if (state == BasicSwitchState.disabled) {
+      if (isDarkMode) {
+        return Colors.white.withValues(alpha: 0.48); // Disabled color
+      }
+      return Theme.of(context).colorScheme.onSurface.withValues(alpha: 0.38);
+    }
+
+    if (!widget.isBackgroundColor) {
+      return value
+          ? Theme.of(context).colorScheme.primary
+          : Colors.white.withValues(alpha: 0.38); // Inactive color
+    }
+
+    return Colors.white; // Active color
+  }
+
+  WidgetStateProperty<Icon?>? _getIcon(
+    BuildContext context,
+    bool isDarkMode,
+    bool value,
+    BasicSwitchState state,
+  ) {
+    return WidgetStateProperty.resolveWith((Set<WidgetState> states) {
+      if (value) {
+        final activeIconData = widget.activeIcon?.icon;
+        if (widget.activeColor != null) {
+          return Icon(
+            activeIconData,
+            color: _getColorIcon(context, isDarkMode, value, state),
+          );
+        }
+        return widget.activeIcon;
+      }
+
+      if (value == false || state == BasicSwitchState.disabled) {
+        final inactiveIconData = widget.inactiveIcon?.icon;
+        if (widget.inactiveColor != null) {
+          return Icon(
+            inactiveIconData,
+            color: _getColorIcon(context, isDarkMode, value, state),
+          );
+        }
+        return widget.inactiveIcon;
+      }
+
+      return null;
+    });
   }
 }

@@ -1,134 +1,214 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter_test/flutter_test.dart';
-import 'package:shared/shared.dart'; // Ganti sesuai path aslimu
+import 'package:shared/shared.dart';
 
 void main() {
-  group('BasicSwitch', () {
-    testWidgets('renders Android switch and toggles', (tester) async {
-      bool value = false;
-
+  group('BasicSwitch Tests', () {
+    testWidgets('Android Active', (tester) async {
+      bool changed = false;
       await tester.pumpWidget(
         MaterialApp(
           home: Scaffold(
             body: BasicSwitch.android(
-              initialValue: value,
+              initialValue: false,
+              state: BasicSwitchState.active,
               label: 'Android',
-              onChanged: (v) => value = v,
+              onChanged: (val) => changed = val,
             ),
           ),
         ),
       );
-
-      expect(find.text('Android'), findsOneWidget);
-      expect(find.byType(Switch), findsOneWidget);
-
       await tester.tap(find.byType(Switch));
-      await tester.pumpAndSettle();
-
-      expect(value, isTrue);
+      await tester.pump();
+      expect(changed, isTrue);
     });
 
-    testWidgets('renders iOS switch and toggles', (tester) async {
-      bool value = false;
+    testWidgets('Android Disabled', (tester) async {
+      bool called = false;
+      await tester.pumpWidget(
+        MaterialApp(
+          home: Scaffold(
+            body: BasicSwitch.android(
+              initialValue: false,
+              state: BasicSwitchState.disabled,
+              label: 'Android Disabled',
+              onChanged: (_) => called = true,
+            ),
+          ),
+        ),
+      );
+      await tester.tap(find.byType(Switch));
+      await tester.pump();
+      expect(called, isFalse);
+    });
 
+    testWidgets('iOS Active', (tester) async {
+      bool triggered = false;
       await tester.pumpWidget(
         MaterialApp(
           home: Scaffold(
             body: BasicSwitch.ios(
-              initialValue: value,
-              label: 'iOS',
-              onChanged: (v) => value = v,
+              initialValue: false,
+              state: BasicSwitchState.active,
+              onChanged: (val) => triggered = val,
             ),
           ),
         ),
       );
-
-      expect(find.text('iOS'), findsOneWidget);
-      expect(find.byType(CupertinoSwitch), findsOneWidget);
-
       await tester.tap(find.byType(CupertinoSwitch));
-      await tester.pumpAndSettle();
-
-      expect(value, isTrue);
+      await tester.pump();
+      expect(triggered, isTrue);
     });
 
-    testWidgets('renders Native switch and toggles', (tester) async {
-      bool value = false;
-
+    testWidgets('iOS Disabled', (tester) async {
+      bool changed = false;
       await tester.pumpWidget(
         MaterialApp(
           home: Scaffold(
-            body: BasicSwitch.native(
-              initialValue: value,
-              label: 'Native',
-              onChanged: (v) => value = v,
+            body: BasicSwitch.ios(
+              initialValue: false,
+              state: BasicSwitchState.disabled,
+              onChanged: (_) => changed = true,
             ),
           ),
         ),
       );
-
-      expect(find.text('Native'), findsOneWidget);
-      expect(
-        find.byType(Switch),
-        findsOneWidget,
-      ); // Adaptive resolves to Switch
-
-      await tester.tap(find.byType(Switch));
-      await tester.pumpAndSettle();
-
-      expect(value, isTrue);
+      await tester.tap(find.byType(CupertinoSwitch));
+      await tester.pump();
+      expect(changed, isFalse);
     });
 
-    testWidgets('renders Icon switch and toggles icon', (tester) async {
-      bool value = false;
+    testWidgets('Adaptive Active', (tester) async {
+      bool triggered = false;
+      await tester.pumpWidget(
+        MaterialApp(
+          home: Scaffold(
+            body: BasicSwitch.adaptive(
+              initialValue: false,
+              state: BasicSwitchState.active,
+              onChanged: (val) => triggered = val,
+            ),
+          ),
+        ),
+      );
+      await tester.tap(find.byType(Switch));
+      await tester.pump();
+      expect(triggered, isTrue);
+    });
 
+    testWidgets('Adaptive Disabled', (tester) async {
+      bool triggered = false;
+      await tester.pumpWidget(
+        MaterialApp(
+          home: Scaffold(
+            body: BasicSwitch.adaptive(
+              initialValue: false,
+              state: BasicSwitchState.disabled,
+              onChanged: (_) => triggered = true,
+            ),
+          ),
+        ),
+      );
+      await tester.tap(find.byType(Switch));
+      await tester.pump();
+      expect(triggered, isFalse);
+    });
+
+    testWidgets('Icon Type: active icon displayed when true', (tester) async {
       await tester.pumpWidget(
         MaterialApp(
           home: Scaffold(
             body: BasicSwitch.icon(
-              initialValue: value,
-              label: 'IconSwitch',
+              initialValue: true,
               activeIcon: const Icon(Icons.check),
               inactiveIcon: const Icon(Icons.close),
-              onChanged: (v) => value = v,
             ),
           ),
         ),
       );
-
-      expect(find.text('IconSwitch'), findsOneWidget);
-      expect(find.byIcon(Icons.close), findsOneWidget);
-
-      await tester.tap(find.byType(IconButton));
-      await tester.pumpAndSettle();
-
-      expect(value, isTrue);
       expect(find.byIcon(Icons.check), findsOneWidget);
+      expect(find.byIcon(Icons.close), findsNothing);
     });
 
-    testWidgets('disabled switch does not toggle', (tester) async {
-      bool value = false;
-
+    testWidgets('Icon Type: inactive icon displayed when false', (
+      tester,
+    ) async {
       await tester.pumpWidget(
         MaterialApp(
           home: Scaffold(
-            body: BasicSwitch.android(
-              initialValue: value,
+            body: BasicSwitch.icon(
+              initialValue: false,
+              activeIcon: const Icon(Icons.check),
+              inactiveIcon: const Icon(Icons.close),
+            ),
+          ),
+        ),
+      );
+      expect(find.byIcon(Icons.close), findsOneWidget);
+      expect(find.byIcon(Icons.check), findsNothing);
+    });
+
+    testWidgets('Icon Type: toggles value when active', (tester) async {
+      bool value = false;
+      await tester.pumpWidget(
+        MaterialApp(
+          home: Scaffold(
+            body: BasicSwitch.icon(
+              initialValue: false,
+              activeIcon: const Icon(Icons.check),
+              inactiveIcon: const Icon(Icons.close),
+              onChanged: (val) => value = val,
+            ),
+          ),
+        ),
+      );
+      await tester.tap(find.byType(IconButton));
+      await tester.pump();
+      expect(value, isTrue);
+    });
+
+    testWidgets('Icon Type: does not toggle when disabled', (tester) async {
+      bool value = false;
+      await tester.pumpWidget(
+        MaterialApp(
+          home: Scaffold(
+            body: BasicSwitch.icon(
+              initialValue: false,
               state: BasicSwitchState.disabled,
-              label: 'Disabled',
-              onChanged: (v) => value = v,
+              activeIcon: const Icon(Icons.check),
+              inactiveIcon: const Icon(Icons.close),
+              onChanged: (_) => value = true,
+            ),
+          ),
+        ),
+      );
+      await tester.tap(find.byType(IconButton));
+      await tester.pump();
+      expect(value, isFalse);
+    });
+
+    testWidgets('Icon Type: custom icon colors and backgrounds', (
+      tester,
+    ) async {
+      await tester.pumpWidget(
+        MaterialApp(
+          home: Scaffold(
+            body: BasicSwitch.icon(
+              initialValue: true,
+              activeIcon: const Icon(Icons.check),
+              inactiveIcon: const Icon(Icons.close),
+              activeColor: Colors.red,
+              inactiveColor: Colors.blue,
+              activeBackgroundColor: Colors.green,
+              inactiveBackgroundColor: Colors.yellow,
             ),
           ),
         ),
       );
 
-      expect(find.byType(Switch), findsOneWidget);
-
-      await tester.tap(find.byType(Switch));
-      await tester.pumpAndSettle();
-
-      expect(value, isFalse); // should remain unchanged
+      final iconButton = tester.widget<IconButton>(find.byType(IconButton));
+      expect(iconButton.color, Colors.red);
     });
   });
 }

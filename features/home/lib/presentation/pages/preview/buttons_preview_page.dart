@@ -21,6 +21,14 @@ class ButtonsPreviewPage extends StatelessWidget {
               textAlign: TextAlign.center,
             ),
             24.paddingVertical,
+            // divider
+            Divider(),
+            24.paddingVertical,
+            Text(
+              "Basic Button - Elevated",
+              style: Theme.of(context).textTheme.headlineSmall,
+            ),
+            24.paddingVertical,
             // elevated
             Wrap(
               spacing: 8,
@@ -70,7 +78,14 @@ class ButtonsPreviewPage extends StatelessWidget {
               ],
             ),
             12.paddingVertical,
-            // filled
+            Divider(),
+            24.paddingVertical,
+            // basic button - filled
+            Text(
+              "Basic Button - Filled",
+              style: Theme.of(context).textTheme.headlineSmall,
+            ),
+            24.paddingVertical,
             Wrap(
               spacing: 8,
               runSpacing: 12,
@@ -118,6 +133,14 @@ class ButtonsPreviewPage extends StatelessWidget {
               ],
             ),
             12.paddingVertical,
+            Divider(),
+            24.paddingVertical,
+            // basic button - outlined
+            Text(
+              "Basic Button - Outlined",
+              style: Theme.of(context).textTheme.headlineSmall,
+            ),
+            24.paddingVertical,
             // outlined
             Wrap(
               spacing: 8,
@@ -167,6 +190,14 @@ class ButtonsPreviewPage extends StatelessWidget {
             ),
 
             12.paddingVertical,
+            Divider(),
+            24.paddingVertical,
+            // basic button - text
+            Text(
+              "Basic Button - Text",
+              style: Theme.of(context).textTheme.headlineSmall,
+            ),
+            24.paddingVertical,
             // text
             Wrap(
               spacing: 8,
