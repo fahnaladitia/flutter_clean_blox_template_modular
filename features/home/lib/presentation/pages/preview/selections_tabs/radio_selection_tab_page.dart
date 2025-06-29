@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:shared/shared.dart';
 
-class CheckboxSelectionTabPage extends StatelessWidget {
-  const CheckboxSelectionTabPage({super.key});
+class RadioSelectionTabPage extends StatelessWidget {
+  const RadioSelectionTabPage({super.key});
 
   @override
   Widget build(BuildContext context) {
@@ -16,7 +16,7 @@ class CheckboxSelectionTabPage extends StatelessWidget {
           children: [
             24.paddingVertical,
             Text(
-              "Basic Checkbox",
+              "Basic Radio",
               style: Theme.of(context).textTheme.headlineSmall,
             ),
           ],
