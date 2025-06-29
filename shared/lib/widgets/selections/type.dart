@@ -1,3 +1,5 @@
 part of '../widgets.dart';
 
-enum BasicSelectionType { android, ios, adaptive, icon }
+enum BasicSwitchType { android, ios, adaptive, icon }
+
+enum BasicCheckboxType { android, ios, adaptive }

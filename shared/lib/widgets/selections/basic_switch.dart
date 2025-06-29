@@ -3,7 +3,7 @@ part of '../widgets.dart';
 class BasicSwitch extends StatefulWidget {
   final bool initialValue;
   final ValueChanged<bool>? onChanged;
-  final BasicSelectionType type;
+  final BasicSwitchType type;
   final BasicSelectionState state;
   final String? label;
   final bool isBackgroundColor;
@@ -46,7 +46,7 @@ class BasicSwitch extends StatefulWidget {
     Color? inactiveBackgroundColor,
   }) : this._(
          key: key,
-         type: BasicSelectionType.android,
+         type: BasicSwitchType.android,
          initialValue: initialValue,
          onChanged: onChanged,
          state: state,
@@ -73,7 +73,7 @@ class BasicSwitch extends StatefulWidget {
     Color? inactiveBackgroundColor,
   }) : this._(
          key: key,
-         type: BasicSelectionType.ios,
+         type: BasicSwitchType.ios,
          initialValue: initialValue,
          onChanged: onChanged,
          state: state,
@@ -100,7 +100,7 @@ class BasicSwitch extends StatefulWidget {
     Color? inactiveBackgroundColor,
   }) : this._(
          key: key,
-         type: BasicSelectionType.adaptive,
+         type: BasicSwitchType.adaptive,
          initialValue: initialValue,
          onChanged: onChanged,
          state: state,
@@ -129,7 +129,7 @@ class BasicSwitch extends StatefulWidget {
     bool isBackgroundColor = true,
   }) : this._(
          key: key,
-         type: BasicSelectionType.icon,
+         type: BasicSwitchType.icon,
          initialValue: initialValue,
          onChanged: onChanged,
          state: state,
@@ -206,7 +206,7 @@ class _BasicSwitchState extends State<BasicSwitch> {
   Widget _buildSwitch(BuildContext context) {
     final isDarkMode = Theme.of(context).brightness == Brightness.dark;
     switch (widget.type) {
-      case BasicSelectionType.android:
+      case BasicSwitchType.android:
         return Switch(
           value: _value,
           activeTrackColor: widget.activeBackgroundColor,
@@ -216,7 +216,7 @@ class _BasicSwitchState extends State<BasicSwitch> {
               ? _onChanged
               : null,
         );
-      case BasicSelectionType.ios:
+      case BasicSwitchType.ios:
         return CupertinoSwitch(
           applyTheme: true,
           value: _value,
@@ -227,7 +227,7 @@ class _BasicSwitchState extends State<BasicSwitch> {
               ? _onChanged
               : null,
         );
-      case BasicSelectionType.adaptive:
+      case BasicSwitchType.adaptive:
         return Switch.adaptive(
           value: _value,
           activeTrackColor: widget.activeBackgroundColor,
@@ -238,7 +238,7 @@ class _BasicSwitchState extends State<BasicSwitch> {
               ? _onChanged
               : null,
         );
-      case BasicSelectionType.icon:
+      case BasicSwitchType.icon:
         return Container(
           width: 38,
           height: 38,
