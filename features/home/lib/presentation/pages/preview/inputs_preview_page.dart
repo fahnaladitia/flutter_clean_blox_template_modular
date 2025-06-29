@@ -34,8 +34,6 @@ class InputsPreviewPage extends StatelessWidget {
               field: 'outlined_active',
               labelText: 'active',
               hintText: 'hint text',
-              prefixIcon: const Icon(Icons.search),
-              suffixIcon: const Icon(Icons.clear),
             ),
             16.paddingVertical,
             // outlined disabled
@@ -77,8 +75,6 @@ class InputsPreviewPage extends StatelessWidget {
               field: 'underline_active',
               labelText: 'active',
               hintText: 'hint text',
-              prefixIcon: const Icon(Icons.search),
-              suffixIcon: const Icon(Icons.clear),
             ),
             16.paddingVertical,
             // underline disabled
