@@ -42,11 +42,11 @@ It is designed to be consistent, customizable, and responsive.
 
 ## Available Sizes
 
-| Size    | Width         | Height |
-| ------- | ------------- | ------ |
-| `small` | 64px(min)     | 48px   |
-| `medium`| 80px(min)     | 56px   |
-| `large` | 96px(min)     | 64px   |
+| Size    | Width         | Height       |
+| ------- | ------------- | ------------ |
+| `small` | 64px          | 42px(min)    |
+| `medium`| 72px          | 48px(min)    |
+| `large` | 80px          | 54px(min)    |
 
 ---
 
