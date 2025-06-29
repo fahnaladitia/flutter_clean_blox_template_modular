@@ -124,5 +124,15 @@
   "@buttonsPreviewDescription": {
     "description": "Description for the buttons preview page",
     "type": "text"
+  },
+  "selections": "Selections",
+  "@selections": {
+    "description": "Title for the selections preview page",
+    "type": "text"
+  },
+  "selectionsPreviewDescription": "This is a preview page for selections. You can see how the selections look like and their states.",
+  "@selectionsPreviewDescription": {
+    "description": "Description for the selections preview page",
+    "type": "text"
   }
 }

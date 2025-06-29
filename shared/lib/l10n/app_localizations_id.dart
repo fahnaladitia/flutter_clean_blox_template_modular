@@ -84,4 +84,11 @@ class AppLocalizationsId extends AppLocalizations {
   @override
   String get buttonsPreviewDescription =>
       'Ini adalah halaman pratinjau untuk tombol. Anda dapat melihat bagaimana tombol terlihat dan statusnya.';
+
+  @override
+  String get selections => 'Pilihan';
+
+  @override
+  String get selectionsPreviewDescription =>
+      'Ini adalah halaman pratinjau untuk pilihan. Anda dapat melihat bagaimana pilihan terlihat dan statusnya.';
 }

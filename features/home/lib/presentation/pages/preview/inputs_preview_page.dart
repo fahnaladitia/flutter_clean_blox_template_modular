@@ -1,14 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:shared/shared.dart';
 
-class InputsPreviewPage extends StatefulWidget {
+class InputsPreviewPage extends StatelessWidget {
   const InputsPreviewPage({super.key});
-
-  @override
-  State<InputsPreviewPage> createState() => _InputsPreviewPageState();
-}
-
-class _InputsPreviewPageState extends State<InputsPreviewPage> {
   @override
   Widget build(BuildContext context) {
     return BasicScaffold(

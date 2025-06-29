@@ -1,5 +1,6 @@
 import 'package:feature_home/presentation/pages/preview/buttons_preview_page.dart';
 import 'package:feature_home/presentation/pages/preview/inputs_preview_page.dart';
+import 'package:feature_home/presentation/pages/preview/selections_preview_page.dart';
 
 import 'package:flutter/material.dart';
 
@@ -29,7 +30,11 @@ class _MainPageState extends State<MainPage> {
 
   @override
   Widget build(BuildContext context) {
-    final pages = [ButtonsPreviewPage(), InputsPreviewPage()];
+    final pages = [
+      ButtonsPreviewPage(),
+      InputsPreviewPage(),
+      SelectionsPreviewPage(),
+    ];
 
     return Scaffold(
       body: pages[_currentIndex],
@@ -49,6 +54,10 @@ class _MainPageState extends State<MainPage> {
           BottomNavigationBarItem(
             icon: Icon(Icons.keyboard),
             label: context.l10n.inputs,
+          ),
+          BottomNavigationBarItem(
+            icon: Icon(Icons.select_all),
+            label: context.l10n.selections,
           ),
         ],
       ),

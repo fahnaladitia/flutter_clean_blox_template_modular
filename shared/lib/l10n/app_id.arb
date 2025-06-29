@@ -124,5 +124,15 @@
   "@buttonsPreviewDescription": {
     "description": "Deskripsi untuk halaman pratinjau tombol",
     "type": "text"
+  },
+  "selections": "Pilihan",
+  "@selections": {
+    "description": "Teks untuk halaman pilihan",
+    "type": "text"
+  },
+  "selectionsPreviewDescription": "Ini adalah halaman pratinjau untuk pilihan. Anda dapat melihat bagaimana pilihan terlihat dan statusnya.",
+  "@selectionsPreviewDescription": {
+    "description": "Deskripsi untuk halaman pratinjau pilihan",
+    "type": "text"
   }
 }

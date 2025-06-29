@@ -247,6 +247,18 @@ abstract class AppLocalizations {
   /// In en, this message translates to:
   /// **'This is a preview page for buttons. You can see how the buttons look like and their states.'**
   String get buttonsPreviewDescription;
+
+  /// Title for the selections preview page
+  ///
+  /// In en, this message translates to:
+  /// **'Selections'**
+  String get selections;
+
+  /// Description for the selections preview page
+  ///
+  /// In en, this message translates to:
+  /// **'This is a preview page for selections. You can see how the selections look like and their states.'**
+  String get selectionsPreviewDescription;
 }
 
 class _AppLocalizationsDelegate

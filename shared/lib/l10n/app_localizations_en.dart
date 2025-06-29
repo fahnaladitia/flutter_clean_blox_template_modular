@@ -84,4 +84,11 @@ class AppLocalizationsEn extends AppLocalizations {
   @override
   String get buttonsPreviewDescription =>
       'This is a preview page for buttons. You can see how the buttons look like and their states.';
+
+  @override
+  String get selections => 'Selections';
+
+  @override
+  String get selectionsPreviewDescription =>
+      'This is a preview page for selections. You can see how the selections look like and their states.';
 }
