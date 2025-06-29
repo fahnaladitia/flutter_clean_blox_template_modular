@@ -34,23 +34,81 @@ class ButtonsPreviewPage extends StatelessWidget {
               spacing: 8,
               runSpacing: 12,
               children: [
-                BasicButton.elevated(text: 'Active', onPressed: () {}),
+                BasicButton.elevated(
+                  text: 'Active',
+                  onPressed: () {},
+                  size: BasicButtonSize.large, // Example size
+                ),
                 // 8.paddingHorizontal,
                 BasicButton.elevated(
                   text: 'Disabled',
                   state: BasicButtonEventState.disabled,
+                  size: BasicButtonSize.large, // Example size
                   onPressed: () {},
                 ),
                 // 8.paddingHorizontal,
                 BasicButton.elevated(
                   text: 'Loading',
                   state: BasicButtonEventState.loading,
+                  size: BasicButtonSize.large, // Example size
                   onPressed: () {},
                 ),
               ],
             ),
             12.paddingVertical,
-            // elevated with icon
+            Wrap(
+              spacing: 8,
+              runSpacing: 12,
+              children: [
+                BasicButton.elevated(
+                  text: 'Active',
+                  onPressed: () {},
+                  size: BasicButtonSize.medium, // Example size
+                ),
+                // 8.paddingHorizontal,
+                BasicButton.elevated(
+                  text: 'Disabled',
+                  state: BasicButtonEventState.disabled,
+                  size: BasicButtonSize.medium, // Example size
+                  onPressed: () {},
+                ),
+                // 8.paddingHorizontal,
+                BasicButton.elevated(
+                  text: 'Loading',
+                  state: BasicButtonEventState.loading,
+                  size: BasicButtonSize.medium, // Example size
+                  onPressed: () {},
+                ),
+              ],
+            ),
+            12.paddingVertical,
+            Wrap(
+              spacing: 8,
+              runSpacing: 12,
+              children: [
+                BasicButton.elevated(
+                  text: 'Active',
+                  onPressed: () {},
+                  size: BasicButtonSize.small, // Example size
+                ),
+                // 8.paddingHorizontal,
+                BasicButton.elevated(
+                  text: 'Disabled',
+                  state: BasicButtonEventState.disabled,
+                  size: BasicButtonSize.small, // Example size
+                  onPressed: () {},
+                ),
+                // 8.paddingHorizontal,
+                BasicButton.elevated(
+                  text: 'Loading',
+                  state: BasicButtonEventState.loading,
+                  size: BasicButtonSize.small, // Example size
+                  onPressed: () {},
+                ),
+              ],
+            ),
+            12.paddingVertical,
+            // elevated with icon start
             Wrap(
               spacing: 8,
               runSpacing: 12,
@@ -73,6 +131,36 @@ class ButtonsPreviewPage extends StatelessWidget {
                   text: 'Loading',
                   icon: const Icon(Icons.favorite),
                   state: BasicButtonEventState.loading,
+                  onPressed: () {},
+                ),
+              ],
+            ),
+            12.paddingVertical,
+            Wrap(
+              spacing: 8,
+              runSpacing: 12,
+
+              children: [
+                BasicButton.elevated(
+                  text: 'Active',
+                  icon: const Icon(Icons.favorite),
+                  iconAlignment: IconAlignment.end,
+                  onPressed: () {},
+                ),
+                // 8.paddingHorizontal,
+                BasicButton.elevated(
+                  text: 'Disabled',
+                  icon: const Icon(Icons.favorite),
+                  state: BasicButtonEventState.disabled,
+                  iconAlignment: IconAlignment.end,
+                  onPressed: () {},
+                ),
+                // 8.paddingHorizontal,
+                BasicButton.elevated(
+                  text: 'Loading',
+                  icon: const Icon(Icons.favorite),
+                  state: BasicButtonEventState.loading,
+                  iconAlignment: IconAlignment.end,
                   onPressed: () {},
                 ),
               ],
@@ -133,6 +221,35 @@ class ButtonsPreviewPage extends StatelessWidget {
               ],
             ),
             12.paddingVertical,
+            Wrap(
+              spacing: 8,
+              runSpacing: 12,
+              children: [
+                BasicButton.filled(
+                  text: 'Active',
+                  icon: const Icon(Icons.favorite),
+                  iconAlignment: IconAlignment.end,
+                  onPressed: () {},
+                ),
+                // 8.paddingHorizontal,
+                BasicButton.filled(
+                  text: 'Disabled',
+                  icon: const Icon(Icons.favorite),
+                  state: BasicButtonEventState.disabled,
+                  iconAlignment: IconAlignment.end,
+                  onPressed: () {},
+                ),
+                // 8.paddingHorizontal,
+                BasicButton.filled(
+                  text: 'Loading',
+                  icon: const Icon(Icons.favorite),
+                  state: BasicButtonEventState.loading,
+                  iconAlignment: IconAlignment.end,
+                  onPressed: () {},
+                ),
+              ],
+            ),
+            12.paddingVertical,
             Divider(),
             24.paddingVertical,
             // basic button - outlined
@@ -188,7 +305,35 @@ class ButtonsPreviewPage extends StatelessWidget {
                 ),
               ],
             ),
-
+            12.paddingVertical,
+            Wrap(
+              spacing: 8,
+              runSpacing: 12,
+              children: [
+                BasicButton.outlined(
+                  text: 'Active',
+                  icon: const Icon(Icons.favorite),
+                  iconAlignment: IconAlignment.end,
+                  onPressed: () {},
+                ),
+                // 8.paddingHorizontal,
+                BasicButton.outlined(
+                  text: 'Disabled',
+                  icon: const Icon(Icons.favorite),
+                  state: BasicButtonEventState.disabled,
+                  iconAlignment: IconAlignment.end,
+                  onPressed: () {},
+                ),
+                // 8.paddingHorizontal,
+                BasicButton.outlined(
+                  text: 'Loading',
+                  icon: const Icon(Icons.favorite),
+                  state: BasicButtonEventState.loading,
+                  iconAlignment: IconAlignment.end,
+                  onPressed: () {},
+                ),
+              ],
+            ),
             12.paddingVertical,
             Divider(),
             24.paddingVertical,
@@ -241,6 +386,35 @@ class ButtonsPreviewPage extends StatelessWidget {
                   text: 'Loading',
                   icon: const Icon(Icons.favorite),
                   state: BasicButtonEventState.loading,
+                  onPressed: () {},
+                ),
+              ],
+            ),
+            12.paddingVertical,
+            Wrap(
+              spacing: 8,
+              runSpacing: 12,
+              children: [
+                BasicButton.text(
+                  text: 'Active',
+                  icon: const Icon(Icons.favorite),
+                  iconAlignment: IconAlignment.end,
+                  onPressed: () {},
+                ),
+                // 8.paddingHorizontal,
+                BasicButton.text(
+                  text: 'Disabled',
+                  icon: const Icon(Icons.favorite),
+                  state: BasicButtonEventState.disabled,
+                  iconAlignment: IconAlignment.end,
+                  onPressed: () {},
+                ),
+                // 8.paddingHorizontal,
+                BasicButton.text(
+                  text: 'Loading',
+                  icon: const Icon(Icons.favorite),
+                  state: BasicButtonEventState.loading,
+                  iconAlignment: IconAlignment.end,
                   onPressed: () {},
                 ),
               ],

@@ -13,12 +13,15 @@ class BasicButton extends StatelessWidget {
   final BasicButtonType type;
   final BasicButtonSize size;
   final Widget? icon;
+  final IconAlignment? iconAlignment;
+
   final bool isFullWidth;
   const BasicButton._({
     super.key,
     required this.text,
     required this.onPressed,
     this.icon,
+    this.iconAlignment,
     this.state = BasicButtonEventState.active,
     this.type = BasicButtonType.elevated,
     this.size = BasicButtonSize.medium,
@@ -31,6 +34,7 @@ class BasicButton extends StatelessWidget {
     required String text,
     required void Function() onPressed,
     Widget? icon,
+    IconAlignment? iconAlignment,
     BasicButtonEventState state = BasicButtonEventState.active,
     BasicButtonSize size = BasicButtonSize.medium,
     bool isFullWidth = false,
@@ -39,6 +43,7 @@ class BasicButton extends StatelessWidget {
          text: text,
          onPressed: onPressed,
          icon: icon,
+         iconAlignment: iconAlignment,
          state: state,
          size: size,
          isFullWidth: isFullWidth,
@@ -51,6 +56,7 @@ class BasicButton extends StatelessWidget {
     required String text,
     required void Function() onPressed,
     Widget? icon,
+    IconAlignment? iconAlignment,
     BasicButtonEventState state = BasicButtonEventState.active,
     BasicButtonSize size = BasicButtonSize.medium,
     bool isFullWidth = false,
@@ -59,6 +65,7 @@ class BasicButton extends StatelessWidget {
          text: text,
          onPressed: onPressed,
          icon: icon,
+         iconAlignment: iconAlignment,
          state: state,
          size: size,
          isFullWidth: isFullWidth,
@@ -71,6 +78,7 @@ class BasicButton extends StatelessWidget {
     required String text,
     required void Function() onPressed,
     Widget? icon,
+    IconAlignment? iconAlignment,
     BasicButtonEventState state = BasicButtonEventState.active,
     BasicButtonSize size = BasicButtonSize.medium,
     bool isFullWidth = false,
@@ -79,6 +87,7 @@ class BasicButton extends StatelessWidget {
          text: text,
          onPressed: onPressed,
          icon: icon,
+         iconAlignment: iconAlignment,
          state: state,
          size: size,
          isFullWidth: isFullWidth,
@@ -91,6 +100,7 @@ class BasicButton extends StatelessWidget {
     required String text,
     required void Function() onPressed,
     Widget? icon,
+    IconAlignment? iconAlignment,
     BasicButtonEventState state = BasicButtonEventState.active,
     BasicButtonSize size = BasicButtonSize.medium,
     bool isFullWidth = false,
@@ -99,6 +109,7 @@ class BasicButton extends StatelessWidget {
          text: text,
          onPressed: onPressed,
          icon: icon,
+         iconAlignment: iconAlignment,
          state: state,
          size: size,
          isFullWidth: isFullWidth,
@@ -134,6 +145,7 @@ class BasicButton extends StatelessWidget {
         ),
         onPressed: state.isActive ? onPressed : null,
         icon: icon!,
+        iconAlignment: iconAlignment,
         label: state.isLoading
             ? LayoutBuilder(
                 builder: (context, constraints) {
@@ -193,6 +205,7 @@ class BasicButton extends StatelessWidget {
         ),
         onPressed: state.isActive ? onPressed : null,
         icon: icon!,
+        iconAlignment: iconAlignment,
         label: state.isLoading
             ? LayoutBuilder(
                 builder: (context, constraints) {
@@ -251,6 +264,7 @@ class BasicButton extends StatelessWidget {
         ),
         onPressed: state.isActive ? onPressed : null,
         icon: icon!,
+        iconAlignment: iconAlignment,
         label: state.isLoading
             ? LayoutBuilder(
                 builder: (context, constraints) {
@@ -309,6 +323,7 @@ class BasicButton extends StatelessWidget {
         ),
         onPressed: state.isActive ? onPressed : null,
         icon: icon!,
+        iconAlignment: iconAlignment,
         label: state.isLoading
             ? LayoutBuilder(
                 builder: (context, constraints) {

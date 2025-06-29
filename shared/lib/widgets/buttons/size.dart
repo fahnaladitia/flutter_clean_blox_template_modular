@@ -6,11 +6,11 @@ extension BasicButtonSizeExtension on BasicButtonSize {
   double get height {
     switch (this) {
       case BasicButtonSize.small:
-        return 48.0;
+        return 42.0;
       case BasicButtonSize.medium:
-        return 56.0;
+        return 48.0;
       case BasicButtonSize.large:
-        return 64.0;
+        return 54.0;
     }
   }
 
@@ -19,9 +19,9 @@ extension BasicButtonSizeExtension on BasicButtonSize {
       case BasicButtonSize.small:
         return 64.0;
       case BasicButtonSize.medium:
-        return 80.0;
+        return 72.0;
       case BasicButtonSize.large:
-        return 96.0;
+        return 80.0;
     }
   }
 }
