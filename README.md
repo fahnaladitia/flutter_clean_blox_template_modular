@@ -19,6 +19,8 @@ Created with ❤️ by [**Pahnal Aditia**](https://www.linkedin.com/in/pahnaladi
     - [📦 Building APK \& IPA](#-building-apk--ipa)
       - [📱 Android APK](#-android-apk)
       - [🍏 iOS IPA](#-ios-ipa)
+  - [Tutorials](#tutorials)
+    - [🧩 Basic Button Tutorial](#-basic-button-tutorial)
   - [📝 Developer Notes](#-developer-notes)
   - [🚀 Ready to Launch?](#-ready-to-launch)
 
@@ -114,6 +116,14 @@ flutter build ipa --obfuscate --split-debug-info=out/android --flavor production
 ```
 
 ---
+
+## Tutorials
+
+### 🧩 Basic Button Tutorial
+
+A guide to using the BasicButton widget in your Flutter app with rich customization for style, size, icon, width, and event state.
+See [BASIC_BUTTON_TUTORIAL.md](docs/BASIC_BUTTON_TUTORIAL.md) for a comprehensive guide on using the `BasicButton` widget, including constructor parameters, available sizes, states, and example usages.
+
 
 ---
 
