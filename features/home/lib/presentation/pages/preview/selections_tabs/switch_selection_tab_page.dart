@@ -1,8 +1,44 @@
 import 'package:flutter/material.dart';
 import 'package:shared/shared.dart';
+import 'package:shared/widgets/selections/basic_selection_controller.dart';
 
-class SwitchSelectionTabPage extends StatelessWidget {
+class SwitchSelectionTabPage extends StatefulWidget {
   const SwitchSelectionTabPage({super.key});
+
+  @override
+  State<SwitchSelectionTabPage> createState() => _SwitchSelectionTabPageState();
+}
+
+class _SwitchSelectionTabPageState extends State<SwitchSelectionTabPage> {
+  late final BasicSelectionController _basicSwitchAndroidActiveController;
+  late final BasicSelectionController _basicSwitchAndroidInactiveController;
+  late final BasicSelectionController _basicSwitchAndroidCustomIconsController;
+  late final BasicSelectionController _basicSwitchIosActiveController;
+  late final BasicSelectionController _basicSwitchIosInactiveController;
+  late final BasicSelectionController _basicSwitchIosCustomIconsController;
+  late final BasicSelectionController _basicSwitchAdaptiveActiveController;
+  late final BasicSelectionController _basicSwitchAdaptiveInactiveController;
+  late final BasicSelectionController _basicSwitchAdaptiveCustomIconsController;
+  late final BasicSelectionController _basicSwitchIconActiveController;
+  late final BasicSelectionController _basicSwitchIconInactiveController;
+  late final BasicSelectionController _basicSwitchIconCustomIconsController;
+
+  @override
+  void initState() {
+    super.initState();
+    _basicSwitchAndroidActiveController = BasicSelectionController();
+    _basicSwitchAndroidInactiveController = BasicSelectionController();
+    _basicSwitchAndroidCustomIconsController = BasicSelectionController();
+    _basicSwitchIosActiveController = BasicSelectionController();
+    _basicSwitchIosInactiveController = BasicSelectionController();
+    _basicSwitchIosCustomIconsController = BasicSelectionController();
+    _basicSwitchAdaptiveActiveController = BasicSelectionController();
+    _basicSwitchAdaptiveInactiveController = BasicSelectionController();
+    _basicSwitchAdaptiveCustomIconsController = BasicSelectionController();
+    _basicSwitchIconActiveController = BasicSelectionController();
+    _basicSwitchIconInactiveController = BasicSelectionController();
+    _basicSwitchIconCustomIconsController = BasicSelectionController();
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -22,22 +58,22 @@ class SwitchSelectionTabPage extends StatelessWidget {
             24.paddingVertical,
             // basic switch Android
             BasicSwitch.android(
-              initialValue: true,
+              controller: _basicSwitchAndroidActiveController,
               onChanged: (value) {},
               label: "Basic Switch Android Active",
             ),
             16.paddingVertical,
             // basic switch Android disabled
             BasicSwitch.android(
-              initialValue: false,
+              controller: _basicSwitchAndroidInactiveController,
               onChanged: (value) {},
               state: BasicSelectionState.disabled,
               label: "Basic Switch Android Inactive",
             ),
             16.paddingVertical,
             BasicSwitch.android(
-              initialValue: true,
               onChanged: (value) {},
+              controller: _basicSwitchAndroidCustomIconsController,
               activeIcon: const Icon(Icons.light_mode),
               inactiveIcon: const Icon(Icons.dark_mode),
               activeColor: Colors.yellow,
@@ -56,21 +92,21 @@ class SwitchSelectionTabPage extends StatelessWidget {
             24.paddingVertical,
             // basic switch iOS
             BasicSwitch.ios(
-              initialValue: true,
+              controller: _basicSwitchIosActiveController,
               onChanged: (value) {},
               label: "Basic Switch iOS Active",
             ),
             16.paddingVertical,
             // basic switch iOS disabled
             BasicSwitch.ios(
-              initialValue: false,
+              controller: _basicSwitchIosInactiveController,
               onChanged: (value) {},
               state: BasicSelectionState.disabled,
               label: "Basic Switch iOS Inactive",
             ),
             16.paddingVertical,
             BasicSwitch.ios(
-              initialValue: true,
+              controller: _basicSwitchIosCustomIconsController,
               onChanged: (value) {},
               activeIcon: const Icon(Icons.light_mode),
               inactiveIcon: const Icon(Icons.dark_mode),
@@ -90,21 +126,21 @@ class SwitchSelectionTabPage extends StatelessWidget {
             24.paddingVertical,
             // basic switch Native
             BasicSwitch.adaptive(
-              initialValue: true,
+              controller: _basicSwitchAdaptiveActiveController,
               onChanged: (value) {},
               label: "Basic Switch Adaptive Active",
             ),
             16.paddingVertical,
             // basic switch Adaptive disabled
             BasicSwitch.adaptive(
-              initialValue: false,
+              controller: _basicSwitchAdaptiveInactiveController,
               onChanged: (value) {},
               state: BasicSelectionState.disabled,
               label: "Basic Switch Adaptive Inactive",
             ),
             16.paddingVertical,
             BasicSwitch.adaptive(
-              initialValue: true,
+              controller: _basicSwitchAdaptiveCustomIconsController,
               onChanged: (value) {},
               activeIcon: const Icon(Icons.light_mode),
               inactiveIcon: const Icon(Icons.dark_mode),
@@ -124,7 +160,7 @@ class SwitchSelectionTabPage extends StatelessWidget {
             24.paddingVertical,
             // basic switch Icon
             BasicSwitch.icon(
-              initialValue: true,
+              controller: _basicSwitchIconActiveController,
               onChanged: (value) {},
               activeIcon: const Icon(Icons.favorite),
               label: "Basic Switch Icon Active",
@@ -132,7 +168,7 @@ class SwitchSelectionTabPage extends StatelessWidget {
             16.paddingVertical,
             // basic switch Icon disabled
             BasicSwitch.icon(
-              initialValue: true,
+              controller: _basicSwitchIconInactiveController,
               onChanged: (value) {},
               state: BasicSelectionState.disabled,
               activeIcon: const Icon(Icons.favorite),
@@ -141,7 +177,7 @@ class SwitchSelectionTabPage extends StatelessWidget {
             16.paddingVertical,
             // basic switch Icon custom colors
             BasicSwitch.icon(
-              initialValue: true,
+              controller: _basicSwitchIconCustomIconsController,
               onChanged: (value) {},
               activeIcon: const Icon(Icons.light_mode),
               inactiveIcon: const Icon(Icons.dark_mode),

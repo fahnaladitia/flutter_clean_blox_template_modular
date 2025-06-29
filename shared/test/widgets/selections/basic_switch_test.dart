@@ -2,125 +2,122 @@ import 'package:flutter/material.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter_test/flutter_test.dart';
 import 'package:shared/shared.dart';
+import 'package:shared/widgets/selections/basic_selection_controller.dart';
 
 void main() {
   group('BasicSwitch Tests', () {
     testWidgets('Android Active', (tester) async {
-      bool changed = false;
+      final controller = BasicSelectionController();
+
       await tester.pumpWidget(
         MaterialApp(
           home: Scaffold(
             body: BasicSwitch.android(
-              initialValue: false,
+              controller: controller,
               state: BasicSelectionState.active,
               label: 'Android',
-              onChanged: (val) => changed = val,
             ),
           ),
         ),
       );
       await tester.tap(find.byType(Switch));
       await tester.pump();
-      expect(changed, isTrue);
+      expect(controller.isSelected, isTrue);
     });
 
     testWidgets('Android Disabled', (tester) async {
-      bool called = false;
+      final controller = BasicSelectionController();
       await tester.pumpWidget(
         MaterialApp(
           home: Scaffold(
             body: BasicSwitch.android(
-              initialValue: false,
+              controller: controller,
               state: BasicSelectionState.disabled,
               label: 'Android Disabled',
-              onChanged: (_) => called = true,
             ),
           ),
         ),
       );
       await tester.tap(find.byType(Switch));
       await tester.pump();
-      expect(called, isFalse);
+      expect(controller.isSelected, isFalse);
     });
 
     testWidgets('iOS Active', (tester) async {
-      bool triggered = false;
+      final controller = BasicSelectionController();
       await tester.pumpWidget(
         MaterialApp(
           home: Scaffold(
             body: BasicSwitch.ios(
-              initialValue: false,
+              controller: controller,
               state: BasicSelectionState.active,
-              onChanged: (val) => triggered = val,
             ),
           ),
         ),
       );
       await tester.tap(find.byType(CupertinoSwitch));
       await tester.pump();
-      expect(triggered, isTrue);
+      expect(controller.isSelected, isTrue);
     });
 
     testWidgets('iOS Disabled', (tester) async {
-      bool changed = false;
+      final controller = BasicSelectionController();
       await tester.pumpWidget(
         MaterialApp(
           home: Scaffold(
             body: BasicSwitch.ios(
-              initialValue: false,
+              controller: controller,
               state: BasicSelectionState.disabled,
-              onChanged: (_) => changed = true,
             ),
           ),
         ),
       );
       await tester.tap(find.byType(CupertinoSwitch));
       await tester.pump();
-      expect(changed, isFalse);
+      expect(controller.isSelected, isFalse);
     });
 
     testWidgets('Adaptive Active', (tester) async {
-      bool triggered = false;
+      final controller = BasicSelectionController();
       await tester.pumpWidget(
         MaterialApp(
           home: Scaffold(
             body: BasicSwitch.adaptive(
-              initialValue: false,
+              controller: controller,
               state: BasicSelectionState.active,
-              onChanged: (val) => triggered = val,
             ),
           ),
         ),
       );
       await tester.tap(find.byType(Switch));
       await tester.pump();
-      expect(triggered, isTrue);
+      expect(controller.isSelected, isTrue);
     });
 
     testWidgets('Adaptive Disabled', (tester) async {
-      bool triggered = false;
+      final controller = BasicSelectionController();
       await tester.pumpWidget(
         MaterialApp(
           home: Scaffold(
             body: BasicSwitch.adaptive(
-              initialValue: false,
+              controller: controller,
               state: BasicSelectionState.disabled,
-              onChanged: (_) => triggered = true,
             ),
           ),
         ),
       );
       await tester.tap(find.byType(Switch));
       await tester.pump();
-      expect(triggered, isFalse);
+      expect(controller.isSelected, isFalse);
     });
 
     testWidgets('Icon Type: active icon displayed when true', (tester) async {
+      final controller = BasicSelectionController(initialValue: true);
       await tester.pumpWidget(
         MaterialApp(
           home: Scaffold(
             body: BasicSwitch.icon(
-              initialValue: true,
+              controller: controller,
               activeIcon: const Icon(Icons.check),
               inactiveIcon: const Icon(Icons.close),
             ),
@@ -134,11 +131,12 @@ void main() {
     testWidgets('Icon Type: inactive icon displayed when false', (
       tester,
     ) async {
+      final controller = BasicSelectionController();
       await tester.pumpWidget(
         MaterialApp(
           home: Scaffold(
             body: BasicSwitch.icon(
-              initialValue: false,
+              controller: controller,
               activeIcon: const Icon(Icons.check),
               inactiveIcon: const Icon(Icons.close),
             ),
@@ -150,52 +148,52 @@ void main() {
     });
 
     testWidgets('Icon Type: toggles value when active', (tester) async {
-      bool value = false;
+      final controller = BasicSelectionController();
+
       await tester.pumpWidget(
         MaterialApp(
           home: Scaffold(
             body: BasicSwitch.icon(
-              initialValue: false,
+              controller: controller,
               activeIcon: const Icon(Icons.check),
               inactiveIcon: const Icon(Icons.close),
-              onChanged: (val) => value = val,
             ),
           ),
         ),
       );
       await tester.tap(find.byType(IconButton));
       await tester.pump();
-      expect(value, isTrue);
+      expect(controller.isSelected, isTrue);
     });
 
     testWidgets('Icon Type: does not toggle when disabled', (tester) async {
-      bool value = false;
+      final controller = BasicSelectionController();
       await tester.pumpWidget(
         MaterialApp(
           home: Scaffold(
             body: BasicSwitch.icon(
-              initialValue: false,
+              controller: controller,
               state: BasicSelectionState.disabled,
               activeIcon: const Icon(Icons.check),
               inactiveIcon: const Icon(Icons.close),
-              onChanged: (_) => value = true,
             ),
           ),
         ),
       );
       await tester.tap(find.byType(IconButton));
       await tester.pump();
-      expect(value, isFalse);
+      expect(controller.isSelected, isFalse);
     });
 
     testWidgets('Icon Type: custom icon colors and backgrounds', (
       tester,
     ) async {
+      final controller = BasicSelectionController(initialValue: true);
       await tester.pumpWidget(
         MaterialApp(
           home: Scaffold(
             body: BasicSwitch.icon(
-              initialValue: true,
+              controller: controller,
               activeIcon: const Icon(Icons.check),
               inactiveIcon: const Icon(Icons.close),
               activeColor: Colors.red,
