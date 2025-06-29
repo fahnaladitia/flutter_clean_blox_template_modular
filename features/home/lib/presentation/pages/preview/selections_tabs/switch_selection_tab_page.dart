@@ -31,7 +31,7 @@ class SwitchSelectionTabPage extends StatelessWidget {
             BasicSwitch.android(
               initialValue: false,
               onChanged: (value) {},
-              state: BasicSwitchState.disabled,
+              state: BasicSelectionState.disabled,
               label: "Basic Switch Android Inactive",
             ),
             16.paddingVertical,
@@ -65,7 +65,7 @@ class SwitchSelectionTabPage extends StatelessWidget {
             BasicSwitch.ios(
               initialValue: false,
               onChanged: (value) {},
-              state: BasicSwitchState.disabled,
+              state: BasicSelectionState.disabled,
               label: "Basic Switch iOS Inactive",
             ),
             16.paddingVertical,
@@ -99,7 +99,7 @@ class SwitchSelectionTabPage extends StatelessWidget {
             BasicSwitch.adaptive(
               initialValue: false,
               onChanged: (value) {},
-              state: BasicSwitchState.disabled,
+              state: BasicSelectionState.disabled,
               label: "Basic Switch Adaptive Inactive",
             ),
             16.paddingVertical,
@@ -134,7 +134,7 @@ class SwitchSelectionTabPage extends StatelessWidget {
             BasicSwitch.icon(
               initialValue: true,
               onChanged: (value) {},
-              state: BasicSwitchState.disabled,
+              state: BasicSelectionState.disabled,
               activeIcon: const Icon(Icons.favorite),
               label: "Basic Switch Icon Inactive",
             ),

@@ -1,3 +1,3 @@
 part of '../widgets.dart';
 
-enum BasicSwitchState { active, disabled }
+enum BasicSelectionState { active, disabled }

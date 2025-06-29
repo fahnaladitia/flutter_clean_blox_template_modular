@@ -12,7 +12,7 @@ void main() {
           home: Scaffold(
             body: BasicSwitch.android(
               initialValue: false,
-              state: BasicSwitchState.active,
+              state: BasicSelectionState.active,
               label: 'Android',
               onChanged: (val) => changed = val,
             ),
@@ -31,7 +31,7 @@ void main() {
           home: Scaffold(
             body: BasicSwitch.android(
               initialValue: false,
-              state: BasicSwitchState.disabled,
+              state: BasicSelectionState.disabled,
               label: 'Android Disabled',
               onChanged: (_) => called = true,
             ),
@@ -50,7 +50,7 @@ void main() {
           home: Scaffold(
             body: BasicSwitch.ios(
               initialValue: false,
-              state: BasicSwitchState.active,
+              state: BasicSelectionState.active,
               onChanged: (val) => triggered = val,
             ),
           ),
@@ -68,7 +68,7 @@ void main() {
           home: Scaffold(
             body: BasicSwitch.ios(
               initialValue: false,
-              state: BasicSwitchState.disabled,
+              state: BasicSelectionState.disabled,
               onChanged: (_) => changed = true,
             ),
           ),
@@ -86,7 +86,7 @@ void main() {
           home: Scaffold(
             body: BasicSwitch.adaptive(
               initialValue: false,
-              state: BasicSwitchState.active,
+              state: BasicSelectionState.active,
               onChanged: (val) => triggered = val,
             ),
           ),
@@ -104,7 +104,7 @@ void main() {
           home: Scaffold(
             body: BasicSwitch.adaptive(
               initialValue: false,
-              state: BasicSwitchState.disabled,
+              state: BasicSelectionState.disabled,
               onChanged: (_) => triggered = true,
             ),
           ),
@@ -175,7 +175,7 @@ void main() {
           home: Scaffold(
             body: BasicSwitch.icon(
               initialValue: false,
-              state: BasicSwitchState.disabled,
+              state: BasicSelectionState.disabled,
               activeIcon: const Icon(Icons.check),
               inactiveIcon: const Icon(Icons.close),
               onChanged: (_) => value = true,

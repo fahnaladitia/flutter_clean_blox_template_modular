@@ -3,8 +3,8 @@ part of '../widgets.dart';
 class BasicSwitch extends StatefulWidget {
   final bool initialValue;
   final ValueChanged<bool>? onChanged;
-  final BasicSwitchType type;
-  final BasicSwitchState state;
+  final BasicSelectionType type;
+  final BasicSelectionState state;
   final String? label;
   final bool isBackgroundColor;
   final Icon? activeIcon;
@@ -36,7 +36,7 @@ class BasicSwitch extends StatefulWidget {
     Key? key,
     bool initialValue = false,
     ValueChanged<bool>? onChanged,
-    BasicSwitchState state = BasicSwitchState.active,
+    BasicSelectionState state = BasicSelectionState.active,
     String? label,
     Icon? activeIcon,
     Icon? inactiveIcon,
@@ -46,7 +46,7 @@ class BasicSwitch extends StatefulWidget {
     Color? inactiveBackgroundColor,
   }) : this._(
          key: key,
-         type: BasicSwitchType.android,
+         type: BasicSelectionType.android,
          initialValue: initialValue,
          onChanged: onChanged,
          state: state,
@@ -63,7 +63,7 @@ class BasicSwitch extends StatefulWidget {
     Key? key,
     bool initialValue = false,
     ValueChanged<bool>? onChanged,
-    BasicSwitchState state = BasicSwitchState.active,
+    BasicSelectionState state = BasicSelectionState.active,
     String? label,
     Icon? activeIcon,
     Icon? inactiveIcon,
@@ -73,7 +73,7 @@ class BasicSwitch extends StatefulWidget {
     Color? inactiveBackgroundColor,
   }) : this._(
          key: key,
-         type: BasicSwitchType.ios,
+         type: BasicSelectionType.ios,
          initialValue: initialValue,
          onChanged: onChanged,
          state: state,
@@ -90,7 +90,7 @@ class BasicSwitch extends StatefulWidget {
     Key? key,
     bool initialValue = false,
     ValueChanged<bool>? onChanged,
-    BasicSwitchState state = BasicSwitchState.active,
+    BasicSelectionState state = BasicSelectionState.active,
     String? label,
     Icon? activeIcon,
     Icon? inactiveIcon,
@@ -100,7 +100,7 @@ class BasicSwitch extends StatefulWidget {
     Color? inactiveBackgroundColor,
   }) : this._(
          key: key,
-         type: BasicSwitchType.adaptive,
+         type: BasicSelectionType.adaptive,
          initialValue: initialValue,
          onChanged: onChanged,
          state: state,
@@ -117,7 +117,7 @@ class BasicSwitch extends StatefulWidget {
     Key? key,
     bool initialValue = false,
     ValueChanged<bool>? onChanged,
-    BasicSwitchState state = BasicSwitchState.active,
+    BasicSelectionState state = BasicSelectionState.active,
     String? label,
     Icon? activeIcon,
     Icon? inactiveIcon,
@@ -129,7 +129,7 @@ class BasicSwitch extends StatefulWidget {
     bool isBackgroundColor = true,
   }) : this._(
          key: key,
-         type: BasicSwitchType.icon,
+         type: BasicSelectionType.icon,
          initialValue: initialValue,
          onChanged: onChanged,
          state: state,
@@ -158,7 +158,7 @@ class _BasicSwitchState extends State<BasicSwitch> {
   }
 
   void _toggle() {
-    if (widget.state == BasicSwitchState.disabled) return;
+    if (widget.state == BasicSelectionState.disabled) return;
     setState(() => _value = !_value);
     widget.onChanged?.call(_value);
   }
@@ -171,7 +171,7 @@ class _BasicSwitchState extends State<BasicSwitch> {
     return Semantics(
       label: labelText,
       toggled: _value,
-      enabled: widget.state == BasicSwitchState.active,
+      enabled: widget.state == BasicSelectionState.active,
       child: GestureDetector(
         behavior: HitTestBehavior.opaque,
         onTap: _toggle,
@@ -188,7 +188,7 @@ class _BasicSwitchState extends State<BasicSwitch> {
                 child: Text(
                   labelText,
                   style: Theme.of(context).textTheme.bodyMedium?.copyWith(
-                    color: widget.state == BasicSwitchState.disabled
+                    color: widget.state == BasicSelectionState.disabled
                         ? Theme.of(
                             context,
                           ).colorScheme.onSurface.withValues(alpha: 0.38)
@@ -206,39 +206,39 @@ class _BasicSwitchState extends State<BasicSwitch> {
   Widget _buildSwitch(BuildContext context) {
     final isDarkMode = Theme.of(context).brightness == Brightness.dark;
     switch (widget.type) {
-      case BasicSwitchType.android:
+      case BasicSelectionType.android:
         return Switch(
           value: _value,
           activeTrackColor: widget.activeBackgroundColor,
           inactiveTrackColor: widget.inactiveBackgroundColor,
           thumbIcon: _getIcon(context, isDarkMode, _value, widget.state),
-          onChanged: widget.state == BasicSwitchState.active
+          onChanged: widget.state == BasicSelectionState.active
               ? _onChanged
               : null,
         );
-      case BasicSwitchType.ios:
+      case BasicSelectionType.ios:
         return CupertinoSwitch(
           applyTheme: true,
           value: _value,
           activeTrackColor: widget.activeBackgroundColor,
           inactiveTrackColor: widget.inactiveBackgroundColor,
           thumbIcon: _getIcon(context, isDarkMode, _value, widget.state),
-          onChanged: widget.state == BasicSwitchState.active
+          onChanged: widget.state == BasicSelectionState.active
               ? _onChanged
               : null,
         );
-      case BasicSwitchType.adaptive:
+      case BasicSelectionType.adaptive:
         return Switch.adaptive(
           value: _value,
           activeTrackColor: widget.activeBackgroundColor,
           inactiveTrackColor: widget.inactiveBackgroundColor,
           thumbIcon: _getIcon(context, isDarkMode, _value, widget.state),
           applyCupertinoTheme: true,
-          onChanged: widget.state == BasicSwitchState.active
+          onChanged: widget.state == BasicSelectionState.active
               ? _onChanged
               : null,
         );
-      case BasicSwitchType.icon:
+      case BasicSelectionType.icon:
         return Container(
           width: 38,
           height: 38,
@@ -275,7 +275,7 @@ class _BasicSwitchState extends State<BasicSwitch> {
                 : widget.inactiveIcon ??
                       widget.activeIcon ??
                       const Icon(Icons.radio_button_unchecked),
-            onPressed: widget.state == BasicSwitchState.active
+            onPressed: widget.state == BasicSelectionState.active
                 ? () => _onChanged(!_value)
                 : null,
           ),
@@ -292,7 +292,7 @@ class _BasicSwitchState extends State<BasicSwitch> {
     BuildContext context,
     bool isDarkMode,
     bool value,
-    BasicSwitchState state,
+    BasicSelectionState state,
   ) {
     if (!widget.isBackgroundColor) {
       return Colors.transparent;
@@ -305,7 +305,7 @@ class _BasicSwitchState extends State<BasicSwitch> {
       return widget.inactiveBackgroundColor!;
     }
 
-    if (state == BasicSwitchState.disabled) {
+    if (state == BasicSelectionState.disabled) {
       if (isDarkMode) {
         return Color(0xFF232429); // Disabled color
       }
@@ -328,7 +328,7 @@ class _BasicSwitchState extends State<BasicSwitch> {
     BuildContext context,
     bool isDarkMode,
     bool value,
-    BasicSwitchState state,
+    BasicSelectionState state,
   ) {
     if (widget.activeColor != null && value) {
       return widget.activeColor!;
@@ -337,7 +337,7 @@ class _BasicSwitchState extends State<BasicSwitch> {
       return widget.inactiveColor!;
     }
 
-    if (state == BasicSwitchState.disabled) {
+    if (state == BasicSelectionState.disabled) {
       if (isDarkMode) {
         return Colors.white.withValues(alpha: 0.48); // Disabled color
       }
@@ -357,7 +357,7 @@ class _BasicSwitchState extends State<BasicSwitch> {
     BuildContext context,
     bool isDarkMode,
     bool value,
-    BasicSwitchState state,
+    BasicSelectionState state,
   ) {
     return WidgetStateProperty.resolveWith((Set<WidgetState> states) {
       if (value) {
@@ -371,7 +371,7 @@ class _BasicSwitchState extends State<BasicSwitch> {
         return widget.activeIcon;
       }
 
-      if (value == false || state == BasicSwitchState.disabled) {
+      if (value == false || state == BasicSelectionState.disabled) {
         final inactiveIconData = widget.inactiveIcon?.icon;
         if (widget.inactiveColor != null) {
           return Icon(
