@@ -20,6 +20,13 @@ class BasicSelectionController extends ChangeNotifier {
     notifyListeners();
   }
 
+  void setSelection(bool value) {
+    if (_isSelected != value) {
+      _isSelected = value;
+      notifyListeners();
+    }
+  }
+
   void changeState(BasicSelectionState state) {
     _state = state;
     notifyListeners();

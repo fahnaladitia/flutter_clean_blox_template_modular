@@ -25,18 +25,49 @@ class _SwitchSelectionTabPageState extends State<SwitchSelectionTabPage> {
   @override
   void initState() {
     super.initState();
-    _basicSwitchAndroidActiveController = BasicSelectionController();
-    _basicSwitchAndroidInactiveController = BasicSelectionController();
-    _basicSwitchAndroidCustomIconsController = BasicSelectionController();
+
+    // Android Controllers
+    _basicSwitchAndroidActiveController = BasicSelectionController(
+      initialValue: true,
+    );
+    _basicSwitchAndroidInactiveController = BasicSelectionController(
+      state: BasicSelectionState.disabled,
+    );
+    _basicSwitchAndroidCustomIconsController = BasicSelectionController(
+      initialValue: true,
+    );
+
+    // iOS Controllers
     _basicSwitchIosActiveController = BasicSelectionController();
-    _basicSwitchIosInactiveController = BasicSelectionController();
-    _basicSwitchIosCustomIconsController = BasicSelectionController();
-    _basicSwitchAdaptiveActiveController = BasicSelectionController();
-    _basicSwitchAdaptiveInactiveController = BasicSelectionController();
-    _basicSwitchAdaptiveCustomIconsController = BasicSelectionController();
-    _basicSwitchIconActiveController = BasicSelectionController();
-    _basicSwitchIconInactiveController = BasicSelectionController();
-    _basicSwitchIconCustomIconsController = BasicSelectionController();
+    _basicSwitchIosInactiveController = BasicSelectionController(
+      initialValue: true,
+      state: BasicSelectionState.disabled,
+    );
+    _basicSwitchIosCustomIconsController = BasicSelectionController(
+      initialValue: true,
+    );
+
+    // Adaptive Controllers
+    _basicSwitchAdaptiveActiveController = BasicSelectionController(
+      initialValue: true,
+    );
+    _basicSwitchAdaptiveInactiveController = BasicSelectionController(
+      state: BasicSelectionState.disabled,
+    );
+    _basicSwitchAdaptiveCustomIconsController = BasicSelectionController(
+      initialValue: true,
+    );
+
+    // Icon Controllers
+    _basicSwitchIconActiveController = BasicSelectionController(
+      initialValue: true,
+    );
+    _basicSwitchIconInactiveController = BasicSelectionController(
+      state: BasicSelectionState.disabled,
+    );
+    _basicSwitchIconCustomIconsController = BasicSelectionController(
+      initialValue: true,
+    );
   }
 
   @override

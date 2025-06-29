@@ -25,15 +25,39 @@ class _CheckboxSelectionTabPageState extends State<CheckboxSelectionTabPage> {
   @override
   void initState() {
     super.initState();
-    _basicCheckboxAndroidActiveController = BasicSelectionController();
-    _basicCheckboxAndroidInactiveController = BasicSelectionController();
-    _basicCheckboxAndroidCustomColorController = BasicSelectionController();
-    _basicCheckboxIosActiveController = BasicSelectionController();
-    _basicCheckboxIosInactiveController = BasicSelectionController();
-    _basicCheckboxIosCustomColorController = BasicSelectionController();
-    _basicCheckboxAdaptiveActiveController = BasicSelectionController();
-    _basicCheckboxAdaptiveInactiveController = BasicSelectionController();
-    _basicCheckboxAdaptiveCustomColorController = BasicSelectionController();
+
+    // Android Controllers
+    _basicCheckboxAndroidActiveController = BasicSelectionController(
+      initialValue: true,
+    );
+    _basicCheckboxAndroidInactiveController = BasicSelectionController(
+      state: BasicSelectionState.disabled,
+    );
+    _basicCheckboxAndroidCustomColorController = BasicSelectionController(
+      initialValue: true,
+    );
+
+    // iOS Controllers
+    _basicCheckboxIosActiveController = BasicSelectionController(
+      initialValue: true,
+    );
+    _basicCheckboxIosInactiveController = BasicSelectionController(
+      state: BasicSelectionState.disabled,
+    );
+    _basicCheckboxIosCustomColorController = BasicSelectionController(
+      initialValue: true,
+    );
+
+    // Adaptive Controllers
+    _basicCheckboxAdaptiveActiveController = BasicSelectionController(
+      initialValue: true,
+    );
+    _basicCheckboxAdaptiveInactiveController = BasicSelectionController(
+      state: BasicSelectionState.disabled,
+    );
+    _basicCheckboxAdaptiveCustomColorController = BasicSelectionController(
+      initialValue: true,
+    );
   }
 
   @override
@@ -70,7 +94,8 @@ class _CheckboxSelectionTabPageState extends State<CheckboxSelectionTabPage> {
             BasicCheckbox.android(
               controller: _basicCheckboxAndroidCustomColorController,
               onChanged: (value) {},
-
+              checkColor: Colors.white,
+              backgroundColor: Colors.blue,
               label: "Basic Checkbox Android With Color",
             ),
             16.paddingVertical,
@@ -100,7 +125,8 @@ class _CheckboxSelectionTabPageState extends State<CheckboxSelectionTabPage> {
             BasicCheckbox.ios(
               controller: _basicCheckboxIosCustomColorController,
               onChanged: (value) {},
-
+              checkColor: Colors.white,
+              backgroundColor: Colors.blue,
               label: "Basic Checkbox IOS With Color",
             ),
             16.paddingVertical,
@@ -129,7 +155,8 @@ class _CheckboxSelectionTabPageState extends State<CheckboxSelectionTabPage> {
             BasicCheckbox.adaptive(
               controller: _basicCheckboxAdaptiveCustomColorController,
               onChanged: (value) {},
-
+              checkColor: Colors.white,
+              backgroundColor: Colors.blue,
               label: "Basic Checkbox Adaptive With Color",
             ),
             24.paddingVertical,

@@ -86,9 +86,9 @@ class _BasicCheckboxState extends State<BasicCheckbox> {
 
   void _toggle() {
     final state = _controller.state;
-    final isSelected = _controller.isSelected;
     if (state.isDisabled) return;
     _controller.toggleSelection();
+    final isSelected = _controller.isSelected;
     widget.onChanged?.call(isSelected);
   }
 
@@ -148,11 +148,11 @@ class _BasicCheckboxState extends State<BasicCheckbox> {
     final isDarkMode = Theme.of(context).brightness == Brightness.dark;
     final checkColor =
         widget.checkColor ??
-        (isDarkMode ? Theme.of(context).colorScheme.secondary : Colors.white);
+        (isDarkMode ? Theme.of(context).colorScheme.primary : Colors.white);
     final backgroundColor =
         widget.backgroundColor ??
         (isDarkMode
-            ? Theme.of(context).colorScheme.secondary
+            ? Theme.of(context).colorScheme.secondaryContainer
             : Theme.of(context).colorScheme.primary);
 
     double desiredSize = 24.0;

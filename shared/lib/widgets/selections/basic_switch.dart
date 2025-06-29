@@ -34,7 +34,6 @@ class BasicSwitch extends StatefulWidget {
     Key? key,
     BasicSelectionController? controller,
     ValueChanged<bool>? onChanged,
-
     String? label,
     Icon? activeIcon,
     Icon? inactiveIcon,
@@ -60,7 +59,6 @@ class BasicSwitch extends StatefulWidget {
     Key? key,
     BasicSelectionController? controller,
     ValueChanged<bool>? onChanged,
-
     String? label,
     Icon? activeIcon,
     Icon? inactiveIcon,
@@ -86,7 +84,6 @@ class BasicSwitch extends StatefulWidget {
     Key? key,
     BasicSelectionController? controller,
     ValueChanged<bool>? onChanged,
-
     String? label,
     Icon? activeIcon,
     Icon? inactiveIcon,
@@ -112,7 +109,6 @@ class BasicSwitch extends StatefulWidget {
     Key? key,
     BasicSelectionController? controller,
     ValueChanged<bool>? onChanged,
-
     String? label,
     Icon? activeIcon,
     Icon? inactiveIcon,
@@ -153,9 +149,9 @@ class _BasicSwitchState extends State<BasicSwitch> {
 
   void _toggle() {
     final state = _controller.state;
-    final isSelected = _controller.isSelected;
     if (state.isDisabled) return;
     _controller.toggleSelection();
+    final isSelected = _controller.isSelected;
     widget.onChanged?.call(isSelected);
   }
 
