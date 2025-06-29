@@ -13,10 +13,9 @@ import 'package:feature_auth/presentation/blocs/auth/auth_bloc.dart';
 import 'package:feature_auth/presentation/blocs/sign_in/sign_in_bloc.dart';
 import 'package:feature_auth/presentation/blocs/sign_up/sign_up_bloc.dart';
 
-final class AuthModule {
-  AuthModule._();
-
-  static Future<void> init() async {
+final class AuthModule extends BaseModule {
+  @override
+  Future<void> registerDependencies() async {
     // Register local data sources for authentication
     sl.registerLazySingleton<AuthLocalDataSource>(
       () => AuthLocalDataSourceImpl(authDatabase: sl()),

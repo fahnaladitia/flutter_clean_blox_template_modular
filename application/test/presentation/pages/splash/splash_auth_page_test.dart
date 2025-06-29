@@ -19,7 +19,7 @@ void main() {
   setUpAll(() async {
     TestWidgetsFlutterBinding.ensureInitialized();
 
-    await AuthModule.init();
+    await AuthModule().init();
     mockAuthBloc = MockAuthBloc();
     await sl.unregister<AuthBloc>();
     sl.registerSingleton<AuthBloc>(mockAuthBloc);
