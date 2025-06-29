@@ -259,6 +259,18 @@ abstract class AppLocalizations {
   /// In en, this message translates to:
   /// **'This is a preview page for selections. You can see how the selections look like and their states.'**
   String get selectionsPreviewDescription;
+
+  /// Title for the texts preview page
+  ///
+  /// In en, this message translates to:
+  /// **'Texts'**
+  String get texts;
+
+  /// Description for the texts preview page
+  ///
+  /// In en, this message translates to:
+  /// **'This is a preview page for texts. You can see how some texts look like and their type styles.'**
+  String get textsPreviewDescription;
 }
 
 class _AppLocalizationsDelegate

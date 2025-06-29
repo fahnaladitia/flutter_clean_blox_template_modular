@@ -91,4 +91,11 @@ class AppLocalizationsId extends AppLocalizations {
   @override
   String get selectionsPreviewDescription =>
       'Ini adalah halaman pratinjau untuk pilihan. Anda dapat melihat bagaimana pilihan terlihat dan statusnya.';
+
+  @override
+  String get texts => 'Teks';
+
+  @override
+  String get textsPreviewDescription =>
+      'Ini adalah halaman pratinjau untuk teks. Anda dapat melihat bagaimana beberapa teks terlihat dan gaya tipografinya.';
 }

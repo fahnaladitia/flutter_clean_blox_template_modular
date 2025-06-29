@@ -134,5 +134,15 @@
   "@selectionsPreviewDescription": {
     "description": "Description for the selections preview page",
     "type": "text"
+  },
+  "texts": "Texts",
+  "@texts": {
+    "description": "Title for the texts preview page",
+    "type": "text"
+  },
+  "textsPreviewDescription": "This is a preview page for texts. You can see how some texts look like and their type styles.",
+  "@textsPreviewDescription": {
+    "description": "Description for the texts preview page",
+    "type": "text"
   }
 }

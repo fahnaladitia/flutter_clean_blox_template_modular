@@ -91,4 +91,11 @@ class AppLocalizationsEn extends AppLocalizations {
   @override
   String get selectionsPreviewDescription =>
       'This is a preview page for selections. You can see how the selections look like and their states.';
+
+  @override
+  String get texts => 'Texts';
+
+  @override
+  String get textsPreviewDescription =>
+      'This is a preview page for texts. You can see how some texts look like and their type styles.';
 }

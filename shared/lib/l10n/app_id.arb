@@ -134,5 +134,15 @@
   "@selectionsPreviewDescription": {
     "description": "Deskripsi untuk halaman pratinjau pilihan",
     "type": "text"
+  },
+  "texts": "Teks",
+  "@texts": {
+    "description": "Teks untuk halaman teks",
+    "type": "text"
+  },
+  "textsPreviewDescription": "Ini adalah halaman pratinjau untuk teks. Anda dapat melihat bagaimana beberapa teks terlihat dan gaya tipografinya.",
+  "@textsPreviewDescription": {
+    "description": "Deskripsi untuk halaman pratinjau teks",
+    "type": "text"
   }
 }

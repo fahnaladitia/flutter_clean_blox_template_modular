@@ -1,6 +1,7 @@
 import 'package:feature_home/presentation/pages/preview/buttons_preview_page.dart';
 import 'package:feature_home/presentation/pages/preview/inputs_preview_page.dart';
 import 'package:feature_home/presentation/pages/preview/selections_preview_page.dart';
+import 'package:feature_home/presentation/pages/preview/text_preview_page.dart';
 
 import 'package:flutter/material.dart';
 
@@ -34,11 +35,13 @@ class _MainPageState extends State<MainPage> {
       ButtonsPreviewPage(),
       InputsPreviewPage(),
       SelectionsPreviewPage(),
+      TextPreviewPage(),
     ];
 
     return Scaffold(
       body: pages[_currentIndex],
       bottomNavigationBar: BottomNavigationBar(
+        type: BottomNavigationBarType.fixed,
         currentIndex: _currentIndex,
         onTap: (index) {
           setState(() {
@@ -58,6 +61,10 @@ class _MainPageState extends State<MainPage> {
           BottomNavigationBarItem(
             icon: Icon(Icons.select_all),
             label: context.l10n.selections,
+          ),
+          BottomNavigationBarItem(
+            icon: Icon(Icons.text_fields),
+            label: context.l10n.texts,
           ),
         ],
       ),
