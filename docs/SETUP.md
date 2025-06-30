@@ -91,7 +91,7 @@ class MainActivity: FlutterActivity() {}
 
 ## 🌐 2. App Configurations
 
-Add your  configurations in `lib/core/config/app_config.dart`:
+Add your  configurations in `core/lib/config/app_config.dart`:
 
 ```dart
 
@@ -117,7 +117,7 @@ Add your  configurations in `lib/core/config/app_config.dart`:
 ---
 
 ##  🚀 3. Sentry Initialization
-In `lib/main_staging.dart` and `lib/main_production.dart`, initialize Sentry:
+In `application/lib/main_staging.dart` and `application/lib/main_production.dart`, initialize Sentry:
 
 ```dart
 import 'package:core/config/app_config.dart';
@@ -135,7 +135,7 @@ void main() async {
 
 ##  🔗 4. API Client Configuration
 
-In `lib/core/network/app_rest_client.dart`, configure your API client:
+In `core/lib/network/app_rest_client.dart`, configure your API client:
 
 ```dart
  // Headers can be set here if needed
@@ -149,7 +149,7 @@ In `lib/core/network/app_rest_client.dart`, configure your API client:
 
 ## 🔧 5. Error Handling
 
-In `lib/core/network/error_interceptor.dart`, handle errors:
+In `core/lib/network/error_interceptor.dart`, handle errors:
 
 ```dart
       case DioExceptionType.badResponse:
