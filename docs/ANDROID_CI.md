@@ -25,6 +25,8 @@ jobs:
 
     strategy:
       matrix:
+        # Define the flavors you want to build
+        # flavor: [staging, production]
         flavor: [production]
 
     steps:
