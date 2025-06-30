@@ -36,7 +36,9 @@ class _SwitchSelectionTabPageState extends State<SwitchSelectionTabPage> {
     );
 
     // iOS Controllers
-    _basicSwitchIosActiveController = BasicSelectionController();
+    _basicSwitchIosActiveController = BasicSelectionController(
+      initialValue: true,
+    );
     _basicSwitchIosInactiveController = BasicSelectionController();
     _basicSwitchIosCustomIconsController = BasicSelectionController(
       initialValue: true,
