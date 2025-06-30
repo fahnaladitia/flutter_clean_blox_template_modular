@@ -21,6 +21,7 @@ Created with ❤️ by [**Pahnal Aditia**](https://www.linkedin.com/in/pahnaladi
       - [🍏 iOS IPA](#-ios-ipa)
   - [Tutorials](#tutorials)
     - [🧩 Basic Button Tutorial](#-basic-button-tutorial)
+    - [Overview Widgets](#overview-widgets)
   - [📝 Developer Notes](#-developer-notes)
   - [🚀 Ready to Launch?](#-ready-to-launch)
   - [FYI](#fyi)
@@ -132,7 +133,15 @@ flutter build ipa --obfuscate --split-debug-info=out/android --flavor production
 
 A guide to using the BasicButton widget in your Flutter app with rich customization for style, size, icon, width, and event state.
 See [BASIC_BUTTON_TUTORIAL.md](docs/BASIC_BUTTON_TUTORIAL.md) for a comprehensive guide on using the `BasicButton` widget, including constructor parameters, available sizes, states, and example usages.
+ 
+### Overview Widgets
 
+<p float="left">
+  <img src="docs/media/button.gif" width="200" />
+  <img src="docs/media/inputs.gif" width="200" />
+  <img src="docs/media/switchs.gif" width="200" />
+  <img src="docs/media/checkboxs.gif" width="200" />
+</p>
 
 ---
 
