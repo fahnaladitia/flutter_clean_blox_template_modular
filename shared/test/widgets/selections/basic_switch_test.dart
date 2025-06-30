@@ -17,19 +17,17 @@ void main() {
       );
       await tester.tap(find.byType(Switch));
       await tester.pump();
-      expect(controller.state.isSelected, isTrue);
+      expect(controller.state, isTrue);
     });
 
     testWidgets('Android Disabled', (tester) async {
-      final controller = BasicSelectionController(
-        initialState: BasicSelectionState.disabled,
-      );
+      final controller = BasicSelectionController();
       await tester.pumpWidget(
         MaterialApp(
           home: Scaffold(
             body: BasicSwitch.android(
               controller: controller,
-
+              state: BasicSelectionState.disabled,
               label: 'Android Disabled',
             ),
           ),
@@ -37,7 +35,7 @@ void main() {
       );
       await tester.tap(find.byType(Switch));
       await tester.pump();
-      expect(controller.state.isSelected, isFalse);
+      expect(controller.state, isFalse);
     });
 
     testWidgets('iOS Active', (tester) async {
@@ -49,21 +47,24 @@ void main() {
       );
       await tester.tap(find.byType(CupertinoSwitch));
       await tester.pump();
-      expect(controller.state.isSelected, isTrue);
+      expect(controller.state, isTrue);
     });
 
     testWidgets('iOS Disabled', (tester) async {
-      final controller = BasicSelectionController(
-        initialState: BasicSelectionState.disabled,
-      );
+      final controller = BasicSelectionController();
       await tester.pumpWidget(
         MaterialApp(
-          home: Scaffold(body: BasicSwitch.ios(controller: controller)),
+          home: Scaffold(
+            body: BasicSwitch.ios(
+              controller: controller,
+              state: BasicSelectionState.disabled,
+            ),
+          ),
         ),
       );
       await tester.tap(find.byType(CupertinoSwitch));
       await tester.pump();
-      expect(controller.state.isSelected, isFalse);
+      expect(controller.state, isFalse);
     });
 
     testWidgets('Adaptive Active', (tester) async {
@@ -75,21 +76,24 @@ void main() {
       );
       await tester.tap(find.byType(Switch));
       await tester.pump();
-      expect(controller.state.isSelected, isTrue);
+      expect(controller.state, isTrue);
     });
 
     testWidgets('Adaptive Disabled', (tester) async {
-      final controller = BasicSelectionController(
-        initialState: BasicSelectionState.disabled,
-      );
+      final controller = BasicSelectionController();
       await tester.pumpWidget(
         MaterialApp(
-          home: Scaffold(body: BasicSwitch.adaptive(controller: controller)),
+          home: Scaffold(
+            body: BasicSwitch.adaptive(
+              controller: controller,
+              state: BasicSelectionState.disabled,
+            ),
+          ),
         ),
       );
       await tester.tap(find.byType(Switch));
       await tester.pump();
-      expect(controller.state.isSelected, isFalse);
+      expect(controller.state, isFalse);
     });
 
     testWidgets('Icon Type: active icon displayed when true', (tester) async {
@@ -144,19 +148,17 @@ void main() {
       );
       await tester.tap(find.byType(IconButton));
       await tester.pump();
-      expect(controller.state.isSelected, isTrue);
+      expect(controller.state, isTrue);
     });
 
     testWidgets('Icon Type: does not toggle when disabled', (tester) async {
-      final controller = BasicSelectionController(
-        initialState: BasicSelectionState.disabled,
-      );
+      final controller = BasicSelectionController();
       await tester.pumpWidget(
         MaterialApp(
           home: Scaffold(
             body: BasicSwitch.icon(
               controller: controller,
-
+              state: BasicSelectionState.disabled,
               activeIcon: const Icon(Icons.check),
               inactiveIcon: const Icon(Icons.close),
             ),
@@ -165,7 +167,7 @@ void main() {
       );
       await tester.tap(find.byType(IconButton));
       await tester.pump();
-      expect(controller.state.isSelected, isFalse);
+      expect(controller.state, isFalse);
     });
 
     testWidgets('Icon Type: custom icon colors and backgrounds', (

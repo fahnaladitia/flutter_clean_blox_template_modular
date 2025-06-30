@@ -30,18 +30,14 @@ class _SwitchSelectionTabPageState extends State<SwitchSelectionTabPage> {
     _basicSwitchAndroidActiveController = BasicSelectionController(
       initialValue: true,
     );
-    _basicSwitchAndroidInactiveController = BasicSelectionController(
-      initialState: BasicSelectionState.disabled,
-    );
+    _basicSwitchAndroidInactiveController = BasicSelectionController();
     _basicSwitchAndroidCustomIconsController = BasicSelectionController(
       initialValue: true,
     );
 
     // iOS Controllers
     _basicSwitchIosActiveController = BasicSelectionController();
-    _basicSwitchIosInactiveController = BasicSelectionController(
-      initialState: BasicSelectionState.disabled,
-    );
+    _basicSwitchIosInactiveController = BasicSelectionController();
     _basicSwitchIosCustomIconsController = BasicSelectionController(
       initialValue: true,
     );
@@ -50,9 +46,7 @@ class _SwitchSelectionTabPageState extends State<SwitchSelectionTabPage> {
     _basicSwitchAdaptiveActiveController = BasicSelectionController(
       initialValue: true,
     );
-    _basicSwitchAdaptiveInactiveController = BasicSelectionController(
-      initialState: BasicSelectionState.disabled,
-    );
+    _basicSwitchAdaptiveInactiveController = BasicSelectionController();
     _basicSwitchAdaptiveCustomIconsController = BasicSelectionController(
       initialValue: true,
     );
@@ -61,9 +55,7 @@ class _SwitchSelectionTabPageState extends State<SwitchSelectionTabPage> {
     _basicSwitchIconActiveController = BasicSelectionController(
       initialValue: true,
     );
-    _basicSwitchIconInactiveController = BasicSelectionController(
-      initialState: BasicSelectionState.disabled,
-    );
+    _basicSwitchIconInactiveController = BasicSelectionController();
     _basicSwitchIconCustomIconsController = BasicSelectionController(
       initialValue: true,
     );
@@ -95,6 +87,7 @@ class _SwitchSelectionTabPageState extends State<SwitchSelectionTabPage> {
             // basic switch Android disabled
             BasicSwitch.android(
               controller: _basicSwitchAndroidInactiveController,
+              state: BasicSelectionState.disabled,
               onChanged: (value) {},
               label: "Basic Switch Android Inactive",
             ),
@@ -128,6 +121,7 @@ class _SwitchSelectionTabPageState extends State<SwitchSelectionTabPage> {
             // basic switch iOS disabled
             BasicSwitch.ios(
               controller: _basicSwitchIosInactiveController,
+              state: BasicSelectionState.disabled,
               onChanged: (value) {},
               label: "Basic Switch iOS Inactive",
             ),
@@ -161,6 +155,7 @@ class _SwitchSelectionTabPageState extends State<SwitchSelectionTabPage> {
             // basic switch Adaptive disabled
             BasicSwitch.adaptive(
               controller: _basicSwitchAdaptiveInactiveController,
+              state: BasicSelectionState.disabled,
               onChanged: (value) {},
 
               label: "Basic Switch Adaptive Inactive",
@@ -196,6 +191,7 @@ class _SwitchSelectionTabPageState extends State<SwitchSelectionTabPage> {
             // basic switch Icon disabled
             BasicSwitch.icon(
               controller: _basicSwitchIconInactiveController,
+              state: BasicSelectionState.disabled,
               onChanged: (value) {},
               activeIcon: const Icon(Icons.favorite),
               label: "Basic Switch Icon Inactive",

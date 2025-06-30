@@ -16,23 +16,26 @@ void main() {
 
       await tester.tap(find.byType(Checkbox));
       await tester.pumpAndSettle();
-      expect(controller.state.isSelected, isTrue);
+      expect(controller.state, isTrue);
     });
 
     testWidgets('does not toggle when disabled', (tester) async {
-      final controller = BasicSelectionController(
-        initialState: BasicSelectionState.disabled,
-      );
+      final controller = BasicSelectionController();
 
       await tester.pumpWidget(
         MaterialApp(
-          home: Scaffold(body: BasicCheckbox.android(controller: controller)),
+          home: Scaffold(
+            body: BasicCheckbox.android(
+              controller: controller,
+              state: BasicSelectionState.disabled,
+            ),
+          ),
         ),
       );
 
       await tester.tap(find.byType(Checkbox));
       await tester.pump();
-      expect(controller.state.isSelected, isFalse);
+      expect(controller.state, isFalse);
     });
   });
 
@@ -48,23 +51,26 @@ void main() {
 
       await tester.tap(find.byType(CupertinoCheckbox));
       await tester.pumpAndSettle();
-      expect(controller.state.isSelected, isTrue);
+      expect(controller.state, isTrue);
     });
 
     testWidgets('does not toggle when disabled', (tester) async {
-      final controller = BasicSelectionController(
-        initialState: BasicSelectionState.disabled,
-      );
+      final controller = BasicSelectionController();
 
       await tester.pumpWidget(
         MaterialApp(
-          home: Scaffold(body: BasicCheckbox.ios(controller: controller)),
+          home: Scaffold(
+            body: BasicCheckbox.ios(
+              controller: controller,
+              state: BasicSelectionState.disabled,
+            ),
+          ),
         ),
       );
 
       await tester.tap(find.byType(CupertinoCheckbox));
       await tester.pump();
-      expect(controller.state.isSelected, isFalse);
+      expect(controller.state, isFalse);
     });
   });
 
@@ -80,23 +86,26 @@ void main() {
 
       await tester.tap(find.byType(Checkbox));
       await tester.pump();
-      expect(controller.state.isSelected, isTrue);
+      expect(controller.state, isTrue);
     });
 
     testWidgets('does not toggle when disabled', (tester) async {
-      final controller = BasicSelectionController(
-        initialState: BasicSelectionState.disabled,
-      );
+      final controller = BasicSelectionController();
 
       await tester.pumpWidget(
         MaterialApp(
-          home: Scaffold(body: BasicCheckbox.adaptive(controller: controller)),
+          home: Scaffold(
+            body: BasicCheckbox.adaptive(
+              controller: controller,
+              state: BasicSelectionState.disabled,
+            ),
+          ),
         ),
       );
 
       await tester.tap(find.byType(Checkbox));
       await tester.pump();
-      expect(controller.state.isSelected, isFalse);
+      expect(controller.state, isFalse);
     });
   });
 

@@ -4,6 +4,7 @@ class BasicCheckbox extends StatefulWidget {
   final BasicSelectionController? controller;
   final ValueChanged<bool>? onChanged;
   final BasicCheckboxType type;
+  final BasicSelectionState state;
   final String? label;
   final Color? checkColor;
   final Color? backgroundColor;
@@ -15,6 +16,7 @@ class BasicCheckbox extends StatefulWidget {
     this.label,
     this.checkColor,
     this.backgroundColor,
+    required this.state,
   });
 
   const BasicCheckbox.android({
@@ -30,6 +32,7 @@ class BasicCheckbox extends StatefulWidget {
          controller: controller,
          onChanged: onChanged,
          type: BasicCheckboxType.android,
+         state: state,
          label: label,
          checkColor: checkColor,
          backgroundColor: backgroundColor,
@@ -51,6 +54,7 @@ class BasicCheckbox extends StatefulWidget {
          label: label,
          checkColor: checkColor,
          backgroundColor: backgroundColor,
+         state: state,
        );
 
   const BasicCheckbox.adaptive({
@@ -69,6 +73,7 @@ class BasicCheckbox extends StatefulWidget {
          label: label,
          checkColor: checkColor,
          backgroundColor: backgroundColor,
+         state: state,
        );
 
   @override
@@ -79,8 +84,9 @@ class _BasicCheckboxState extends State<BasicCheckbox> {
   late BasicSelectionController _controller;
 
   bool get _isDarkMode => Theme.of(context).brightness == Brightness.dark;
-  bool get _isSelected => _controller.state.isSelected;
-  BasicSelectionState get _state => _controller.state.stateSelection;
+  bool get _isSelected => _controller.state;
+  BasicSelectionState get _state => widget.state;
+
   @override
   void initState() {
     super.initState();
@@ -89,13 +95,13 @@ class _BasicCheckboxState extends State<BasicCheckbox> {
 
   void _toggle() {
     if (_state.isDisabled) return;
-    _controller.toggleSelection();
+    _controller.toggle();
     widget.onChanged?.call(_isSelected);
   }
 
   @override
   Widget build(BuildContext context) {
-    return BlocBuilder<BasicSelectionController, BasicSelectionControllerState>(
+    return BlocBuilder<BasicSelectionController, bool>(
       bloc: _controller,
       builder: (context, _) {
         final labelText = widget.label;

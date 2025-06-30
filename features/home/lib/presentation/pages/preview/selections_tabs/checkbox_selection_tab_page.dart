@@ -30,9 +30,7 @@ class _CheckboxSelectionTabPageState extends State<CheckboxSelectionTabPage> {
     _basicCheckboxAndroidActiveController = BasicSelectionController(
       initialValue: true,
     );
-    _basicCheckboxAndroidInactiveController = BasicSelectionController(
-      initialState: BasicSelectionState.disabled,
-    );
+    _basicCheckboxAndroidInactiveController = BasicSelectionController();
     _basicCheckboxAndroidCustomColorController = BasicSelectionController(
       initialValue: true,
     );
@@ -41,9 +39,7 @@ class _CheckboxSelectionTabPageState extends State<CheckboxSelectionTabPage> {
     _basicCheckboxIosActiveController = BasicSelectionController(
       initialValue: true,
     );
-    _basicCheckboxIosInactiveController = BasicSelectionController(
-      initialState: BasicSelectionState.disabled,
-    );
+    _basicCheckboxIosInactiveController = BasicSelectionController();
     _basicCheckboxIosCustomColorController = BasicSelectionController(
       initialValue: true,
     );
@@ -52,9 +48,7 @@ class _CheckboxSelectionTabPageState extends State<CheckboxSelectionTabPage> {
     _basicCheckboxAdaptiveActiveController = BasicSelectionController(
       initialValue: true,
     );
-    _basicCheckboxAdaptiveInactiveController = BasicSelectionController(
-      initialState: BasicSelectionState.disabled,
-    );
+    _basicCheckboxAdaptiveInactiveController = BasicSelectionController();
     _basicCheckboxAdaptiveCustomColorController = BasicSelectionController(
       initialValue: true,
     );

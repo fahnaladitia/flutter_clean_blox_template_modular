@@ -4,6 +4,7 @@ class BasicSwitch extends StatefulWidget {
   final BasicSelectionController? controller;
   final ValueChanged<bool>? onChanged;
   final BasicSwitchType type;
+  final BasicSelectionState state;
   final String? label;
   final bool isBackgroundColor;
   final Icon? activeIcon;
@@ -28,6 +29,7 @@ class BasicSwitch extends StatefulWidget {
     this.inactiveColor,
     this.inactiveBackgroundColor,
     this.elevation,
+    required this.state,
   });
 
   const BasicSwitch.android({
@@ -41,6 +43,7 @@ class BasicSwitch extends StatefulWidget {
     Color? inactiveColor,
     Color? activeBackgroundColor,
     Color? inactiveBackgroundColor,
+    BasicSelectionState state = BasicSelectionState.active,
   }) : this._(
          key: key,
          controller: controller,
@@ -53,6 +56,7 @@ class BasicSwitch extends StatefulWidget {
          inactiveColor: inactiveColor,
          activeBackgroundColor: activeBackgroundColor,
          inactiveBackgroundColor: inactiveBackgroundColor,
+         state: state,
        );
 
   const BasicSwitch.ios({
@@ -66,6 +70,7 @@ class BasicSwitch extends StatefulWidget {
     Color? inactiveColor,
     Color? activeBackgroundColor,
     Color? inactiveBackgroundColor,
+    BasicSelectionState state = BasicSelectionState.active,
   }) : this._(
          key: key,
          controller: controller,
@@ -78,6 +83,7 @@ class BasicSwitch extends StatefulWidget {
          inactiveColor: inactiveColor,
          activeBackgroundColor: activeBackgroundColor,
          inactiveBackgroundColor: inactiveBackgroundColor,
+         state: state,
        );
 
   const BasicSwitch.adaptive({
@@ -91,6 +97,7 @@ class BasicSwitch extends StatefulWidget {
     Color? inactiveColor,
     Color? activeBackgroundColor,
     Color? inactiveBackgroundColor,
+    BasicSelectionState state = BasicSelectionState.active,
   }) : this._(
          key: key,
          controller: controller,
@@ -103,6 +110,7 @@ class BasicSwitch extends StatefulWidget {
          inactiveColor: inactiveColor,
          activeBackgroundColor: activeBackgroundColor,
          inactiveBackgroundColor: inactiveBackgroundColor,
+         state: state,
        );
 
   const BasicSwitch.icon({
@@ -118,6 +126,7 @@ class BasicSwitch extends StatefulWidget {
     Color? inactiveBackgroundColor,
     double? elevation,
     bool isBackgroundColor = true,
+    BasicSelectionState state = BasicSelectionState.active,
   }) : this._(
          key: key,
          controller: controller,
@@ -132,6 +141,7 @@ class BasicSwitch extends StatefulWidget {
          inactiveBackgroundColor: inactiveBackgroundColor,
          elevation: elevation,
          isBackgroundColor: isBackgroundColor,
+         state: state,
        );
 
   @override
@@ -142,8 +152,8 @@ class _BasicSwitchState extends State<BasicSwitch> {
   late BasicSelectionController _controller;
 
   bool get _isDarkMode => Theme.of(context).brightness == Brightness.dark;
-  bool get _isSelected => _controller.state.isSelected;
-  BasicSelectionState get _state => _controller.state.stateSelection;
+  bool get _isSelected => _controller.state;
+  BasicSelectionState get _state => widget.state;
   @override
   void initState() {
     super.initState();
@@ -152,13 +162,13 @@ class _BasicSwitchState extends State<BasicSwitch> {
 
   void _toggle() {
     if (_state.isDisabled) return;
-    _controller.toggleSelection();
+    _controller.toggle();
     widget.onChanged?.call(_isSelected);
   }
 
   @override
   Widget build(BuildContext context) {
-    return BlocBuilder<BasicSelectionController, BasicSelectionControllerState>(
+    return BlocBuilder<BasicSelectionController, bool>(
       bloc: _controller,
       builder: (context, _) {
         final labelText = widget.label;
@@ -222,7 +232,7 @@ class _BasicSwitchState extends State<BasicSwitch> {
       activeTrackColor: widget.activeBackgroundColor,
       inactiveTrackColor: widget.inactiveBackgroundColor,
       thumbIcon: _getIcon(context),
-      onChanged: _state.isActive ? (bool value) => _onChanged() : null,
+      onChanged: _state.isActive ? (bool value) => _toggle() : null,
     );
   }
 
@@ -232,7 +242,7 @@ class _BasicSwitchState extends State<BasicSwitch> {
       activeTrackColor: widget.activeBackgroundColor,
       inactiveTrackColor: widget.inactiveBackgroundColor,
       thumbIcon: _getIcon(context),
-      onChanged: _state.isActive ? (bool value) => _onChanged() : null,
+      onChanged: _state.isActive ? (bool value) => _toggle() : null,
     );
   }
 
@@ -280,14 +290,9 @@ class _BasicSwitchState extends State<BasicSwitch> {
             : widget.inactiveIcon ??
                   widget.activeIcon ??
                   const Icon(Icons.radio_button_unchecked),
-        onPressed: _state.isActive ? () => _onChanged() : null,
+        onPressed: _state.isActive ? () => _toggle() : null,
       ),
     );
-  }
-
-  void _onChanged() {
-    _controller.toggleSelection();
-    widget.onChanged?.call(_isSelected);
   }
 
   Color _getColorBackgroundIcon(BuildContext context) {

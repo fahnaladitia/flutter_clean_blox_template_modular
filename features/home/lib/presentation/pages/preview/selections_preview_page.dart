@@ -1,6 +1,4 @@
 import 'package:feature_home/presentation/pages/preview/selections_tabs/checkbox_selection_tab_page.dart';
-import 'package:feature_home/presentation/pages/preview/selections_tabs/radio_selection_tab_page.dart';
-import 'package:feature_home/presentation/pages/preview/selections_tabs/slider_selection_tab_page.dart';
 import 'package:feature_home/presentation/pages/preview/selections_tabs/switch_selection_tab_page.dart';
 import 'package:flutter/material.dart';
 import 'package:shared/shared.dart';
@@ -19,7 +17,7 @@ class _SelectionsPreviewPageState extends State<SelectionsPreviewPage>
   @override
   void initState() {
     super.initState();
-    _tabController = TabController(length: 4, vsync: this);
+    _tabController = TabController(length: 2, vsync: this);
   }
 
   @override
@@ -35,19 +33,12 @@ class _SelectionsPreviewPageState extends State<SelectionsPreviewPage>
           tabs: [
             Tab(text: "Switches", icon: Icon(Icons.toggle_on)),
             Tab(text: "Checkboxes", icon: Icon(Icons.check_box)),
-            Tab(text: "Radios", icon: Icon(Icons.radio_button_checked)),
-            Tab(text: "Sliders", icon: Icon(Icons.slideshow)),
           ],
         ),
       ),
       body: TabBarView(
         controller: _tabController,
-        children: [
-          SwitchSelectionTabPage(),
-          CheckboxSelectionTabPage(),
-          RadioSelectionTabPage(),
-          SliderSelectionTabPage(),
-        ],
+        children: [SwitchSelectionTabPage(), CheckboxSelectionTabPage()],
       ),
     );
   }
