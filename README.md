@@ -23,6 +23,7 @@ Created with ❤️ by [**Pahnal Aditia**](https://www.linkedin.com/in/pahnaladi
     - [🧩 Basic Button Tutorial](#-basic-button-tutorial)
   - [📝 Developer Notes](#-developer-notes)
   - [🚀 Ready to Launch?](#-ready-to-launch)
+  - [FYI](#fyi)
 
 ---
 
@@ -154,3 +155,8 @@ See [BASIC_BUTTON_TUTORIAL.md](docs/BASIC_BUTTON_TUTORIAL.md) for a comprehensiv
 ## 🚀 Ready to Launch?
 
 Fork this template, plug in your logic, and ship your next big thing! 🎯
+
+
+## FYI
+This template is designed for  **modular monorepo structure** and **production-ready** applications. It provides a solid foundation for building scalable and maintainable Flutter applications with a focus on Clean Architecture and BLoC pattern.
+If you are looking for a **monolithic structure** or a **simple starter kit**, consider using the [Flutter CleanBLoX Template](https://github.com/fahnaladitia/flutter_clean_blox_template_monolithic).
