@@ -70,4 +70,32 @@ class AppLocalizationsId extends AppLocalizations {
 
   @override
   String get signOut => 'Keluar';
+
+  @override
+  String get buttons => 'Tombol';
+
+  @override
+  String get inputs => 'Input';
+
+  @override
+  String get inputsPreviewDescription =>
+      'Ini adalah halaman pratinjau untuk input. Anda dapat melihat bagaimana input terlihat dan statusnya.';
+
+  @override
+  String get buttonsPreviewDescription =>
+      'Ini adalah halaman pratinjau untuk tombol. Anda dapat melihat bagaimana tombol terlihat dan statusnya.';
+
+  @override
+  String get selections => 'Pilihan';
+
+  @override
+  String get selectionsPreviewDescription =>
+      'Ini adalah halaman pratinjau untuk pilihan. Anda dapat melihat bagaimana pilihan terlihat dan statusnya.';
+
+  @override
+  String get texts => 'Teks';
+
+  @override
+  String get textsPreviewDescription =>
+      'Ini adalah halaman pratinjau untuk teks. Anda dapat melihat bagaimana beberapa teks terlihat dan gaya tipografinya.';
 }

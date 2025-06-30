@@ -13,8 +13,8 @@ class Injection {
   Injection._();
 
   static Future<void> init() async {
-    await CoreModule.init();
-    await AppModule.init();
-    await AuthModule.init();
+    await CoreModule().init();
+    await AppModule().init();
+    await AuthModule().init();
   }
 }

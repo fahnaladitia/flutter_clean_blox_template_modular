@@ -1,12 +1,10 @@
 part of 'di.dart';
 
-class CoreModule {
-  CoreModule._();
-
-  static Future<void> init() async {
+class CoreModule extends BaseModule {
+  @override
+  Future<void> registerDependencies() async {
     // Initialize core dependencies here
     await AppLogger.init();
     sl.registerLazySingleton<NetworkInfo>(() => NetworkInfoImpl());
-    AppLogger.info('CoreModule initialized successfully.');
   }
 }

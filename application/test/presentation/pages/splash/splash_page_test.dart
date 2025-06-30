@@ -1,38 +1,13 @@
 import 'package:application/presentation/pages/main/main_page.dart';
 import 'package:application/presentation/pages/splash/splash_page.dart';
-import 'package:bloc_test/bloc_test.dart';
 import 'package:core/core.dart';
-import 'package:feature_auth/di/auth_module.dart';
-import 'package:feature_auth/presentation/blocs/auth/auth_bloc.dart';
-import 'package:feature_auth/presentation/pages/sign_in_page.dart';
-import 'package:feature_auth/presentation/pages/sign_up_page.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_test/flutter_test.dart';
-import 'package:mocktail/mocktail.dart';
 import 'package:shared/shared.dart';
 
-class MockAuthBloc extends Mock implements AuthBloc {}
-
 void main() {
-  late MockAuthBloc mockAuthBloc;
-
   setUpAll(() async {
     TestWidgetsFlutterBinding.ensureInitialized();
-
-    await AuthModule.init();
-    mockAuthBloc = MockAuthBloc();
-    await sl.unregister<AuthBloc>();
-    sl.registerSingleton<AuthBloc>(mockAuthBloc);
-
-    // ✅ SET default state
-    when(() => mockAuthBloc.state).thenReturn(AuthAuthenticatedState());
-
-    // ✅ Optional: if your MainPage listens to Bloc stream
-    whenListen(
-      mockAuthBloc,
-      Stream<AuthState>.fromIterable([AuthAuthenticatedState()]),
-      initialState: AuthAuthenticatedState(),
-    );
   });
 
   tearDownAll(() async {
@@ -48,25 +23,10 @@ void main() {
           ChuckerFlutterUtils.navigatorObserver,
         ],
         pages: [
-          AppPage(
-            path: '/',
-            name: 'main',
-            builder: (context, state) => const MainPage(),
-          ),
-          AppPage(
-            path: '/sign-in',
-            name: 'signIn',
-            builder: (context, state) => const SignInPage(),
-          ),
+          AppPage(path: '/', builder: (context, state) => const MainPage()),
           AppPage(
             path: '/splash',
-            name: 'splash',
             builder: (context, state) => const SplashPage(),
-          ),
-          AppPage(
-            path: '/sign-up',
-            name: 'signUp',
-            builder: (context, state) => const SignUpPage(),
           ),
         ],
         errorBuilder: (context, state) => const MainPage(),

@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_test/flutter_test.dart';
 import 'package:go_router/go_router.dart';
-import 'package:shared/shared.dart'; // ganti jika path ekstensi berbeda
+import 'package:shared/shared.dart' as shared;
 
 void main() {
   testWidgets('goTo navigates to named route with parameters', (tester) async {
@@ -30,10 +30,9 @@ void main() {
     expect(find.text('Home'), findsOneWidget);
 
     // Trigger navigation using the extension
-    router.routerDelegate.navigatorKey.currentContext!.goTo(
-      'profile',
-      pathParameters: {'id': '123'},
-    );
+    shared.GoRouterExtension(
+      router.routerDelegate.navigatorKey.currentContext!,
+    ).go(to: Uri(path: '/profile/123').toString());
 
     await tester.pumpAndSettle();
 
@@ -66,10 +65,9 @@ void main() {
     expect(find.text('Home'), findsOneWidget);
 
     // Trigger pushTo
-    router.routerDelegate.navigatorKey.currentContext!.pushTo(
-      'details',
-      pathParameters: {'item': 'flutter'},
-    );
+    shared.GoRouterExtension(
+      router.routerDelegate.navigatorKey.currentContext!,
+    ).push(to: Uri(path: '/details/flutter').toString());
 
     await tester.pumpAndSettle();
 

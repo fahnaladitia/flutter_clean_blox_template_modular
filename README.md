@@ -19,6 +19,8 @@ Created with ❤️ by [**Pahnal Aditia**](https://www.linkedin.com/in/pahnaladi
     - [📦 Building APK \& IPA](#-building-apk--ipa)
       - [📱 Android APK](#-android-apk)
       - [🍏 iOS IPA](#-ios-ipa)
+  - [Tutorials](#tutorials)
+    - [🧩 Basic Button Tutorial](#-basic-button-tutorial)
   - [📝 Developer Notes](#-developer-notes)
   - [🚀 Ready to Launch?](#-ready-to-launch)
 
@@ -26,14 +28,22 @@ Created with ❤️ by [**Pahnal Aditia**](https://www.linkedin.com/in/pahnaladi
 
 ## ✨ Features
 
-✅ **Modular Architecture** — Each feature lives in its own independent package  
+✅ **Monorepo Ready** — Powered by [melos](https://pub.dev/packages/melos) for managing multi-packages 
+✅ **Dependency Injection** — Uses [GetIt](https://pub.dev/packages/get_it) for service management  
+✅ **Networking** — Built with [Dio](https://pub.dev/packages/dio) for robust API handling  
 ✅ **Clean Architecture** — Clear separation of `data`, `domain`, and `presentation` layers  
 ✅ **BLoC State Management** — Built using [flutter_bloc](https://pub.dev/packages/flutter_bloc)  
-✅ **Monorepo Ready** — Powered by [melos](https://pub.dev/packages/melos) for managing multi-packages  
+ 
 ✅ **Flavor Support** — Easily switch between `staging` and `production` builds  
-✅ **CI/CD Integrated** — GitHub Actions ready for automated signed builds  
-✅ **Shared Modules** — Centralized widgets, themes, and utilities in `shared/`  
-✅ **Core Domain** — `core/` module for reusable interfaces, logic, and services
+✅ **CI/CD Integrated** — GitHub Actions ready for automated signed builds in Android and iOS  
+✅ **App Links & Deep Linking** — Universal links for Android & iOS
+✅ **Rich UI Components** — Custom widgets in `shared/` for consistent design  
+✅ **Testing & Debugging** — Includes [Chucker Flutter](https://pub.dev/packages/chucker_flutter) and [Cote Network Logger](https://pub.dev/packages/cote_network_logger) for network debugging  
+✅ **Localization Support** — Built-in support for internationalization using [intl](https://pub.dev/packages/intl)  
+✅ **Error Logging** — Integrated with [Sentry](https://docs.sentry.io/platforms/flutter/) for error tracking  
+✅ **Routing** — Uses [go_router](https://pub.dev/packages/go_router) for declarative routing  
+✅ **UI Tooling** — Includes [Flutter Launcher Icons](https://pub.dev/packages/flutter_launcher_icons) and [Flutter Native Splash](https://pub.dev/packages/flutter_native_splash) for app branding
+✅ **Extensive Documentation** — Detailed setup and usage guides in the `docs/` directory
 
 ---
 
@@ -115,6 +125,14 @@ flutter build ipa --obfuscate --split-debug-info=out/android --flavor production
 
 ---
 
+## Tutorials
+
+### 🧩 Basic Button Tutorial
+
+A guide to using the BasicButton widget in your Flutter app with rich customization for style, size, icon, width, and event state.
+See [BASIC_BUTTON_TUTORIAL.md](docs/BASIC_BUTTON_TUTORIAL.md) for a comprehensive guide on using the `BasicButton` widget, including constructor parameters, available sizes, states, and example usages.
+
+
 ---
 
 ## 📝 Developer Notes
@@ -129,6 +147,7 @@ flutter build ipa --obfuscate --split-debug-info=out/android --flavor production
 - **Flavor Management**: [Flutter Flavors](https://docs.flutter.dev/deployment/flavors)  
 - **CI/CD**: GitHub Actions integrated  
 - **App Link Setup**: [App & Universal Links](https://docs.flutter.dev/cookbook/navigation/set-up-app-links)
+- **Monorepo Management**: [melos](https://pub.dev/packages/melos) for managing multi-packages
 
 ---
 

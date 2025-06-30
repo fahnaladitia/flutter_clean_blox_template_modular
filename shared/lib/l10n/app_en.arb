@@ -104,5 +104,45 @@
   "@signOut": {
     "description": "Text for the sign-out button",
     "type": "text"
+  },
+  "buttons": "Buttons",
+  "@buttons": {
+    "description": "Title for the buttons preview page",
+    "type": "text"
+  },
+  "inputs": "Inputs",
+  "@inputs": {
+    "description": "Title for the inputs preview page",
+    "type": "text"
+  },
+  "inputsPreviewDescription": "This is a preview page for inputs. You can see how the inputs look like and their states.",
+  "@inputsPreviewDescription": {
+    "description": "Description for the inputs preview page",
+    "type": "text"
+  },
+  "buttonsPreviewDescription": "This is a preview page for buttons. You can see how the buttons look like and their states.",
+  "@buttonsPreviewDescription": {
+    "description": "Description for the buttons preview page",
+    "type": "text"
+  },
+  "selections": "Selections",
+  "@selections": {
+    "description": "Title for the selections preview page",
+    "type": "text"
+  },
+  "selectionsPreviewDescription": "This is a preview page for selections. You can see how the selections look like and their states.",
+  "@selectionsPreviewDescription": {
+    "description": "Description for the selections preview page",
+    "type": "text"
+  },
+  "texts": "Texts",
+  "@texts": {
+    "description": "Title for the texts preview page",
+    "type": "text"
+  },
+  "textsPreviewDescription": "This is a preview page for texts. You can see how some texts look like and their type styles.",
+  "@textsPreviewDescription": {
+    "description": "Description for the texts preview page",
+    "type": "text"
   }
 }

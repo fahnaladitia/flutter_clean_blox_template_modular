@@ -223,6 +223,54 @@ abstract class AppLocalizations {
   /// In en, this message translates to:
   /// **'Sign Out'**
   String get signOut;
+
+  /// Title for the buttons preview page
+  ///
+  /// In en, this message translates to:
+  /// **'Buttons'**
+  String get buttons;
+
+  /// Title for the inputs preview page
+  ///
+  /// In en, this message translates to:
+  /// **'Inputs'**
+  String get inputs;
+
+  /// Description for the inputs preview page
+  ///
+  /// In en, this message translates to:
+  /// **'This is a preview page for inputs. You can see how the inputs look like and their states.'**
+  String get inputsPreviewDescription;
+
+  /// Description for the buttons preview page
+  ///
+  /// In en, this message translates to:
+  /// **'This is a preview page for buttons. You can see how the buttons look like and their states.'**
+  String get buttonsPreviewDescription;
+
+  /// Title for the selections preview page
+  ///
+  /// In en, this message translates to:
+  /// **'Selections'**
+  String get selections;
+
+  /// Description for the selections preview page
+  ///
+  /// In en, this message translates to:
+  /// **'This is a preview page for selections. You can see how the selections look like and their states.'**
+  String get selectionsPreviewDescription;
+
+  /// Title for the texts preview page
+  ///
+  /// In en, this message translates to:
+  /// **'Texts'**
+  String get texts;
+
+  /// Description for the texts preview page
+  ///
+  /// In en, this message translates to:
+  /// **'This is a preview page for texts. You can see how some texts look like and their type styles.'**
+  String get textsPreviewDescription;
 }
 
 class _AppLocalizationsDelegate

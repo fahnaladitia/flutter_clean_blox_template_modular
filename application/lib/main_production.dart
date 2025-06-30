@@ -1,4 +1,5 @@
 import 'package:core/core.dart';
+import 'package:flutter_native_splash/flutter_native_splash.dart';
 import 'package:shared/shared.dart';
 import 'package:application/di/injection.dart';
 
@@ -13,7 +14,8 @@ import 'my_app.dart';
 /// =========================================================
 
 void main() async {
-  WidgetsFlutterBinding.ensureInitialized();
+  WidgetsBinding widgetsBinding = WidgetsFlutterBinding.ensureInitialized();
+  FlutterNativeSplash.preserve(widgetsBinding: widgetsBinding);
 
   // Initialize AppConfig with the staging configuration
   AppConfig.load(AppFlavor.production);

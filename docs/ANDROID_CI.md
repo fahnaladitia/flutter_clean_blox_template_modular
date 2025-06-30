@@ -8,8 +8,6 @@ on:
     branches:
       - "dev"
       - "main"
-      - "firebase/dev"
-      - "firebase/main"
     paths-ignore:
       - 'docs/**'
       - '**.md'
@@ -17,8 +15,6 @@ on:
     branches:
       - "dev"
       - "main"
-      - "firebase/dev"
-      - "firebase/main"
     paths-ignore:
       - 'docs/**'
       - '**.md'

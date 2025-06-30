@@ -1,4 +1,5 @@
 import 'package:core/core.dart';
+import 'package:feature_auth/presentation/blocs/auth/auth_bloc.dart';
 import 'package:feature_auth/presentation/blocs/sign_in/sign_in_bloc.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
@@ -43,7 +44,7 @@ class _SignInPageState extends State<SignInPage> {
       child: BlocListener<SignInBloc, SignInState>(
         listener: (context, state) {
           if (state is SignInSuccess) {
-            context.goTo('main');
+            sl<AuthBloc>().add(AuthCheckRequestedEvent());
           } else if (state is SignInFailure) {
             context.showError(state.error);
           }
@@ -141,7 +142,9 @@ class _SignInPageState extends State<SignInPage> {
                     isFullWidth: true,
                     icon: const Icon(Icons.app_registration),
                     text: context.l10n.signUpButton,
-                    onPressed: () => context.pushTo('sign-up'),
+                    onPressed: () {
+                      context.push(to: '/sign-up');
+                    },
                   ),
                 ],
               ),

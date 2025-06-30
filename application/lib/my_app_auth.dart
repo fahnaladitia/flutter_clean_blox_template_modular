@@ -1,3 +1,5 @@
+import 'package:core/core.dart';
+import 'package:feature_auth/presentation/blocs/auth/auth_bloc.dart';
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:application/router/route.dart';
@@ -10,18 +12,22 @@ import 'package:shared/shared.dart';
 /// LinkedIn: https://www.linkedin.com/in/pahnaladitia
 /// =========================================================
 
-class MyApp extends StatefulWidget {
-  const MyApp({super.key});
+class MyAppAuth extends StatefulWidget {
+  const MyAppAuth({super.key});
 
   @override
-  State<MyApp> createState() => _MyAppState();
+  State<MyAppAuth> createState() => _MyAppAuthState();
 }
 
-class _MyAppState extends State<MyApp> {
+class _MyAppAuthState extends State<MyAppAuth> {
+  late final AuthBloc _authBloc;
   @override
   void initState() {
     super.initState();
     FlutterNativeSplash.remove();
+
+    _authBloc = sl.get<AuthBloc>();
+    _authBloc.add(AuthCheckRequestedEvent());
   }
 
   @override
@@ -30,7 +36,7 @@ class _MyAppState extends State<MyApp> {
     final themeDark = MaterialTheme.dark();
     return MaterialApp.router(
       debugShowCheckedModeBanner: kDebugMode,
-      routerConfig: AppRoute.router,
+      routerConfig: AppRoute.routerWithAuth,
       supportedLocales: L10n.all,
       localizationsDelegates: AppLocalizations.localizationsDelegates,
       // Set the default locale, you can change it based on user preference

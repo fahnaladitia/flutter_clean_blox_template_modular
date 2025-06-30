@@ -16,7 +16,7 @@ void main() {
   late MockAuthBloc mockAuthBloc;
 
   setUpAll(() async {
-    await AuthModule.init();
+    await AuthModule().init();
     mockAuthBloc = MockAuthBloc();
     await sl.unregister<AuthBloc>();
     sl.registerSingleton<AuthBloc>(mockAuthBloc);

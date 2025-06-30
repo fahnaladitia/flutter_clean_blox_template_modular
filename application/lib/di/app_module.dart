@@ -2,10 +2,9 @@ import 'package:core/core.dart';
 import 'package:flutter/material.dart';
 import 'package:shared/themes/themes.dart';
 
-class AppModule {
-  AppModule._();
-
-  static Future<void> init() async {
+class AppModule extends BaseModule {
+  @override
+  Future<void> registerDependencies() async {
     sl.registerLazySingleton<AuthDatabase>(() => AuthDatabaseImpl());
 
     sl.registerLazySingleton<AppRestClient>(() {

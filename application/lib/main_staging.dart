@@ -1,6 +1,8 @@
+import 'package:application/my_app_auth.dart';
 import 'package:core/core.dart';
 import 'package:flutter/material.dart';
 import 'package:application/di/injection.dart';
+import 'package:flutter_native_splash/flutter_native_splash.dart';
 import 'package:shared/shared.dart';
 
 import 'my_app.dart';
@@ -12,10 +14,11 @@ import 'my_app.dart';
 /// =========================================================
 
 void main() async {
-  WidgetsFlutterBinding.ensureInitialized();
+  WidgetsBinding widgetsBinding = WidgetsFlutterBinding.ensureInitialized();
+  FlutterNativeSplash.preserve(widgetsBinding: widgetsBinding);
 
   // Initialize AppConfig with the staging configuration
-  AppConfig.load(AppFlavor.staging);
+  AppConfig.load(AppFlavor.staging, withAuth: false);
 
   // Running Cote Network Logger
   await CoteNetworkServerUtils.startServer();
@@ -30,6 +33,6 @@ void main() async {
 
   // Sentry initialization can be added here if needed
   // await SentryService.init(app: () => runApp(const MyApp()));
-
-  runApp(MyApp());
+  // Run the application
+  runApp(AppConfig.withAuth ? MyAppAuth() : MyApp());
 }

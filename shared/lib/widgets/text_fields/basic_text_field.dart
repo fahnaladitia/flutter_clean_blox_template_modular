@@ -6,7 +6,6 @@ class BasicTextField extends StatefulWidget {
   final TextInputType? keyboardType;
   final TextInputAction? textInputAction;
   final bool obscureText;
-  final bool readOnly;
   final String? hintText;
   final String? labelText;
   final TextCapitalization textCapitalization;
@@ -22,7 +21,6 @@ class BasicTextField extends StatefulWidget {
     this.keyboardType,
     this.textInputAction,
     this.obscureText = false,
-    this.readOnly = false,
     this.hintText,
     this.labelText,
     this.textCapitalization = TextCapitalization.none,
@@ -56,7 +54,6 @@ class BasicTextField extends StatefulWidget {
          keyboardType: keyboardType,
          textInputAction: textInputAction,
          obscureText: obscureText,
-         readOnly: readOnly,
          hintText: hintText,
          labelText: labelText,
          textCapitalization: textCapitalization,
@@ -90,7 +87,6 @@ class BasicTextField extends StatefulWidget {
          keyboardType: keyboardType,
          textInputAction: textInputAction,
          obscureText: obscureText,
-         readOnly: readOnly,
          hintText: hintText,
          labelText: labelText,
          textCapitalization: textCapitalization,
@@ -142,6 +138,7 @@ class _BasicTextFieldState extends State<BasicTextField> {
   }
 
   Widget _buildOutlinedTextField(BuildContext context) {
+    final isDarkMode = Theme.of(context).brightness == Brightness.dark;
     return Column(
       crossAxisAlignment: CrossAxisAlignment.start,
       mainAxisSize: MainAxisSize.min,
@@ -156,12 +153,14 @@ class _BasicTextFieldState extends State<BasicTextField> {
           ),
         TextFormField(
           controller: widget.controller,
-          readOnly: widget.readOnly,
+          readOnly: widget.state == BasicTextFieldState.disabled,
           obscureText: _isVisibility == false,
           keyboardType: widget.keyboardType,
           textInputAction: widget.textInputAction,
           textCapitalization: widget.textCapitalization,
-          style: Theme.of(context).textTheme.bodyLarge,
+          style: Theme.of(context).textTheme.bodyLarge?.copyWith(
+            color: isDarkMode ? Colors.black : null,
+          ),
           onChanged: (value) {
             if (isError) {
               setState(() {
@@ -170,13 +169,17 @@ class _BasicTextFieldState extends State<BasicTextField> {
             }
           },
           decoration: InputDecoration(
-            hint: widget.labelText != null
+            hint: widget.hintText != null
                 ? Text(
                     widget.hintText ?? '',
-                    style: Theme.of(context).textTheme.bodySmall,
+                    style: Theme.of(context).textTheme.bodySmall?.copyWith(
+                      color: isDarkMode ? Colors.black : null,
+                    ),
                   )
                 : null,
-            fillColor: const Color(0xFFFBFBFB),
+            fillColor: widget.state.isDisabled
+                ? (isDarkMode ? Colors.grey[800] : Colors.grey[200])
+                : const Color(0xFFFBFBFB),
             filled: true,
             prefixIcon: widget.prefixIcon,
             suffixIcon: _buildSuffixIcon(context),
@@ -184,6 +187,14 @@ class _BasicTextFieldState extends State<BasicTextField> {
               borderRadius: BorderRadius.circular(4),
               borderSide: isError
                   ? BorderSide(color: Colors.red)
+                  : widget.state.isDisabled
+                  ? BorderSide.none
+                  : BorderSide(color: Theme.of(context).colorScheme.secondary),
+            ),
+            disabledBorder: OutlineInputBorder(
+              borderRadius: BorderRadius.circular(4),
+              borderSide: widget.state.isDisabled
+                  ? BorderSide.none
                   : BorderSide(color: Theme.of(context).colorScheme.secondary),
             ),
             border: OutlineInputBorder(
@@ -194,12 +205,14 @@ class _BasicTextFieldState extends State<BasicTextField> {
             ),
             focusedBorder: OutlineInputBorder(
               borderRadius: BorderRadius.circular(4),
-              borderSide: BorderSide(
-                color: isError
-                    ? Colors.red
-                    : Theme.of(context).colorScheme.secondary,
-                width: 1.5,
-              ),
+              borderSide: widget.state.isDisabled
+                  ? BorderSide.none
+                  : BorderSide(
+                      color: isError
+                          ? Colors.red
+                          : Theme.of(context).colorScheme.secondary,
+                      width: 1.5,
+                    ),
             ),
           ),
         ),
@@ -218,18 +231,21 @@ class _BasicTextFieldState extends State<BasicTextField> {
   }
 
   Widget _buildUnderlineTextField(BuildContext context) {
+    final isDarkMode = Theme.of(context).brightness == Brightness.dark;
     return Column(
       crossAxisAlignment: CrossAxisAlignment.start,
       mainAxisSize: MainAxisSize.min,
       children: [
         TextFormField(
           controller: widget.controller,
-          readOnly: widget.readOnly,
+          readOnly: widget.state == BasicTextFieldState.disabled,
           obscureText: _isVisibility == false,
           keyboardType: widget.keyboardType,
           textInputAction: widget.textInputAction,
           textCapitalization: widget.textCapitalization,
-          style: Theme.of(context).textTheme.bodyLarge,
+          style: Theme.of(context).textTheme.bodyLarge?.copyWith(
+            color: isDarkMode ? Colors.black : null,
+          ),
           onChanged: (value) {
             if (isError) {
               setState(() {
@@ -240,10 +256,18 @@ class _BasicTextFieldState extends State<BasicTextField> {
           decoration: InputDecoration(
             hintText: widget.hintText,
             labelText: widget.labelText,
-            floatingLabelBehavior: FloatingLabelBehavior.auto,
-            labelStyle: Theme.of(context).textTheme.labelLarge,
-            hintStyle: Theme.of(context).textTheme.bodySmall,
-            fillColor: const Color(0xFFFBFBFB),
+            floatingLabelBehavior: widget.state == BasicTextFieldState.disabled
+                ? FloatingLabelBehavior.always
+                : FloatingLabelBehavior.auto,
+            labelStyle: Theme.of(context).textTheme.labelLarge?.copyWith(
+              color: isDarkMode ? Colors.black : null,
+            ),
+            hintStyle: Theme.of(context).textTheme.bodySmall?.copyWith(
+              color: isDarkMode ? Colors.black54 : null,
+            ),
+            fillColor: widget.state.isDisabled
+                ? (isDarkMode ? Colors.grey[800] : Colors.grey[200])
+                : const Color(0xFFFBFBFB),
             filled: true,
             prefixIcon: widget.prefixIcon,
             suffixIcon: _buildSuffixIcon(context),

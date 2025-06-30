@@ -1,11 +1,11 @@
-import 'dart:io';
-
+import 'package:application/presentation/pages/main/main_auth_page.dart';
+import 'package:application/presentation/pages/splash/splash_page.dart';
 import 'package:core/core.dart';
-import 'package:feature_auth/presentation/pages/sign_in_page.dart';
-import 'package:feature_auth/presentation/pages/sign_up_page.dart';
 
 import 'package:application/presentation/pages/main/main_page.dart';
-import 'package:application/presentation/pages/splash/splash_page.dart';
+import 'package:application/presentation/pages/splash/splash_auth_page.dart';
+import 'package:feature_auth/presentation/pages/sign_in_page.dart';
+import 'package:feature_auth/presentation/pages/sign_up_page.dart';
 
 /// =========================================================
 /// Created by Pahnal Aditia
@@ -16,47 +16,40 @@ import 'package:application/presentation/pages/splash/splash_page.dart';
 class AppRoute {
   AppRoute._();
 
-  /// Define your route paths
-  static const String mainPath = '/main';
-  static const String signInPath = '/sign-in';
-  static const String signUpPath = '/sign-up';
-  static const String splashPath = '/splash';
-
-  /// Define your route names
-  static const String main = 'main';
-  static const String signIn = 'sign-in';
-  static const String signUp = 'sign-up';
-  static const String splash = 'splash';
-
   /// Create and expose your router instance
   static final router = AppNavigation.router(
-    initialLocation: Platform.isAndroid ? splashPath : mainPath,
+    initialLocation: '/splash',
     observers: [
       SentryService.navigatorObserver,
       ChuckerFlutterUtils.navigatorObserver,
     ],
     pages: [
       AppPage(
-        path: mainPath,
-        name: main,
-        builder: (context, state) => const MainPage(),
+        path: "/",
+        transitionType: AppPageTranstionType.none,
+        builder: (context, state) => MainPage(),
       ),
-      AppPage(
-        path: signInPath,
-        name: signIn,
-        builder: (context, state) => const SignInPage(),
-      ),
-      AppPage(
-        path: splashPath,
-        name: splash,
-        builder: (context, state) => const SplashPage(),
-      ),
-      AppPage(
-        path: signUpPath,
-        name: signUp,
-        builder: (context, state) => const SignUpPage(),
-      ),
+      AppPage(path: "/splash", builder: (_, _) => const SplashPage()),
     ],
     errorBuilder: (context, state) => const MainPage(),
+  );
+
+  static final routerWithAuth = AppNavigation.router(
+    initialLocation: '/splash',
+    observers: [
+      SentryService.navigatorObserver,
+      ChuckerFlutterUtils.navigatorObserver,
+    ],
+    pages: [
+      AppPage(path: '/', builder: (context, state) => MainAuthPage()),
+      AppPage(path: '/splash', builder: (_, __) => const SplashAuthPage()),
+      AppPage(
+        path: '/sign-in',
+        transitionType: AppPageTranstionType.none,
+        builder: (_, __) => SignInPage(),
+      ),
+      AppPage(path: '/sign-up', builder: (_, __) => const SignUpPage()),
+    ],
+    errorBuilder: (context, state) => const MainAuthPage(),
   );
 }
