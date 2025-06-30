@@ -1,4 +1,4 @@
-import 'package:application/presentation/pages/main/main_page.dart';
+import 'package:application/presentation/pages/main/main_auth_page.dart';
 import 'package:bloc_test/bloc_test.dart';
 import 'package:core/core.dart';
 import 'package:feature_auth/di/auth_module.dart';
@@ -36,18 +36,18 @@ void main() {
     await sl.reset(dispose: true);
   });
 
-  group('MainPage', () {
+  group('MainAuthPage', () {
     testWidgets('renders correctly', (tester) async {
       await tester.pumpWidget(
         MaterialApp(
           localizationsDelegates: AppLocalizations.localizationsDelegates,
           supportedLocales: AppLocalizations.supportedLocales,
-          home: const MainPage(),
+          home: const MainAuthPage(),
         ),
       );
       await tester.pumpAndSettle(); // biar semua UI selesai dirender
 
-      expect(find.byType(MainPage), findsOneWidget);
+      expect(find.byType(MainAuthPage), findsOneWidget);
 
       expect(find.byType(BottomNavigationBar), findsOneWidget);
       expect(find.byType(HomePage), findsOneWidget);
