@@ -78,6 +78,9 @@ class BasicCheckbox extends StatefulWidget {
 class _BasicCheckboxState extends State<BasicCheckbox> {
   late BasicSelectionController _controller;
 
+  bool get _isDarkMode => Theme.of(context).brightness == Brightness.dark;
+  bool get _isSelected => _controller.state.isSelected;
+  BasicSelectionState get _state => _controller.state.stateSelection;
   @override
   void initState() {
     super.initState();
@@ -85,73 +88,64 @@ class _BasicCheckboxState extends State<BasicCheckbox> {
   }
 
   void _toggle() {
-    final state = _controller.state;
-    if (state.isDisabled) return;
+    if (_state.isDisabled) return;
     _controller.toggleSelection();
-    final isSelected = _controller.isSelected;
-    widget.onChanged?.call(isSelected);
+    widget.onChanged?.call(_isSelected);
   }
 
   @override
   Widget build(BuildContext context) {
-    return ChangeNotifierProvider(
-      create: (_) => _controller,
-      child: Consumer<BasicSelectionController>(
-        builder: (context, controller, _) {
-          final state = controller.state;
-          final isSelected = controller.isSelected;
-          final checkWidget = _buildCheck(context);
-          final labelText = widget.label;
-          return Semantics(
-            label: labelText,
-            checked: isSelected,
-            enabled: state.isActive,
-            child: GestureDetector(
-              onTap: _toggle,
-              behavior: HitTestBehavior.opaque,
-              child: Row(
-                mainAxisAlignment: labelText != null
-                    ? MainAxisAlignment.spaceBetween
-                    : MainAxisAlignment.start,
-                crossAxisAlignment: CrossAxisAlignment.center,
-                mainAxisSize: labelText != null
-                    ? MainAxisSize.max
-                    : MainAxisSize.min,
-                children: [
-                  if (labelText != null)
-                    Padding(
-                      padding: 16.edgeRight,
-                      child: Text(
-                        labelText,
-                        style: Theme.of(context).textTheme.bodyMedium?.copyWith(
-                          color: state.isDisabled
-                              ? Theme.of(
-                                  context,
-                                ).colorScheme.onSurface.withValues(alpha: 0.38)
-                              : null,
-                        ),
+    return BlocBuilder<BasicSelectionController, BasicSelectionControllerState>(
+      bloc: _controller,
+      builder: (context, _) {
+        final labelText = widget.label;
+        final checkWidget = _buildCheck(context);
+        return Semantics(
+          label: labelText,
+          checked: _isSelected,
+          enabled: _state.isActive,
+          child: GestureDetector(
+            onTap: _toggle,
+            behavior: HitTestBehavior.opaque,
+            child: Row(
+              mainAxisAlignment: labelText != null
+                  ? MainAxisAlignment.spaceBetween
+                  : MainAxisAlignment.start,
+              crossAxisAlignment: CrossAxisAlignment.center,
+              mainAxisSize: labelText != null
+                  ? MainAxisSize.max
+                  : MainAxisSize.min,
+              children: [
+                if (labelText != null)
+                  Padding(
+                    padding: 16.edgeRight,
+                    child: Text(
+                      labelText,
+                      style: Theme.of(context).textTheme.bodyMedium?.copyWith(
+                        color: _state.isDisabled
+                            ? Theme.of(
+                                context,
+                              ).colorScheme.onSurface.withValues(alpha: 0.38)
+                            : null,
                       ),
                     ),
-                  checkWidget,
-                ],
-              ),
+                  ),
+                checkWidget,
+              ],
             ),
-          );
-        },
-      ),
+          ),
+        );
+      },
     );
   }
 
   Widget _buildCheck(BuildContext context) {
-    final isSelected = _controller.isSelected;
-    final state = _controller.state;
-    final isDarkMode = Theme.of(context).brightness == Brightness.dark;
     final checkColor =
         widget.checkColor ??
-        (isDarkMode ? Theme.of(context).colorScheme.primary : Colors.white);
+        (_isDarkMode ? Theme.of(context).colorScheme.primary : Colors.white);
     final backgroundColor =
         widget.backgroundColor ??
-        (isDarkMode
+        (_isDarkMode
             ? Theme.of(context).colorScheme.secondaryContainer
             : Theme.of(context).colorScheme.primary);
 
@@ -159,44 +153,61 @@ class _BasicCheckboxState extends State<BasicCheckbox> {
 
     switch (widget.type) {
       case BasicCheckboxType.android:
-        return Transform.scale(
-          scale: desiredSize / 24.0,
-          child: Checkbox(
-            value: isSelected,
-            shape: RoundedRectangleBorder(
-              borderRadius: BorderRadius.circular(4),
-            ),
-            onChanged: state.isDisabled ? null : (value) => _toggle(),
-            checkColor: checkColor,
-            activeColor: backgroundColor,
-          ),
-        );
+        return _buildAndroidCheckbox(desiredSize, checkColor, backgroundColor);
       case BasicCheckboxType.ios:
-        return Transform.scale(
-          scale: desiredSize / 18.0,
-          child: CupertinoCheckbox(
-            value: isSelected,
-            shape: RoundedRectangleBorder(
-              borderRadius: BorderRadius.circular(4),
-            ),
-            onChanged: state.isDisabled ? null : (value) => _toggle(),
-            checkColor: checkColor,
-            activeColor: backgroundColor,
-          ),
-        );
+        return _buildiOSCheckbox(desiredSize, checkColor, backgroundColor);
       case BasicCheckboxType.adaptive:
-        return Transform.scale(
-          scale: desiredSize / 18.0,
-          child: Checkbox.adaptive(
-            value: isSelected,
-            shape: RoundedRectangleBorder(
-              borderRadius: BorderRadius.circular(4),
-            ),
-            onChanged: state.isDisabled ? null : (value) => _toggle(),
-            checkColor: checkColor,
-            activeColor: backgroundColor,
-          ),
-        );
+        return _buildAdaptiveCheckbox(desiredSize, checkColor, backgroundColor);
     }
+  }
+
+  Transform _buildAdaptiveCheckbox(
+    double desiredSize,
+    Color checkColor,
+    Color backgroundColor,
+  ) {
+    final platform = Theme.of(context).platform;
+    switch (platform) {
+      case TargetPlatform.android:
+        return _buildAndroidCheckbox(desiredSize, checkColor, backgroundColor);
+      case TargetPlatform.iOS:
+        return _buildiOSCheckbox(desiredSize, checkColor, backgroundColor);
+      default:
+        return _buildAndroidCheckbox(desiredSize, checkColor, backgroundColor);
+    }
+  }
+
+  Transform _buildiOSCheckbox(
+    double desiredSize,
+    Color checkColor,
+    Color backgroundColor,
+  ) {
+    return Transform.scale(
+      scale: desiredSize / 18.0,
+      child: CupertinoCheckbox(
+        value: _isSelected,
+        shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(4)),
+        onChanged: _state.isDisabled ? null : (value) => _toggle(),
+        checkColor: checkColor,
+        activeColor: backgroundColor,
+      ),
+    );
+  }
+
+  Transform _buildAndroidCheckbox(
+    double desiredSize,
+    Color checkColor,
+    Color backgroundColor,
+  ) {
+    return Transform.scale(
+      scale: desiredSize / 24.0,
+      child: Checkbox(
+        value: _isSelected,
+        shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(4)),
+        onChanged: _state.isDisabled ? null : (value) => _toggle(),
+        checkColor: checkColor,
+        activeColor: backgroundColor,
+      ),
+    );
   }
 }

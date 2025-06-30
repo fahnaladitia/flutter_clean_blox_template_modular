@@ -16,12 +16,12 @@ void main() {
 
       await tester.tap(find.byType(Checkbox));
       await tester.pumpAndSettle();
-      expect(controller.isSelected, isTrue);
+      expect(controller.state.isSelected, isTrue);
     });
 
     testWidgets('does not toggle when disabled', (tester) async {
       final controller = BasicSelectionController(
-        state: BasicSelectionState.disabled,
+        initialState: BasicSelectionState.disabled,
       );
 
       await tester.pumpWidget(
@@ -32,7 +32,7 @@ void main() {
 
       await tester.tap(find.byType(Checkbox));
       await tester.pump();
-      expect(controller.isSelected, isFalse);
+      expect(controller.state.isSelected, isFalse);
     });
   });
 
@@ -48,12 +48,12 @@ void main() {
 
       await tester.tap(find.byType(CupertinoCheckbox));
       await tester.pumpAndSettle();
-      expect(controller.isSelected, isTrue);
+      expect(controller.state.isSelected, isTrue);
     });
 
     testWidgets('does not toggle when disabled', (tester) async {
       final controller = BasicSelectionController(
-        state: BasicSelectionState.disabled,
+        initialState: BasicSelectionState.disabled,
       );
 
       await tester.pumpWidget(
@@ -64,7 +64,7 @@ void main() {
 
       await tester.tap(find.byType(CupertinoCheckbox));
       await tester.pump();
-      expect(controller.isSelected, isFalse);
+      expect(controller.state.isSelected, isFalse);
     });
   });
 
@@ -80,12 +80,12 @@ void main() {
 
       await tester.tap(find.byType(Checkbox));
       await tester.pump();
-      expect(controller.isSelected, isTrue);
+      expect(controller.state.isSelected, isTrue);
     });
 
     testWidgets('does not toggle when disabled', (tester) async {
       final controller = BasicSelectionController(
-        state: BasicSelectionState.disabled,
+        initialState: BasicSelectionState.disabled,
       );
 
       await tester.pumpWidget(
@@ -96,7 +96,7 @@ void main() {
 
       await tester.tap(find.byType(Checkbox));
       await tester.pump();
-      expect(controller.isSelected, isFalse);
+      expect(controller.state.isSelected, isFalse);
     });
   });
 

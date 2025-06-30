@@ -17,12 +17,12 @@ void main() {
       );
       await tester.tap(find.byType(Switch));
       await tester.pump();
-      expect(controller.isSelected, isTrue);
+      expect(controller.state.isSelected, isTrue);
     });
 
     testWidgets('Android Disabled', (tester) async {
       final controller = BasicSelectionController(
-        state: BasicSelectionState.disabled,
+        initialState: BasicSelectionState.disabled,
       );
       await tester.pumpWidget(
         MaterialApp(
@@ -37,7 +37,7 @@ void main() {
       );
       await tester.tap(find.byType(Switch));
       await tester.pump();
-      expect(controller.isSelected, isFalse);
+      expect(controller.state.isSelected, isFalse);
     });
 
     testWidgets('iOS Active', (tester) async {
@@ -49,12 +49,12 @@ void main() {
       );
       await tester.tap(find.byType(CupertinoSwitch));
       await tester.pump();
-      expect(controller.isSelected, isTrue);
+      expect(controller.state.isSelected, isTrue);
     });
 
     testWidgets('iOS Disabled', (tester) async {
       final controller = BasicSelectionController(
-        state: BasicSelectionState.disabled,
+        initialState: BasicSelectionState.disabled,
       );
       await tester.pumpWidget(
         MaterialApp(
@@ -63,7 +63,7 @@ void main() {
       );
       await tester.tap(find.byType(CupertinoSwitch));
       await tester.pump();
-      expect(controller.isSelected, isFalse);
+      expect(controller.state.isSelected, isFalse);
     });
 
     testWidgets('Adaptive Active', (tester) async {
@@ -75,12 +75,12 @@ void main() {
       );
       await tester.tap(find.byType(Switch));
       await tester.pump();
-      expect(controller.isSelected, isTrue);
+      expect(controller.state.isSelected, isTrue);
     });
 
     testWidgets('Adaptive Disabled', (tester) async {
       final controller = BasicSelectionController(
-        state: BasicSelectionState.disabled,
+        initialState: BasicSelectionState.disabled,
       );
       await tester.pumpWidget(
         MaterialApp(
@@ -89,7 +89,7 @@ void main() {
       );
       await tester.tap(find.byType(Switch));
       await tester.pump();
-      expect(controller.isSelected, isFalse);
+      expect(controller.state.isSelected, isFalse);
     });
 
     testWidgets('Icon Type: active icon displayed when true', (tester) async {
@@ -144,12 +144,12 @@ void main() {
       );
       await tester.tap(find.byType(IconButton));
       await tester.pump();
-      expect(controller.isSelected, isTrue);
+      expect(controller.state.isSelected, isTrue);
     });
 
     testWidgets('Icon Type: does not toggle when disabled', (tester) async {
       final controller = BasicSelectionController(
-        state: BasicSelectionState.disabled,
+        initialState: BasicSelectionState.disabled,
       );
       await tester.pumpWidget(
         MaterialApp(
@@ -165,7 +165,7 @@ void main() {
       );
       await tester.tap(find.byType(IconButton));
       await tester.pump();
-      expect(controller.isSelected, isFalse);
+      expect(controller.state.isSelected, isFalse);
     });
 
     testWidgets('Icon Type: custom icon colors and backgrounds', (

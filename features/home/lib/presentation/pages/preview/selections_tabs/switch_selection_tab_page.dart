@@ -31,7 +31,7 @@ class _SwitchSelectionTabPageState extends State<SwitchSelectionTabPage> {
       initialValue: true,
     );
     _basicSwitchAndroidInactiveController = BasicSelectionController(
-      state: BasicSelectionState.disabled,
+      initialState: BasicSelectionState.disabled,
     );
     _basicSwitchAndroidCustomIconsController = BasicSelectionController(
       initialValue: true,
@@ -40,7 +40,7 @@ class _SwitchSelectionTabPageState extends State<SwitchSelectionTabPage> {
     // iOS Controllers
     _basicSwitchIosActiveController = BasicSelectionController();
     _basicSwitchIosInactiveController = BasicSelectionController(
-      state: BasicSelectionState.disabled,
+      initialState: BasicSelectionState.disabled,
     );
     _basicSwitchIosCustomIconsController = BasicSelectionController(
       initialValue: true,
@@ -51,7 +51,7 @@ class _SwitchSelectionTabPageState extends State<SwitchSelectionTabPage> {
       initialValue: true,
     );
     _basicSwitchAdaptiveInactiveController = BasicSelectionController(
-      state: BasicSelectionState.disabled,
+      initialState: BasicSelectionState.disabled,
     );
     _basicSwitchAdaptiveCustomIconsController = BasicSelectionController(
       initialValue: true,
@@ -62,7 +62,7 @@ class _SwitchSelectionTabPageState extends State<SwitchSelectionTabPage> {
       initialValue: true,
     );
     _basicSwitchIconInactiveController = BasicSelectionController(
-      state: BasicSelectionState.disabled,
+      initialState: BasicSelectionState.disabled,
     );
     _basicSwitchIconCustomIconsController = BasicSelectionController(
       initialValue: true,
@@ -96,7 +96,6 @@ class _SwitchSelectionTabPageState extends State<SwitchSelectionTabPage> {
             BasicSwitch.android(
               controller: _basicSwitchAndroidInactiveController,
               onChanged: (value) {},
-
               label: "Basic Switch Android Inactive",
             ),
             16.paddingVertical,
@@ -130,7 +129,6 @@ class _SwitchSelectionTabPageState extends State<SwitchSelectionTabPage> {
             BasicSwitch.ios(
               controller: _basicSwitchIosInactiveController,
               onChanged: (value) {},
-
               label: "Basic Switch iOS Inactive",
             ),
             16.paddingVertical,
@@ -199,7 +197,6 @@ class _SwitchSelectionTabPageState extends State<SwitchSelectionTabPage> {
             BasicSwitch.icon(
               controller: _basicSwitchIconInactiveController,
               onChanged: (value) {},
-
               activeIcon: const Icon(Icons.favorite),
               label: "Basic Switch Icon Inactive",
             ),
@@ -208,9 +205,9 @@ class _SwitchSelectionTabPageState extends State<SwitchSelectionTabPage> {
             BasicSwitch.icon(
               controller: _basicSwitchIconCustomIconsController,
               onChanged: (value) {},
+              label: "Basic Switch Icon Custom Colors",
               activeIcon: const Icon(Icons.light_mode),
               inactiveIcon: const Icon(Icons.dark_mode),
-              label: "Basic Switch Icon Custom Colors",
               activeColor: Colors.yellow,
               inactiveColor: Colors.blue,
               activeBackgroundColor: Colors.white,

@@ -1,34 +1,47 @@
 part of '../widgets.dart';
 
-class BasicSelectionController extends ChangeNotifier {
-  late bool _isSelected;
-  late BasicSelectionState _state;
-
+class BasicSelectionController extends Cubit<BasicSelectionControllerState> {
   BasicSelectionController({
     bool initialValue = false,
-    BasicSelectionState state = BasicSelectionState.active,
-  }) {
-    _state = state;
-    _isSelected = initialValue;
-  }
-
-  bool get isSelected => _isSelected;
-  BasicSelectionState get state => _state;
+    BasicSelectionState initialState = BasicSelectionState.active,
+  }) : super(
+         BasicSelectionControllerState(
+           isSelected: initialValue,
+           stateSelection: initialState,
+         ),
+       );
 
   void toggleSelection() {
-    _isSelected = !_isSelected;
-    notifyListeners();
+    emit(state.copyWith(isSelected: !state.isSelected));
   }
 
   void setSelection(bool value) {
-    if (_isSelected != value) {
-      _isSelected = value;
-      notifyListeners();
+    if (state.isSelected != value) {
+      emit(state.copyWith(isSelected: value));
     }
   }
 
-  void changeState(BasicSelectionState state) {
-    _state = state;
-    notifyListeners();
+  void changeState({BasicSelectionState? to}) {
+    emit(state.copyWith(stateSelection: to));
+  }
+}
+
+class BasicSelectionControllerState {
+  final bool isSelected;
+  final BasicSelectionState stateSelection;
+
+  BasicSelectionControllerState({
+    required this.isSelected,
+    required this.stateSelection,
+  });
+
+  BasicSelectionControllerState copyWith({
+    bool? isSelected,
+    BasicSelectionState? stateSelection,
+  }) {
+    return BasicSelectionControllerState(
+      isSelected: isSelected ?? this.isSelected,
+      stateSelection: stateSelection ?? this.stateSelection,
+    );
   }
 }
