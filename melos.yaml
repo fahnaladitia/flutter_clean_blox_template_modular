@@ -30,11 +30,11 @@ scripts:
   run:release:production: cd application && flutter run --flavor production -t lib/main_production.dart --release
 # Build staging / production APK release
   build:staging:apk:
-    run: cd application && flutter build apk --flavor staging -t lib/main_staging.dart --release --obfuscate --split-debug-info=out/staging
+    run: cd application && flutter build apk --flavor staging -t lib/main_staging.dart --release --obfuscate --split-debug-info=out/android
     description: Build staging APK (release)
 
   build:production:apk:
-    run: cd application && flutter build apk --flavor production -t lib/main_production.dart --release --obfuscate --split-debug-info=out/production
+    run: cd application && flutter build apk --flavor production -t lib/main_production.dart --release --obfuscate --split-debug-info=out/android
     description: Build production APK (release)
 
   # Optional: Build iOS

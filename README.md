@@ -21,7 +21,6 @@ Created with ❤️ by [**Pahnal Aditia**](https://www.linkedin.com/in/pahnaladi
       - [🍏 iOS IPA](#-ios-ipa)
   - [Tutorials](#tutorials)
     - [🧩 Basic Button Tutorial](#-basic-button-tutorial)
-    - [Overview Widgets](#overview-widgets)
   - [📝 Developer Notes](#-developer-notes)
   - [🚀 Ready to Launch?](#-ready-to-launch)
   - [FYI](#fyi)
@@ -37,7 +36,7 @@ Created with ❤️ by [**Pahnal Aditia**](https://www.linkedin.com/in/pahnaladi
 ✅ **BLoC State Management** — Built using [flutter_bloc](https://pub.dev/packages/flutter_bloc)  
  
 ✅ **Flavor Support** — Easily switch between `staging` and `production` builds  
-✅ **CI/CD Integrated** — GitHub Actions ready for automated signed builds in Android and iOS  
+✅ **CI/CD Integrated** — GitHub Actions & CircleCI configurations for automated builds and tests
 ✅ **App Links & Deep Linking** — Universal links for Android & iOS
 ✅ **Rich UI Components** — Custom widgets in `shared/` for consistent design  
 ✅ **Testing & Debugging** — Includes [Chucker Flutter](https://pub.dev/packages/chucker_flutter) and [Cote Network Logger](https://pub.dev/packages/cote_network_logger) for network debugging  
@@ -74,6 +73,9 @@ repo/
 # Clone the repo
 git clone https://github.com/fahnaladitia/flutter_clean_blox_template_modular.git
 
+# Install Melos
+dart pub global activate melos
+
 # Install dependencies for all packages
 melos bootstrap
 ```
@@ -86,8 +88,8 @@ See [SETUP.md](docs/SETUP.md) for customizing your app’s name and flavors.
 - App Links & Deep Linking:
 See [APPLINKS.md](docs/APPLINKS.md) for universal link configuration for Android & iOS.
 
-- CI/CD Configuration and Automated Builds:
-See [ANDROID_CI.md](docs/ANDROID_CI.md) for setting up GitHub Actions for automated builds.
+- CI/CD Configuration:
+See [ANDROID_CIRCLE_CI.md](docs/ANDROID_CIRCLE_CI.md) and [ANDROID_GITHUB_CI.md](docs/ANDROID_GITHUB_CI.md) for setting up CircleCI and GitHub Actions for automated builds and tests.
 
 ### ▶️ Running the App
 
@@ -133,15 +135,6 @@ flutter build ipa --obfuscate --split-debug-info=out/android --flavor production
 
 A guide to using the BasicButton widget in your Flutter app with rich customization for style, size, icon, width, and event state.
 See [BASIC_BUTTON_TUTORIAL.md](docs/BASIC_BUTTON_TUTORIAL.md) for a comprehensive guide on using the `BasicButton` widget, including constructor parameters, available sizes, states, and example usages.
- 
-### Overview Widgets
-
-<p float="left">
-  <img src="docs/media/button.gif" width="200" />
-  <img src="docs/media/inputs.gif" width="200" />
-  <img src="docs/media/switchs.gif" width="200" />
-  <img src="docs/media/checkboxs.gif" width="200" />
-</p>
 
 ---
 
